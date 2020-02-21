@@ -1,8 +1,257 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "frontend-app-1": {
+      "root": "apps/frontend-app-1",
+      "sourceRoot": "apps/frontend-app-1/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/frontend-app-1",
+            "index": "apps/frontend-app-1/src/index.html",
+            "main": "apps/frontend-app-1/src/main.tsx",
+            "polyfills": "apps/frontend-app-1/src/polyfills.ts",
+            "tsConfig": "apps/frontend-app-1/tsconfig.app.json",
+            "assets": [
+              "apps/frontend-app-1/src/assets",
+              {
+                "input": "libs/shared/assets",
+                "glob": "*.ico",
+                "output": "."
+              },
+              {
+                "input": "libs/shared/assets/images",
+                "glob": "**/*",
+                "output": "assets/images"
+              }
+            ],
+            "styles": [
+              "libs/shared/assets/styles.scss",
+              "apps/frontend-app-1/src/styles.scss"
+            ],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend-app-1/src/environments/environment.ts",
+                  "with": "apps/frontend-app-1/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "frontend-app-1:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "frontend-app-1:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/frontend-app-1/.eslintrc",
+            "tsConfig": [
+              "apps/frontend-app-1/tsconfig.app.json",
+              "apps/frontend-app-1/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/frontend-app-1/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/frontend-app-1/jest.config.js",
+            "tsConfig": "apps/frontend-app-1/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "frontend-app-1-e2e": {
+      "root": "apps/frontend-app-1-e2e",
+      "sourceRoot": "apps/frontend-app-1-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/frontend-app-1-e2e/cypress.json",
+            "tsConfig": "apps/frontend-app-1-e2e/tsconfig.e2e.json",
+            "devServerTarget": "frontend-app-1:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "frontend-app-1:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/frontend-app-1-e2e/.eslintrc",
+            "tsConfig": ["apps/frontend-app-1-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/frontend-app-1-e2e/**"]
+          }
+        }
+      }
+    },
+    "frontend-app-2": {
+      "root": "apps/frontend-app-2",
+      "sourceRoot": "apps/frontend-app-2/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/frontend-app-2",
+            "index": "apps/frontend-app-2/src/index.html",
+            "main": "apps/frontend-app-2/src/main.tsx",
+            "polyfills": "apps/frontend-app-2/src/polyfills.ts",
+            "tsConfig": "apps/frontend-app-2/tsconfig.app.json",
+            "assets": [
+              "apps/frontend-app-2/src/assets",
+              {
+                "input": "libs/shared/assets",
+                "glob": "*.ico",
+                "output": "."
+              },
+              {
+                "input": "libs/shared/assets/images",
+                "glob": "**/*",
+                "output": "assets/images"
+              }
+            ],
+            "styles": [
+              "libs/shared/assets/styles.scss",
+              "apps/frontend-app-2/src/styles.scss"
+            ],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend-app-2/src/environments/environment.ts",
+                  "with": "apps/frontend-app-2/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "frontend-app-2:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "frontend-app-2:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/frontend-app-2/.eslintrc",
+            "tsConfig": [
+              "apps/frontend-app-2/tsconfig.app.json",
+              "apps/frontend-app-2/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/frontend-app-2/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/frontend-app-2/jest.config.js",
+            "tsConfig": "apps/frontend-app-2/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "frontend-app-2-e2e": {
+      "root": "apps/frontend-app-2-e2e",
+      "sourceRoot": "apps/frontend-app-2-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/frontend-app-2-e2e/cypress.json",
+            "tsConfig": "apps/frontend-app-2-e2e/tsconfig.e2e.json",
+            "devServerTarget": "frontend-app-2:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "frontend-app-2:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/frontend-app-2-e2e/.eslintrc",
+            "tsConfig": ["apps/frontend-app-2-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/frontend-app-2-e2e/**"]
+          }
+        }
+      }
+    },
+    "shared-assets": {
+      "root": "libs/shared/assets",
+      "sourceRoot": "libs/shared/assets",
+      "projectType": "library",
+      "schematics": {}
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/react"
   },
   "schematics": {
     "@nrwl/workspace": {
@@ -17,9 +266,15 @@
     },
     "@nrwl/react": {
       "application": {
-        "linter": "eslint"
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
       },
       "library": {
+        "style": "scss",
         "linter": "eslint"
       }
     },
@@ -56,5 +311,6 @@
         "linter": "eslint"
       }
     }
-  }
+  },
+  "defaultProject": "frontend-app-1"
 }

@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@nx-frontends/shared/assets/*": ["libs/shared/assets/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

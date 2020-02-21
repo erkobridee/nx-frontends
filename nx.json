@@ -10,5 +10,25 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "frontend-app-1": {
+      "tags": [],
+      "implicitDependencies": ["shared-assets"]
+    },
+    "frontend-app-1-e2e": {
+      "tags": [],
+      "implicitDependencies": ["frontend-app-1"]
+    },
+    "frontend-app-2": {
+      "tags": [],
+      "implicitDependencies": ["shared-assets"]
+    },
+    "frontend-app-2-e2e": {
+      "tags": [],
+      "implicitDependencies": ["frontend-app-2"]
+    },
+    "shared-assets": {
+      "tags": []
+    }
+  }
 }

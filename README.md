@@ -6,71 +6,34 @@ This project was generated using [Nx](https://nx.dev).
 
 🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
-## Adding capabilities to your workspace
+ℹ️ use the node.js v12.16.1 LTS
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+## Initial goal
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+- create 2 simple frontend application using react, have one a shared assets lib and a shared ui components lib used from both of the applications
 
-Below are some plugins which you can add to your workspace:
+## Documentation
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+- [Nx](docs/nx.md)
 
-## Generate an application
+- [Project creation commands (steps)](docs/project-creation-commands.md)
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+## Dev environment known issues
 
-> You can use any of the plugins above to generate applications as well.
+### MacOS Catalina
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+Using the node.js v12 LTS, when you try to install the dependencies you get and error related to missing XCode CLI tools support, to fix that we need to remove the XCode CLI tools, install it again and after it use the command to reset the configurations `sudo xcode-select --reset`
 
-## Generate a library
+```
+sudo rm -rf $(xcode-select -print-path)
+xcode-select --install
+sudo xcode-select --reset
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+npm i
+```
 
-> You can also use any of the plugins above to generate libraries as well.
+**references:**
 
-Libraries are sharable across libraries and applications. They can be imported from `@nx-frontends/mylib`.
+- [[GitHub] schnerd/d3-scale-cluster/issues/7](https://github.com/schnerd/d3-scale-cluster/issues/7)
 
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+- [[GitHub] nodejs/node-gyp - Installation notes for macOS Catalina (v10.15)](https://github.com/nodejs/node-gyp/blob/master/macOS_Catalina.md)
