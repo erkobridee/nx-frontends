@@ -1,0 +1,25 @@
+.layout {
+  align-items: center;
+
+  &,
+  &__container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__container {
+    max-width: 600px;
+    min-width: 480px;
+    margin: 10px;
+  }
+
+  &__header,
+  &__footer {
+    flex: 0;
+  }
+
+  &__content {
+    flex: 1;
+  }
+}

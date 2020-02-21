@@ -1,0 +1,19 @@
+@import 'libs/shared/assets/styles/_base';
+
+.layout-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: $header-bg;
+  color: $header-color;
+
+  padding: 5px;
+  border-radius: 3px;
+
+  h1 {
+    text-align: center;
+    margin-left: 18px;
+    font-size: 2.4rem;
+  }
+}

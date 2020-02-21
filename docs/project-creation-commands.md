@@ -60,15 +60,21 @@ useful reference: [[YouTube] 9. Shared assets library and nx.json - Nx Workspace
 
 after define the code and the libs code structure
 
-1. update the `tsconfig.json` to expose the full content of the lib
-2. update the lib configuration on the `workspace.json`
-3. update the `frontend-app-1` and the `frontend-app-2` to load resources from the shared assets lib (code of each project and also the projects configuration on the `workspace.json`)
-4. update the `nx.json` to add as implicity dependency the `shared-assets` to the `frontend-app-1` and `frontend-app-2`
+- update the `tsconfig.json` to expose the full content of the lib
+- update the lib configuration on the `workspace.json`
+- update the `frontend-app-1` and the `frontend-app-2` to load resources from the shared assets lib (code of each project and also the projects configuration on the `workspace.json`)
+- update the `nx.json` to add as implicity dependency the `shared-assets` to the `frontend-app-1` and `frontend-app-2`
 
-3) create a shared ui components lib
+9. create a shared ui components lib
 
 `nx g @nrwl/react:lib ui-components --directory=shared`
 
 also added a new project dependency to the components
 
 `yarn add classnames`
+
+to load the SASS mixins and variables definitions from the `shared-assets` lib, we should use an import on the .scss file like the following one:
+
+`@import 'libs/shared/assets/styles/_base';`
+
+and also update the configuration on the `tsconfig.json` to expose the whole content from the lib to have more flexibility to access the components from it

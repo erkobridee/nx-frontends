@@ -29,6 +29,9 @@
     },
     "shared-assets": {
       "tags": []
+    },
+    "shared-ui-components": {
+      "tags": []
     }
   }
 }
