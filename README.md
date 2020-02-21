@@ -37,3 +37,7 @@ npm i
 - [[GitHub] schnerd/d3-scale-cluster/issues/7](https://github.com/schnerd/d3-scale-cluster/issues/7)
 
 - [[GitHub] nodejs/node-gyp - Installation notes for macOS Catalina (v10.15)](https://github.com/nodejs/node-gyp/blob/master/macOS_Catalina.md)
+
+## Project dependencies graph
+
+![nx dep-graph](docs/nx_dep-graphs.png)
