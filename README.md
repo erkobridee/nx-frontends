@@ -41,3 +41,11 @@ npm i
 ## Project dependencies graph
 
 ![nx dep-graph](docs/nx_dep-graphs.png)
+
+## Findings
+
+- it's possible to have more flexible libs
+
+  - create an assets lib to share the SASS (.scss) common files and also the images, which is a folder with the given content needed inside (no ts or other nx lib stuff related inside of it)
+
+  - have a component lib that expose the whole content of itself and with that gain more flexibility to access the shared components from others libs or applications
