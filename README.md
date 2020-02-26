@@ -14,6 +14,8 @@ This project was generated using [Nx](https://nx.dev).
 
 - [Project creation commands (steps)](docs/project-creation-commands.md)
 
+- [Build and release flows proposed ideas](docs/build-release-flow.md)
+
 ## Dev environment known issues
 
 ### MacOS Catalina
@@ -36,7 +38,7 @@ npm i
 
 ## Project dependencies graph
 
-![nx dep-graph](docs/nx_dep-graphs.png)
+![nx dep-graph](docs/assets/nx_dep-graphs.png)
 
 ## Findings
 
