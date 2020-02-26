@@ -22,6 +22,8 @@
 
 - [Build Affected Apps | Nx Docs](https://nx.dev/react/tutorial/11-build-affected-projects)
 
+  - [Rebuilding and Retesting What is Affected | Nx Docs](https://nx.dev/react/guides/monorepo-affected)
+
 - [Blazing Fast Distributed CI with Nx | Nrwl](https://blog.nrwl.io/blazing-fast-distributed-ci-with-nx-a1f5974f7393)
 
   - [[GitHub] nrwl/nx-azure-build](https://github.com/nrwl/nx-azure-build) - Example of setting up distributed Azure build for Nx workspace
