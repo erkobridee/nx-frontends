@@ -18,6 +18,6 @@ steps:
       vstsFeed: 'nx_azure_node_modules_cache_feed'
 
   - script: |
-      npm ci
+      npm i
     displayName: Install dependencies only if there is no cache available
     condition: ne(variables['CacheRestored'], 'true')
