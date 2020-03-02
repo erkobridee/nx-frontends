@@ -1,5 +1,7 @@
-variables:
-  nodeVersion: '12.x'
+parameters:
+  - name: nodeVersion
+    type: string
+    default: '12.x'
 
 steps:
   - task: NodeTool@0

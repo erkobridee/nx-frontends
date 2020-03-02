@@ -1,6 +1,3 @@
-variables:
-  yarn_cache_folder: $(Pipeline.Workspace)/.yarn
-
 steps:
   - task: Cache@2
     inputs:
@@ -8,7 +5,7 @@ steps:
       restoreKeys: |
         yarn | "$(Agent.OS)"
         yarn
-      path: $(yarn_cache_folder)
+      path: $(Pipeline.Workspace)/.yarn
     displayName: Cache Yarn packages
 
   - script: yarn --frozen-lockfile
