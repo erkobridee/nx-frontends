@@ -1,4 +1,7 @@
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/release/caching?view=azure-devops#nodejsnpm
 steps:
+  - script: echo $(Pipeline.Workspace)
+
   - task: Cache@2
     inputs:
       key: 'npm | "$(Agent.OS)" | package-lock.json'
