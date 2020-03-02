@@ -6,6 +6,10 @@
 #
 # source code
 # https://github.com/microsoft/azure-pipelines-artifact-caching-tasks
+#
+# need to have the artifacts enabled on the project and create one
+# with the vtstsFeed name bellow
+#
 steps:
   - task: 1ESLighthouseEng.PipelineArtifactCaching.RestoreAndSaveCacheV1.RestoreAndSaveCache@1
     inputs:
