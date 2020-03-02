@@ -5,7 +5,10 @@ steps:
       restoreKeys: |
         npm | "$(Agent.OS)"
         npm
-      path: $(System.DefaultWorkingDirectory)/.npm
+      path: $(Pipeline.Workspace)/.npm
+      cacheHitVar: CACHE_RESTORED
     displayName: Cache npm
 
-  - script: npm ci
+  - script: |
+      npm ci
+    condition: ne(variables.CACHE_RESTORED, 'true')
