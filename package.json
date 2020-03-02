@@ -23,7 +23,8 @@
     "update": "nx migrate latest",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "dist-app": "node ./tools/scripts/serve-dist-app.js"
   },
   "private": true,
   "dependencies": {
@@ -57,6 +58,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.17.0",
     "eslint-plugin-react-hooks": "2.3.0",
+    "http-server": "^0.12.1",
     "jest": "24.1.0",
     "prettier": "1.18.2",
     "rimraf": "^3.0.2",
