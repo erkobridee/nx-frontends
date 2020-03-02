@@ -1,5 +1,5 @@
 variables:
-  node_version: '12.x'
+  nodeVersion: '12.x'
 
 steps:
   - task: NodeTool@0
@@ -7,4 +7,4 @@ steps:
       versionSpec: $(node_version)
     displayName: 'Install Node.js'
 
-  - template: steps_cache-yarn.uml
+  - template: steps_cache-yarn.yml
