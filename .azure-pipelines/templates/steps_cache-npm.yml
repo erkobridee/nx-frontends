@@ -5,7 +5,7 @@ steps:
       restoreKeys: |
         npm | "$(Agent.OS)"
         npm
-      path: $(Pipeline.Workspace)/.npm
+      path: $(System.DefaultWorkingDirectory)/.npm
     displayName: Cache npm
 
   - script: npm ci
