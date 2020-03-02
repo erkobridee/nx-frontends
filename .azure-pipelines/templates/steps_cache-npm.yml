@@ -1,24 +1,12 @@
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/release/caching?view=azure-devops#nodejsnpm
 steps:
-  - task: Cache@2
+  - task: 1ESLighthouseEng.PipelineArtifactCaching.RestoreAndSaveCacheV1.RestoreAndSaveCache@1
     inputs:
-      key: 'npm | "$(Agent.OS)" | package-lock.json'
-      restoreKeys: |
-        npm | "$(Agent.OS)"
-        npm
-      path: $(Pipeline.Workspace)/.npm
-      cacheHitVar: CACHE_RESTORED
-    displayName: Cache npm
+      keyfile: '**/package-lock.json'
+      targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
+      vstsFeed: 'node-modules-cache'
 
   - script: |
       npm ci
-    condition: ne(variables.CACHE_RESTORED, 'true')
-
-  - script: echo $(Pipeline.Workspace)
-    displayName: print the workdspace path
-
-  - script: cd $(Pipeline.Workspace)
-    displayName: go to the pipeline workspace dir
-
-  - script: ls
-    displayName: list files
+    displayName: Install dependencies only if there is no cache available
+    condition: ne(variables['CacheRestored'], 'true')
