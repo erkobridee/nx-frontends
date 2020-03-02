@@ -9,4 +9,4 @@ steps:
       versionSpec: ${{ parameters.nodeVersion }}
     displayName: 'Install Node.js'
 
-  - template: steps_cache-yarn.yml
+  - template: steps_cache-npm.yml
