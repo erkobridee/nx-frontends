@@ -1,5 +1,9 @@
 const exec = require('./libs/execute-sync-command');
-const [commandsStr = '[]', target = ''] = require('./libs/get-cli-args');
+const [
+  commandsStr = '[]',
+  target = '',
+  environment = 'development'
+] = require('./libs/get-cli-args');
 const commands = JSON.parse(commandsStr);
 const projects = commands[target];
 
@@ -7,8 +11,16 @@ if (!projects) {
   process.exit();
 }
 
+if (target === 'build') {
+  require('rimraf').sync('./dist/');
+}
+
+const buildOutput = ['prod', 'production'].includes(environment)
+  ? ' --prod'
+  : '';
+
 exec(
-  `npx nx run-many --target=${target} --projects=${projects.join(
+  `npx nx run-many --target=${target}${buildOutput} --projects=${projects.join(
     ','
   )} --parallel`,
   {
