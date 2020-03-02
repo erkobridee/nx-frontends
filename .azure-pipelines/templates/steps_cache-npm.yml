@@ -15,6 +15,10 @@ steps:
     condition: ne(variables.CACHE_RESTORED, 'true')
 
   - script: echo $(Pipeline.Workspace)
+    displayName: print the workdspace path
 
-  - script: cd $(Pipeline.Workspace)/.npm
+  - script: cd $(Pipeline.Workspace)
+    displayName: go to the pipeline workspace dir
+
   - script: ls
+    displayName: list files
