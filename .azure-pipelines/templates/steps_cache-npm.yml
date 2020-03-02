@@ -1,10 +1,17 @@
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/release/caching?view=azure-devops#nodejsnpm
+# Quickstart: Install extensions
+# https://docs.microsoft.com/en-us/azure/devops/marketplace/install-extension?view=azure-devops&tabs=browser
+#
+# marketplace
+# https://marketplace.visualstudio.com/items?itemName=1ESLighthouseEng.PipelineArtifactCaching
+#
+# source code
+# https://github.com/microsoft/azure-pipelines-artifact-caching-tasks
 steps:
   - task: 1ESLighthouseEng.PipelineArtifactCaching.RestoreAndSaveCacheV1.RestoreAndSaveCache@1
     inputs:
       keyfile: '**/package-lock.json'
       targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-      vstsFeed: 'node-modules-cache'
+      vstsFeed: 'nx_azure_node_modules_cache_feed'
 
   - script: |
       npm ci
