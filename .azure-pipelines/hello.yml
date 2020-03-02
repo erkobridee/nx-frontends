@@ -19,5 +19,5 @@ pool:
 #     npm install
 #   displayName: 'npm install'
 
-steps: 
-  - template: templates/steps_intall-node-modules.yml
+steps:
+  - template: ./templates/steps_intall-node-modules.yml
