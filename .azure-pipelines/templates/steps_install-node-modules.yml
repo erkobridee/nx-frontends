@@ -6,7 +6,7 @@ parameters:
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: $(node_version)
+      versionSpec: ${{ parameters.nodeVersion }}
     displayName: 'Install Node.js'
 
   - template: steps_cache-yarn.yml
