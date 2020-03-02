@@ -24,6 +24,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
+    "clean": "rimraf dist",
     "dist-app": "node ./tools/scripts/serve-dist-app.js"
   },
   "private": true,
