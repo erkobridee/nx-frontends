@@ -1,27 +1,6 @@
-# Quickstart: Install extensions
-# https://docs.microsoft.com/en-us/azure/devops/marketplace/install-extension?view=azure-devops&tabs=browser
+# Pipeline caching
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/release/caching
 #
-# marketplace
-# https://marketplace.visualstudio.com/items?itemName=1ESLighthouseEng.PipelineArtifactCaching
-#
-# source code
-# https://github.com/microsoft/azure-pipelines-artifact-caching-tasks
-#
-# need to have the artifacts enabled on the project and create one
-# with the vtstsFeed name bellow
-#
-# steps:
-#   - task: 1ESLighthouseEng.PipelineArtifactCaching.RestoreAndSaveCacheV1.RestoreAndSaveCache@1
-#     inputs:
-#       keyfile: '**/package-lock.json'
-#       targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-#       vstsFeed: $(ArtifactFeed)
-
-#   - script: |
-#       npm i
-#     displayName: Install dependencies only if there is no cache available
-#     condition: ne(variables['CacheRestored'], 'true')
-
 steps:
   - task: Cache@2
     inputs:
