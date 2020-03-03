@@ -29,7 +29,6 @@ stages:
       - job: deploy_all
         displayName: deploy the apps build to branches
         steps:
-          - checkout: none
           - download: current
             artifact: apps
           - script: |
