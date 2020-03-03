@@ -32,7 +32,6 @@ steps:
 
   - script: |
       pwd
-      echo "\n---\n"
       cd $(Pipeline.Workspace)
       ls -la
     displayName: ls workspace
@@ -43,6 +42,6 @@ steps:
       restoreKeys: |
         npm | "$(Agent.OS)"
         npm
-      path: $(Pipeline.Workspace)/node_modules
+      path: node_modules
       cacheHitVar: CACHE_RESTORED
     displayName: Cache node_modules
