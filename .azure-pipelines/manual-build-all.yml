@@ -14,4 +14,4 @@ jobs:
     displayName: Manual trigger build all apps
     steps:
       - template: templates/steps_install-node-modules.yml
-      - script: node ./tools/scripts/nx-build-all.js $(ENV)'
+      - script: node ./tools/scripts/nx-build-all.js $(ENV)
