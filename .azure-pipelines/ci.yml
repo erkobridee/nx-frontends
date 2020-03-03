@@ -29,7 +29,7 @@ jobs:
   - template: templates/jobs_nx-calculate-commands.yml
     parameters:
       jobName: initial_setup
-      isPullRequest: $(IS_PULL_REQUEST)
+      isPullRequest: variables['IS_PULL_REQUEST']
 
   - template: templates/jobs_nx-run-many.yml
     parameters:
