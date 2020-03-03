@@ -1,0 +1,17 @@
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+    ENV: 'production'
+  ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+    ENV: 'development'
+
+jobs:
+  - job: manual_trigger
+    displayName: Manual trigger build all apps
+    steps:
+      - template: templates/steps_install-node-modules.yml
+      - script: node ./tools/scripts/nx-build-all.js $(ENV)'
