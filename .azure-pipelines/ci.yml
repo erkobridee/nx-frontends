@@ -25,7 +25,7 @@ jobs:
   - template: templates/jobs_nx-calculate-commands.yml
     parameters:
       jobName: initial_setup
-      isPullRequest: $[ eq(variables['IS_PULL_REQUEST'], 'true' ) ]
+      isPullRequest: $[ variables['IS_PULL_REQUEST'] ]
 
   - template: templates/jobs_nx-run-many.yml
     parameters:
