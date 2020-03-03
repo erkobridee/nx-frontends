@@ -1,0 +1,36 @@
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+    ENV: 'prod'
+  ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+    ENV: 'dev'
+
+stages:
+  - stage: build
+    jobs:
+      - job: build_all
+        displayName: nx build all apps
+        steps:
+          - template: templates/steps_install-node-modules.yml
+          - script: node ./tools/scripts/nx-build-all.js $(ENV)
+            displayName: nx build all apps
+          - publish: $(System.DefaultWorkingDirectory)/dist/apps
+            artifact: apps
+
+  - stage: branches_deploy
+    dependsOn: build
+    condition: succeeded()
+    jobs:
+      - job: deploy_all
+        displayName: deploy the apps build to branches
+        steps:
+          - download: current
+            artifact: apps
+          - script: |
+              cd $(Pipeline.Workspace)/apps
+              ls
+            displayName: list download directory
