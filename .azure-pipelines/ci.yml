@@ -30,7 +30,7 @@ jobs:
     steps:
       - template: templates/steps_install-node-modules.yml
       - script: |
-          echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(IS_PULL_REQUEST)"
+          echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(IS_PULL_REQUEST))"
         name: setCommands
       - script: echo $(setCommands.COMMANDS)
         name: echoCommands
