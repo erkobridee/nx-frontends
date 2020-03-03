@@ -31,7 +31,7 @@ jobs:
     parameters:
       jobName: lint
       dependsOn: initial_setup
-      commandsStr: '${{dependencies.initial_setup.outputs['setCommands.COMMANDS']}}'
+      commandsStr: '$[dependencies.initial_setup.outputs['setCommands.COMMANDS']]'
       target: lint
       isProdbuild: $(IS_PROD_BUILD)
 
@@ -39,7 +39,7 @@ jobs:
     parameters:
       jobName: test
       dependsOn: initial_setup
-      commandsStr: '${{dependencies.initial_setup.outputs['setCommands.COMMANDS']}}'
+      commandsStr: '$[dependencies.initial_setup.outputs['setCommands.COMMANDS']]'
       target: test
       isProdbuild: $(IS_PROD_BUILD)
 
@@ -47,6 +47,6 @@ jobs:
     parameters:
       jobName: build
       dependsOn: initial_setup
-      commandsStr: '${{dependencies.initial_setup.outputs['setCommands.COMMANDS']}}'
+      commandsStr: '$[dependencies.initial_setup.outputs['setCommands.COMMANDS']]'
       target: build
       isProdbuild: $(IS_PROD_BUILD)
