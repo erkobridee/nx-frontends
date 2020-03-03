@@ -15,11 +15,6 @@ jobs:
     steps:
       - template: templates/steps_install-node-modules.yml
       - script: node ./tools/scripts/nx-build-all.js $(ENV)
-      - task: CopyFiles@2
-        inputs:
-          Contents: 'dist/app/**'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
-      - task: PublishBuildArtifacts@1
-        inputs:
-          pathtoPublish: $(Build.ArtifactStagingDirectory)
-          ArtifactName: 'drop'
+        displayName: nx build all apps
+      - publish: $(System.DefaultWorkingDirectory)/dist/apps
+        artifact: drop
