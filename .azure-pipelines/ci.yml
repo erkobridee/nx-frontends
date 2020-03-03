@@ -60,7 +60,7 @@ jobs:
       COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
     steps:
       - template: templates/steps_install-node-modules.yml
-      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS) lint $(ENV)'
+      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' lint $(ENV)
 
   - job: test
     displayName: test projects
@@ -79,7 +79,7 @@ jobs:
       COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
     steps:
       - template: templates/steps_install-node-modules.yml
-      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS) test $(ENV)'
+      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' lint $(ENV)
 
   - job: build
     displayName: build projects
@@ -98,4 +98,4 @@ jobs:
       COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
     steps:
       - template: templates/steps_install-node-modules.yml
-      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS) build $(ENV)'
+      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' lint $(ENV)
