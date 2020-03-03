@@ -23,19 +23,6 @@
 #     condition: ne(variables['CacheRestored'], 'true')
 
 steps:
-  - script: ls
-    displayName: ls
-
-  - script: npm ci
-    condition: ne(variables.CACHE_RESTORED, 'true')
-    displayName: Install dependencies only if there is no cache available
-
-  - script: |
-      pwd
-      cd $(Pipeline.Workspace)
-      ls -la
-    displayName: ls workspace
-
   - task: Cache@2
     inputs:
       key: 'npm | "$(Agent.OS)" | package-lock.json'
@@ -45,3 +32,7 @@ steps:
       path: node_modules
       cacheHitVar: CACHE_RESTORED
     displayName: Cache node_modules
+
+  - script: npm ci
+    condition: ne(variables.CACHE_RESTORED, 'true')
+    displayName: Install dependencies only if there is no cache available
