@@ -30,8 +30,10 @@ steps:
     condition: ne(variables.CACHE_RESTORED, 'true')
     displayName: Install dependencies only if there is no cache available
 
-  - script: ls
-    displayName: ls
+  - script: |
+      cd $(Pipeline.Workspace)
+      ls
+    displayName: ls workspace
 
   - task: Cache@2
     inputs:
