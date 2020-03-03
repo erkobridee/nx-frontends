@@ -31,8 +31,10 @@ steps:
     displayName: Install dependencies only if there is no cache available
 
   - script: |
+      pwd
+      echo "\n---\n"
       cd $(Pipeline.Workspace)
-      ls
+      ls -la
     displayName: ls workspace
 
   - task: Cache@2
