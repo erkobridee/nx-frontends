@@ -1,16 +1,16 @@
 trigger:
   batch: true
-  pr:
-    - develop
   branches:
     - master
     - develop
-  paths:
-    exclude:
-      - .azure-pipelines/*
-      - .vscode/*
-      - docs/*
-      - tools/*
+  pr:
+    - develop
+    paths:
+      exclude:
+        - .azure-pipelines/*
+        - .vscode/*
+        - docs/*
+        - tools/*
 
 variables:
   # defined on the azure devops project
