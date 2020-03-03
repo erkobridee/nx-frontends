@@ -2,7 +2,7 @@ parameters:
   - name: jobName
     type: string
   - name: isPullRequest
-    type: boolean
+    type: string
     default: false
 
 jobs:

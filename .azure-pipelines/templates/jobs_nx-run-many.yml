@@ -8,7 +8,7 @@ parameters:
   - name: target
     type: string
   - name: isProdBuild
-    type: boolean
+    type: string
     default: false
 
 jobs:
