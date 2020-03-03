@@ -22,12 +22,14 @@ stages:
             artifact: apps
 
   - stage: branches_deploy
+    displayName: branches deploy
     dependsOn: build
     condition: succeeded()
     jobs:
       - job: deploy_all
         displayName: deploy the apps build to branches
         steps:
+          - checkout: none
           - download: current
             artifact: apps
           - script: |
