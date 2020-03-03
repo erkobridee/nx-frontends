@@ -22,7 +22,7 @@ stages:
             artifact: apps
 
   - stage: branches_deploy
-    displayName: branches deploy
+    displayName: git branches deploy
     dependsOn: build
     condition: succeeded()
     jobs:
@@ -35,4 +35,4 @@ stages:
           - script: |
               cd $(Pipeline.Workspace)/apps
               ls
-            displayName: list download directory
+            displayName: list apps available on $(Pipeline.Workspace)/apps
