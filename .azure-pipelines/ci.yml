@@ -22,31 +22,14 @@ variables:
   IS_PROD_BUILD: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
 
 jobs:
-  - template: templates/jobs_nx-calculate-commands.yml
-    parameters:
-      jobName: initial_setup
-      isPullRequest: $(IS_PULL_REQUEST)
-
-  - template: templates/jobs_nx-run-many.yml
-    parameters:
-      jobName: lint
-      dependsOn: initial_setup
-      commandsStr: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
-      target: lint
-      isProdbuild: $(IS_PROD_BUILD)
-
-  - template: templates/jobs_nx-run-many.yml
-    parameters:
-      jobName: test
-      dependsOn: initial_setup
-      commandsStr: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
-      target: test
-      isProdbuild: $(IS_PROD_BUILD)
-
-  - template: templates/jobs_nx-run-many.yml
-    parameters:
-      jobName: build
-      dependsOn: initial_setup
-      commandsStr: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
-      target: build
-      isProdbuild: $(IS_PROD_BUILD)
+  - job: initial_setup
+    displayName: nx calculate commandas
+    variables:
+      IS_PR: $(IS_PULL_REQUEST)
+    steps:
+      - template: templates/steps_install-node-modules.yml
+      - script: |
+          echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(IS_PR))"
+        name: setCommands
+      - script: echo $(setCommands.COMMANDS)
+        name: echoCommands
