@@ -1,9 +1,9 @@
 trigger:
   batch: true
+  pr:
+    - develop
   branches:
     - master
-    - develop
-  pr:
     - develop
   paths:
     exclude:
