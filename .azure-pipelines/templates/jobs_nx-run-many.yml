@@ -3,7 +3,7 @@ parameters:
     type: string
   - name: dependsOn
     type: string
-  - name: commandStr
+  - name: commandsStr
     type: string
   - name: target
     type: string
@@ -20,17 +20,17 @@ jobs:
         succeeded(),
         not(
           contains(
-            parameters.commandStr,
+            parameters.commandsStr,
             '"${{ parameters.target }}":[]'
           )
         )
       )
     variables:
-      commandStr: ${{ parameters.commandStr }}
+      commandsStr: ${{ parameters.commandsStr }}
       target: ${{ parameters.target }}
       env: 'development'
       ${{ if eq(parameters.isProdBuild, 'true') }}:
         env: 'production'
     steps:
       - template: steps_install-node-modules.yml
-      - script: node ./tools/scripts/nx-run-many.js '$(commandStr)' $(target) $(env)
+      - script: node ./tools/scripts/nx-run-many.js '$(commandsStr)' $(target) $(env)
