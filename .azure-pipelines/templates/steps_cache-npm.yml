@@ -10,14 +10,28 @@
 # need to have the artifacts enabled on the project and create one
 # with the vtstsFeed name bellow
 #
-steps:
-  - task: 1ESLighthouseEng.PipelineArtifactCaching.RestoreAndSaveCacheV1.RestoreAndSaveCache@1
-    inputs:
-      keyfile: '**/package-lock.json'
-      targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-      vstsFeed: $(ArtifactFeed)
+# steps:
+#   - task: 1ESLighthouseEng.PipelineArtifactCaching.RestoreAndSaveCacheV1.RestoreAndSaveCache@1
+#     inputs:
+#       keyfile: '**/package-lock.json'
+#       targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
+#       vstsFeed: $(ArtifactFeed)
 
-  - script: |
-      npm i
-    displayName: Install dependencies only if there is no cache available
-    condition: ne(variables['CacheRestored'], 'true')
+#   - script: |
+#       npm i
+#     displayName: Install dependencies only if there is no cache available
+#     condition: ne(variables['CacheRestored'], 'true')
+
+steps:
+  - task: Cache@2
+    inputs:
+      key: 'npm | "$(Agent.OS)" | package-lock.json'
+      restoreKeys: |
+        npm | "$(Agent.OS)"
+        npm
+      path: $(Pipeline.Workspace)/node_modules
+      cacheHitVar: CACHE_RESTORED
+    displayName: Cache node_modules
+
+  - script: npm ci
+    condition: ne(variables.CACHE_RESTORED, 'true')
