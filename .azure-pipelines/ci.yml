@@ -19,9 +19,10 @@ pool:
 
 variables:
   IS_PULL_REQUEST: $[ eq(variables['Build.Reason'], 'PullRequest') ]
-  TARGET_ENV: 'development'
   ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-    TARGET_ENV: 'production'
+    ENV: 'production'
+  ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+    ENV: 'development'
 
 jobs:
   - job: initial_setup
@@ -51,4 +52,4 @@ jobs:
       COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
     steps:
       - template: templates/steps_install-node-modules.yml
-      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS) lint $(TARGET_ENV)'
+      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS) lint $(ENV)'
