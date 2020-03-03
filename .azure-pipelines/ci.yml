@@ -3,14 +3,12 @@ trigger:
   branches:
     - master
     - develop
-  pr:
-    - develop
-    paths:
-      exclude:
-        - .azure-pipelines/*
-        - .vscode/*
-        - docs/*
-        - tools/*
+  paths:
+    exclude:
+      - .azure-pipelines/*
+      - .vscode/*
+      - docs/*
+      - tools/*
 
 variables:
   # defined on the azure devops project
