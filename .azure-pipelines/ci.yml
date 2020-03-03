@@ -19,13 +19,13 @@ pool:
 
 variables:
   IS_PULL_REQUEST: $[ eq(variables['Build.Reason'], 'PullRequest') ]
-  IS_PROD_BUILD]: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
+  IS_PROD_BUILD: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
 
 jobs:
   - template: templates/jobs_nx-calculate-commands.yml
     parameters:
       jobName: initial_setup
-      isPullRequest: $[ variables['IS_PULL_REQUEST'] ]
+      isPullRequest: $(IS_PULL_REQUEST)
 
   - template: templates/jobs_nx-run-many.yml
     parameters:
