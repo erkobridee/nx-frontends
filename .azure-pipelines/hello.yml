@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  group: nx-frontends-vars
+  - group: nx-frontends-vars
 
 steps:
   - template: templates/steps_install-node-modules.yml
