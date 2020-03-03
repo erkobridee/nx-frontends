@@ -28,9 +28,9 @@ pool:
 variables:
   IS_PULL_REQUEST: $[ eq(variables['Build.Reason'], 'PullRequest') ]
   ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-    ENV: 'production'
+    ENV: 'prod'
   ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-    ENV: 'development'
+    ENV: 'dev'
 
 jobs:
   - job: initial_setup
