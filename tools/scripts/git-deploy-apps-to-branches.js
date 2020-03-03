@@ -10,4 +10,6 @@ console.log({
   environment
 });
 
-exec(`ls ${appsDir}`);
+exec(`ls ${appsDir}`, {
+  stdio: [0, 1, 2]
+});
