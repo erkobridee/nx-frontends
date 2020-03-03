@@ -1,0 +1,50 @@
+trigger:
+  batch: true
+  branches:
+    - master
+    - develop
+  pr:
+    - develop
+  paths:
+    exclude:
+      - .azure-pipelines/*
+      - .vscode/*
+      - docs/*
+      - tools/*
+
+variables:
+  IS_PULL_REQUEST: $[ eq(variables['Build.Reason'], 'PullRequest') ]
+  IS_PROD_BUILD: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+  - template: templates/jobs_nx-calculate-commands.yml
+    parameters:
+      jobName: initial_setup
+      isPullRequest: $(IS_PULL_REQUEST)
+
+  - template: templates/jobs_nx-run-many.yml
+    parameters:
+      jobName: lint
+      dependsOn: initial_setup
+      commandsStr: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
+      target: lint
+      isProdbuild: $(IS_PROD_BUILD)
+
+  - template: templates/jobs_nx-run-many.yml
+    parameters:
+      jobName: test
+      dependsOn: initial_setup
+      commandsStr: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
+      target: test
+      isProdbuild: $(IS_PROD_BUILD)
+
+  - template: templates/jobs_nx-run-many.yml
+    parameters:
+      jobName: build
+      dependsOn: initial_setup
+      commandsStr: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
+      target: build
+      isProdbuild: $(IS_PROD_BUILD)

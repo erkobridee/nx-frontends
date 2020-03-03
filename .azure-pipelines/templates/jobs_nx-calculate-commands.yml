@@ -1,0 +1,19 @@
+parameters:
+  - name: jobName
+    type: string
+  - name: isPullRequest
+    type: boolean
+    default: false
+
+jobs:
+  - job: ${{ parameters.jobName }}
+    displayName: ${{ parameters.jobName }} - nx calculate commands
+    variables:
+      IS_PR: ${{ parameters.isPullRequest }}
+    steps:
+      - template: steps_install-node-modules.yml
+      - script: |
+          echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(IS_PR))"
+        name: setCommands
+      - script: echo $(setCommands.COMMANDS)
+        name: echoCommands
