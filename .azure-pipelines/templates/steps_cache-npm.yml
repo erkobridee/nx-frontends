@@ -15,7 +15,7 @@ steps:
     inputs:
       keyfile: '**/package-lock.json'
       targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-      vstsFeed: 'nx_azure_node_modules_cache_feed'
+      vstsFeed: $(ArtifactFeed)
 
   - script: |
       npm i

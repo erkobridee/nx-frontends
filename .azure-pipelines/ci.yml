@@ -13,6 +13,8 @@ trigger:
       - tools/*
 
 variables:
+  # defined on the azure devops project
+  group: nx-frontends-vars
   IS_PULL_REQUEST: $[ eq(variables['Build.Reason'], 'PullRequest') ]
   IS_PROD_BUILD: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
 
