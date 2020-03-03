@@ -14,16 +14,12 @@ trigger:
 pr:
   - develop
 
-variables:
-  # defined on the azure devops project
-  - group: nx-frontends-vars
-  - name: IS_PULL_REQUEST
-    value: $[ eq(variables['Build.Reason'], 'PullRequest') ]
-  - name: IS_PROD_BUILD
-    value: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
-
 pool:
   vmImage: 'ubuntu-latest'
+
+variables:
+  IS_PULL_REQUEST: $[ eq(variables['Build.Reason'], 'PullRequest') ]
+  IS_PROD_BUILD]: $[ eq(variables['Build.SourceBranch'], 'refs/heads/master') ]
 
 jobs:
   - template: templates/jobs_nx-calculate-commands.yml
