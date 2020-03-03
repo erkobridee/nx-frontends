@@ -12,7 +12,15 @@ trigger:
       - tools/*
 
 pr:
-  - develop
+  branches:
+    include:
+      - develop
+  paths:
+    exclude:
+      - .azure-pipelines/*
+      - .vscode/*
+      - docs/*
+      - tools/*
 
 pool:
   vmImage: 'ubuntu-latest'
