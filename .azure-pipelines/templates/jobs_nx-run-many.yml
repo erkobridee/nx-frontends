@@ -20,7 +20,7 @@ jobs:
         succeeded(),
         not(
           contains(
-            ${{ parameters.commandsStr }},
+            ${{ format(${0},parameters.commandsStr) }},
             '"${{ parameters.target }}":[]'
           )
         )
