@@ -36,3 +36,5 @@ stages:
               cd $(Pipeline.Workspace)/apps
               ls
             displayName: list apps available on $(Pipeline.Workspace)/apps
+          - template: templates/steps_install-node-modules.yml
+          - script: node ./tools/scripts/git-deploy-apps-to-branches.js '$(Pipeline.Workspace)/apps' $(ENV)
