@@ -98,6 +98,19 @@ stages:
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
             artifact: apps
 
+      - job: failure
+        dependsOn: build
+        condition: |
+          contains(
+            dependencies.initial_setup.outputs['setCommands.COMMANDS'],
+            '"build":[]'
+          )
+        steps:
+          - script: |
+              echo "##vso[task.complete result=Failed;]DONE"
+              exit 1
+
+
   - stage: git_push
     displayName: git push
     dependsOn: validate_build
