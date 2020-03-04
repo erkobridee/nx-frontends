@@ -40,6 +40,9 @@ stages:
       - job: push_all
         displayName: push the builded apps
         steps:
+          - checkout: self
+            persistCredentials: true
+            clean: true
           - download: current
             artifact: apps
           - script: |
