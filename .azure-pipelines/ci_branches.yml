@@ -41,7 +41,7 @@ stages:
             name: echoCommands
 
       - job: failure
-        displayName: fail if there is no build
+        displayName: failure - no app to build
         dependsOn: initial_setup
         condition: |
           contains(
