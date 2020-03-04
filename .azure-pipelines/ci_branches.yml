@@ -99,7 +99,7 @@ stages:
             artifact: apps
 
       - job: failure
-        displayName: nothing was builded
+        displayName: fail if there is no build
         dependsOn: build
         condition: |
           contains(
@@ -109,7 +109,8 @@ stages:
         steps:
           - script: |
               echo "##vso[task.complete result=Failed;]DONE"
-              # exit 1
+              exit 1
+            displayName: trigger the failure
 
 
   - stage: git_push
