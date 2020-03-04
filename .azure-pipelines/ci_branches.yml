@@ -56,10 +56,13 @@ stages:
 
       - job: lint
         displayName: lint projects
-        dependsOn: failure
+        dependsOn: 
+          - failure
+          - initial_setup
         condition: |
           and(
             eq(dependencies.failure.result, 'Skipped'),
+            succeeded('initial_setup'),
             not(
               contains(
                 dependencies.initial_setup.outputs['setCommands.COMMANDS'],
@@ -77,10 +80,13 @@ stages:
 
       - job: test
         displayName: test projects
-        dependsOn: failure
+        dependsOn: 
+          - failure
+          - initial_setup
         condition: |
           and(
             eq(dependencies.failure.result, 'Skipped'),
+            succeeded('initial_setup'),
             not(
               contains(
                 dependencies.initial_setup.outputs['setCommands.COMMANDS'],
@@ -101,10 +107,12 @@ stages:
         dependsOn:
           - lint
           - test
+          - initial_setup
         condition: |
           and(
             succeeded('lint'),
             succeeded('test'),
+            succeeded('initial_setup'),
             not(
               contains(
                 dependencies.initial_setup.outputs['setCommands.COMMANDS'],
