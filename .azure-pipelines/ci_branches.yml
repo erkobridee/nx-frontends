@@ -49,6 +49,7 @@ stages:
             '"build":[]'
           )
         steps:
+          - checkout: none
           - script: |
               echo "##vso[task.complete result=Failed;]DONE"
               exit 1
