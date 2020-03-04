@@ -100,7 +100,7 @@ stages:
 
       - job: failure
         displayName: fail if there is no build
-        dependsOn: build
+        dependsOn: initial_setup
         condition: |
           contains(
             dependencies.initial_setup.outputs['setCommands.COMMANDS'],
