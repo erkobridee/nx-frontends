@@ -1,5 +1,5 @@
-# name: CI master/develop
-# this pipeline validates and generate the builds
+# name: CI branches
+# this pipeline validates and generate the builds for master or develop branch
 trigger:
   batch: true
   branches:
