@@ -1,6 +1,7 @@
 # name: MANUALLY build apps
 # for master or develop branch
 trigger: none
+pr: none
 
 pool:
   vmImage: 'ubuntu-latest'
