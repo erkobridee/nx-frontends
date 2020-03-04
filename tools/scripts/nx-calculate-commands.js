@@ -1,12 +1,25 @@
 const exec = require('./libs/execute-sync-command');
-const [isPR] = require('./libs/get-cli-args');
-const isMaster = isPR === 'false';
-const baseSha = isMaster ? 'origin/master~1' : 'origin/master';
+const [branchName = 'master'] = require('./libs/get-cli-args');
+
+const LAST_COMMITS_AMOUNT = 10;
+const headParam = `origin/${branchName}`;
+let baseParam = '';
+switch (branchName) {
+  case 'master':
+  case 'develop':
+    baseParam = `origin/${branchName}~${LAST_COMMITS_AMOUNT}`;
+    break;
+  default:
+    baseParam = 'origin/develop';
+    break;
+}
 
 const getAffectedProjects = (target = 'build') => {
   return {
     [target]: JSON.parse(
-      exec(`npx nx print-affected --base=${baseSha} --target=${target}`)
+      exec(
+        `npx nx print-affected --base=${baseParam} --head=${headParam} --target=${target}`
+      )
     ).tasks.map(t => t.target.project)
   };
 };
