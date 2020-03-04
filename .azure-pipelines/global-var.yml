@@ -1,24 +1,23 @@
-# example of how share values between stages using a global var
+# example of how share values between stages using a var
 #
 trigger: none
 
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  globalVar: 'initial value'
-
 stages:
   - stage: stage_1
     displayName: first
     jobs:
-      - job: setGlobalVar
+      - job: setGreetingsVar
         steps:
-          - script: echo $(globalVar)
-            displayName: echo $globalVar
+          - checkout: none
           - script: |
-              echo "##vso[task.setvariable variable=globalVar;]'value from the stage 1 job setGlobalVar'"
-            displayName: update $globalVar value
+              echo "##vso[task.setvariable variable=greetings;isOutput=true]'hello world'"
+            name: customVariables
+            displayName: set customVariables.greetings value
+          - script: echo $(customVariables.greetings)
+            displayName: display customVariables.greetings value
 
   - stage: stage_2
     displayName: second
@@ -26,6 +25,9 @@ stages:
     condition: succeeded()
     jobs:
       - job: readGlobalVar
+        variables:
+          greetings: $[ dependencies.stage_1.output['setGreetingsVar.customVariables.greetings'] ]
         steps:
-          - script: echo $(globalVar)
-            displayName: echo $globalVar
+          - checkout: none
+          - script: echo $(greetings)
+            displayName: greetings var value from the stage_1
