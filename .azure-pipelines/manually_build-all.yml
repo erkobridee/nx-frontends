@@ -1,5 +1,8 @@
-# name: MANUALLY build apps
+# pipeline suggested name: MANUALLY build apps
 # for master or develop branch
+
+name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
 trigger: none
 pr: none
 
