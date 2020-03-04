@@ -47,6 +47,7 @@ jobs:
       - template: templates/steps_install-node-modules.yml
       - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' lint
         displayName: running lint
+        failOnStderr: true
 
   - job: test
     displayName: test projects
@@ -67,6 +68,7 @@ jobs:
       - template: templates/steps_install-node-modules.yml
       - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' test
         displayName: running tests
+        failOnStderr: true
 
   - job: build
     displayName: build projects
@@ -87,3 +89,4 @@ jobs:
       - template: templates/steps_install-node-modules.yml
       - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' build
         displayName: running builds
+        failOnStderr: true
