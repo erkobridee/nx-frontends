@@ -15,6 +15,7 @@ trigger:
       - .vscode/*
       - docs/*
       - tools/*
+pr: none
 
 pool:
   vmImage: 'ubuntu-latest'
