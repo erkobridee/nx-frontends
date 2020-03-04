@@ -14,21 +14,18 @@ stages:
     jobs:
       - job: setGlobalVar
         steps:
-          - checkout: none
-          - script: echo $(Pipeline.variables)
           - script: echo $(globalVar)
             displayName: echo $globalVar
           - script: |
               echo "##vso[task.setvariable variable=globalVar;]'value from the stage 1 job setGlobalVar'"
             displayName: update $globalVar value
-          - script: echo $(globalVar)
-            displayName: updated value
 
   - stage: stage_2
     displayName: second
+    dependsOn: stage_1
+    condition: succeeded()
     jobs:
       - job: readGlobalVar
         steps:
-          - checkout: none
           - script: echo $(globalVar)
-            displayName: echo $(globalVar)
+            displayName: echo $globalVar
