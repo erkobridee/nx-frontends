@@ -1,0 +1,86 @@
+# name: CI pull requests
+# validate the pull requests
+pr:
+  branches:
+    include:
+      - develop
+  paths:
+    exclude:
+      - .azure-pipelines/*
+      - .vscode/*
+      - docs/*
+      - tools/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+  - job: initial_setup
+    displayName: nx calculate commandas
+    steps:
+      - template: templates/steps_install-node-modules.yml
+      - script: |
+          echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js true)"
+        name: setCommands
+      - script: echo $(setCommands.COMMANDS)
+        name: echoCommands
+
+  - job: lint
+    displayName: lint projects
+    dependsOn: initial_setup
+    condition: |
+      and(
+        succeeded(),
+        not(
+          contains(
+            dependencies.initial_setup.outputs['setCommands.COMMANDS'],
+            '"lint":[]'
+          )
+        )
+      )
+    variables:
+      COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
+    steps:
+      - template: templates/steps_install-node-modules.yml
+      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' lint
+        displayName: running lint
+
+  - job: test
+    displayName: test projects
+    dependsOn: initial_setup
+    condition: |
+      and(
+        succeeded(),
+        not(
+          contains(
+            dependencies.initial_setup.outputs['setCommands.COMMANDS'],
+            '"test":[]'
+          )
+        )
+      )
+    variables:
+      COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
+    steps:
+      - template: templates/steps_install-node-modules.yml
+      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' test
+        displayName: running tests
+
+  - job: build
+    displayName: build projects
+    dependsOn: initial_setup
+    condition: |
+      and(
+        succeeded(),
+        not(
+          contains(
+            dependencies.initial_setup.outputs['setCommands.COMMANDS'],
+            '"build":[]'
+          )
+        )
+      )
+    variables:
+      COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
+    steps:
+      - template: templates/steps_install-node-modules.yml
+      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' build
+        displayName: running builds
