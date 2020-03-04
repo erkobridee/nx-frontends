@@ -9,7 +9,7 @@ variables:
   globalVar: 'initial value'
 
 stages:
-  - stage: 1
+  - stage: stage_1
     displayName: first
     jobs:
       - job: setGlobalVar
@@ -20,7 +20,7 @@ stages:
               echo "##vso[task.setvariable variable=globalVar;]'value from the stage 1 job setGlobalVar'"
             displayName: update $(globalVar) value
 
-  - stage: 2
+  - stage: stage_2
     displayName: second
     jobs:
       - job: readGlobalVar
