@@ -106,6 +106,7 @@ stages:
       - job: push_all
         displayName: push the builded apps
         steps:
+          - script: echo $(Pipeline.Resources.current)
           - download: current
             artifact: apps
           - script: |
