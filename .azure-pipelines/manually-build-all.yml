@@ -21,13 +21,13 @@ stages:
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
             artifact: apps
 
-  - stage: branches_deploy
-    displayName: git branches deploy
+  - stage: git_push
+    displayName: git push
     dependsOn: build
     condition: succeeded()
     jobs:
-      - job: deploy_all
-        displayName: deploy the apps build to branches
+      - job: push_all
+        displayName: push the builded apps
         steps:
           - download: current
             artifact: apps
@@ -36,5 +36,5 @@ stages:
               ls
             displayName: list apps available on $(Pipeline.Workspace)/apps
           - template: templates/steps_install-node-modules.yml
-          - script: node ./tools/scripts/git-deploy-apps-to-branches.js $(Pipeline.Workspace)/apps $(ENV)
-            displayName: running git deploy apps to branches script
+          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV)
+            displayName: running git push
