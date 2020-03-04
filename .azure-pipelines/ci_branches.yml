@@ -40,12 +40,26 @@ stages:
           - script: echo $(setCommands.COMMANDS)
             name: echoCommands
 
-      - job: lint
-        displayName: lint projects
+      - job: failure
+        displayName: failure - no app to build
         dependsOn: initial_setup
         condition: |
+          contains(
+            dependencies.initial_setup.outputs['setCommands.COMMANDS'],
+            '"build":[]'
+          )
+        steps:
+          - script: |
+              echo "##vso[task.complete result=Failed;]DONE"
+              exit 1
+            displayName: trigger the failure
+
+      - job: lint
+        displayName: lint projects
+        dependsOn: failure
+        condition: |
           and(
-            succeeded(),
+            eq(dependencies.failure.result, 'Skipped'),
             not(
               contains(
                 dependencies.initial_setup.outputs['setCommands.COMMANDS'],
@@ -63,10 +77,10 @@ stages:
 
       - job: test
         displayName: test projects
-        dependsOn: initial_setup
+        dependsOn: failure
         condition: |
           and(
-            succeeded(),
+            eq(dependencies.failure.result, 'Skipped'),
             not(
               contains(
                 dependencies.initial_setup.outputs['setCommands.COMMANDS'],
@@ -84,10 +98,13 @@ stages:
 
       - job: build
         displayName: build projects
-        dependsOn: initial_setup
+        dependsOn:
+          - lint
+          - test
         condition: |
           and(
-            succeeded(),
+            succeeded('lint'),
+            succeeded('test'),
             not(
               contains(
                 dependencies.initial_setup.outputs['setCommands.COMMANDS'],
@@ -104,20 +121,6 @@ stages:
             failOnStderr: true
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
             artifact: apps
-
-      - job: failure
-        displayName: fail if there is no build
-        dependsOn: initial_setup
-        condition: |
-          contains(
-            dependencies.initial_setup.outputs['setCommands.COMMANDS'],
-            '"build":[]'
-          )
-        steps:
-          - script: |
-              echo "##vso[task.complete result=Failed;]DONE"
-              exit 1
-            displayName: trigger the failure
 
 
   - stage: git_push
