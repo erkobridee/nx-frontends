@@ -1,5 +1,8 @@
-# name: CI pull requests
+# pipeline suggested name: CI pull requests
 # validate the pull requests
+
+name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
 pr:
   branches:
     include:
