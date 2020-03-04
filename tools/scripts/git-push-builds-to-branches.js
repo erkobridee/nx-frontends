@@ -5,6 +5,9 @@ if (!appsDir) {
   process.exit();
 }
 
+// Why Using reduce() to Sequentially Resolve Promises Works
+// https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works/
+
 console.log({
   appsDir,
   environment

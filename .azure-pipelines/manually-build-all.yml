@@ -7,10 +7,14 @@ variables:
   ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
     ENV: 'prod'
   ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-    ENV: 'dev'
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/develop') }}:
+      ENV: 'dev'
+    ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/develop') }}:
+      ENV: 'feat'
 
 stages:
   - stage: build
+    condition: ne(variables['ENV'], 'feat')
     jobs:
       - job: build_all
         displayName: nx build all apps
