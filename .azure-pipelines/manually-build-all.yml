@@ -1,3 +1,5 @@
+# name: manually build apps
+# for master or develop branch
 trigger: none
 
 pool:
