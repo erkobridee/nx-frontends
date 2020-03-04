@@ -1,5 +1,8 @@
-# name: CI branches
+# pipeline suggested name: CI branches
 # this pipeline validates and generate the builds for master or develop branch
+
+name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
 trigger:
   batch: true
   branches:
