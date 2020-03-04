@@ -1,7 +1,7 @@
 const exec = require('./libs/execute-sync-command');
 const [branchName = 'master'] = require('./libs/get-cli-args');
 
-const LAST_COMMITS_AMOUNT = 10;
+const LAST_COMMITS_AMOUNT = 1;
 const headParam = `origin/${branchName}`;
 let baseParam = '';
 switch (branchName) {
