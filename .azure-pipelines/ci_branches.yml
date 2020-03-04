@@ -27,7 +27,7 @@ stages:
     displayName: validate and build
     jobs:
       - job: initial_setup
-        displayName: nx calculate commandas
+        displayName: nx calculate commands
         steps:
           - template: templates/steps_install-node-modules.yml
           - script: |
@@ -99,6 +99,7 @@ stages:
             artifact: apps
 
       - job: failure
+        displayName: nothing was builded
         dependsOn: build
         condition: |
           contains(
@@ -108,7 +109,7 @@ stages:
         steps:
           - script: |
               echo "##vso[task.complete result=Failed;]DONE"
-              exit 1
+              # exit 1
 
 
   - stage: git_push
