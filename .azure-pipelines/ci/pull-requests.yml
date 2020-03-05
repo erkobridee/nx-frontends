@@ -24,7 +24,7 @@ jobs:
     steps:
       - template: ../templates/steps_install-node-modules.yml
       - script: |
-          npx nx format:check --base=origin/develop --head=origin/$(SourceBranchName)
+          npx nx format:check --base=origin/develop --head=origin/$(Build.SourceBranch)
         displayName: running check
   - job: initial_setup
     displayName: nx calculate commandas
