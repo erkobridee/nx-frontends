@@ -51,7 +51,8 @@ stages:
         steps:
           - checkout: none
           - script: |
-              echo "##vso[task.complete result=Failed;]DONE"
+              echo "##vso[task.complete result=SucceededWithIssues;]DONE"
+              # echo "##vso[task.complete result=Failed;]DONE"
               # exit 1
             displayName: trigger the failure
 
