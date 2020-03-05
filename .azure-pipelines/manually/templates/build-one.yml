@@ -1,8 +1,7 @@
-parameters:
+# parameters:
 # - name: appName
 #   type: string
 #   default: ''
-
 stages:
   - stage: validate_build
     displayName: validate and build
