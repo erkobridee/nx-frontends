@@ -101,7 +101,7 @@ stages:
           - template: templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' test
             displayName: running tests
-            failOnStderr: true
+            failOnStderr: false
 
       - job: build
         displayName: build projects
