@@ -1,17 +1,7 @@
 parameters:
-  - name: appName
-    type: string
-    default: ''
-
-variables:
-  APP_NAME: ${{ parameters.appName }}
-  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-    ENV: 'prod'
-  ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/develop') }}:
-      ENV: 'dev'
-    ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/develop') }}:
-      ENV: 'feat'
+# - name: appName
+#   type: string
+#   default: ''
 
 stages:
   - stage: validate_build
