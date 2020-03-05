@@ -19,6 +19,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
+  - job: check_format
+    displayName: nx format:check
+    steps:
+      - template: ../templates/steps_install-node-modules.yml
+      - script: |
+          npx nx format:check --base=origin/develop --head=origin/$(SourceBranchName)
+        displayName: running check
   - job: initial_setup
     displayName: nx calculate commandas
     steps:
