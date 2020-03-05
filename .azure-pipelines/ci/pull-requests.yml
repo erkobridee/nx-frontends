@@ -22,7 +22,7 @@ jobs:
   - job: initial_setup
     displayName: nx calculate commandas
     steps:
-      - template: templates/steps_install-node-modules.yml
+      - template: ../templates/steps_install-node-modules.yml
       - script: |
           echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(SourceBranchName))"
         name: setCommands
@@ -45,7 +45,7 @@ jobs:
     variables:
       COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
     steps:
-      - template: templates/steps_install-node-modules.yml
+      - template: ../templates/steps_install-node-modules.yml
       - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' lint
         displayName: running lint
 
@@ -65,7 +65,7 @@ jobs:
     variables:
       COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
     steps:
-      - template: templates/steps_install-node-modules.yml
+      - template: ../templates/steps_install-node-modules.yml
       - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' test
         displayName: running tests
 
@@ -85,6 +85,6 @@ jobs:
     variables:
       COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
     steps:
-      - template: templates/steps_install-node-modules.yml
+      - template: ../templates/steps_install-node-modules.yml
       - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' build
         displayName: running builds

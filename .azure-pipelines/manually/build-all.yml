@@ -26,14 +26,14 @@ stages:
       - job: lint_all
         displayName: nx lint all apps
         steps:
-          - template: templates/steps_install-node-modules.yml
+          - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-all.js lint
             displayName: running lint all
 
       - job: test_all
         displayName: nx test all apps
         steps:
-          - template: templates/steps_install-node-modules.yml
+          - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-all.js test
             displayName: running test all
 
@@ -48,7 +48,7 @@ stages:
             succeeded('test_all')
           )
         steps:
-          - template: templates/steps_install-node-modules.yml
+          - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-all.js build $(ENV)
             displayName: running build all
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
@@ -72,6 +72,6 @@ stages:
               cd $(Pipeline.Workspace)/apps
               ls
             displayName: list apps available on $(Pipeline.Workspace)/apps
-          - template: templates/steps_install-node-modules.yml
+          - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV)
             displayName: running git push

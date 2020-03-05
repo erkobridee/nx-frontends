@@ -33,7 +33,7 @@ stages:
       - job: initial_setup
         displayName: nx calculate commands
         steps:
-          - template: templates/steps_install-node-modules.yml
+          - template: ../templates/steps_install-node-modules.yml
           - script: |
               echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(SourceBranchName))"
             name: setCommands
@@ -56,7 +56,7 @@ stages:
 
       - job: lint
         displayName: lint projects
-        dependsOn: 
+        dependsOn:
           - failure
           - initial_setup
         condition: |
@@ -73,13 +73,13 @@ stages:
         variables:
           COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
         steps:
-          - template: templates/steps_install-node-modules.yml
+          - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' lint
             displayName: running lint
 
       - job: test
         displayName: test projects
-        dependsOn: 
+        dependsOn:
           - failure
           - initial_setup
         condition: |
@@ -96,7 +96,7 @@ stages:
         variables:
           COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
         steps:
-          - template: templates/steps_install-node-modules.yml
+          - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' test
             displayName: running tests
 
@@ -121,12 +121,11 @@ stages:
         variables:
           COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
         steps:
-          - template: templates/steps_install-node-modules.yml
+          - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' build $(ENV)
             displayName: running builds
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
             artifact: apps
-
 
   - stage: git_push
     displayName: git push
@@ -145,6 +144,6 @@ stages:
               cd $(Pipeline.Workspace)/apps
               ls
             displayName: list apps available on $(Pipeline.Workspace)/apps
-          - template: templates/steps_install-node-modules.yml
+          - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV)
             displayName: running git push
