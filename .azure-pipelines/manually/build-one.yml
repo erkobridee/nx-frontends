@@ -1,0 +1,77 @@
+# pipeline suggested name: MANUALLY build frontend-app-1
+# for master or develop branch
+
+name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  APP_NAME: 'frontend-app-1'
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+    ENV: 'prod'
+  ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/develop') }}:
+      ENV: 'dev'
+    ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/develop') }}:
+      ENV: 'feat'
+
+stages:
+  - stage: validate_build
+    displayName: validate all and build all
+    condition: ne(variables['ENV'], 'feat')
+    jobs:
+      - job: lint_one
+        displayName: nx lint $(APP_NAME)
+        steps:
+          - template: ../templates/steps_install-node-modules.yml
+          - script: node ./tools/scripts/nx-runone.js $(APP_NAME) lint
+            displayName: running lint
+
+      - job: test_one
+        displayName: nx test $(APP_NAME)
+        steps:
+          - template: ../templates/steps_install-node-modules.yml
+          - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) test
+            displayName: running test
+
+      - job: build_one
+        displayName: nx build $(APP_NAME)
+        dependsOn:
+          - lint_one
+          - test_one
+        condition: |
+          and(
+            succeeded('lint_one'),
+            succeeded('test_one')
+          )
+        steps:
+          - template: ../templates/steps_install-node-modules.yml
+          - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) build $(ENV)
+            displayName: running build
+          - publish: $(System.DefaultWorkingDirectory)/dist/apps
+            artifact: apps
+
+  - stage: git_push
+    displayName: git push
+    dependsOn: validate_build
+    condition: succeeded()
+    jobs:
+      - job: push_all
+        displayName: push the builded apps
+        steps:
+          - checkout: self
+            persistCredentials: true
+            clean: true
+          - download: current
+            artifact: apps
+          - script: |
+              cd $(Pipeline.Workspace)/apps
+              ls
+            displayName: list apps available on $(Pipeline.Workspace)/apps
+          - template: ../templates/steps_install-node-modules.yml
+          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV)
+            displayName: running git push
