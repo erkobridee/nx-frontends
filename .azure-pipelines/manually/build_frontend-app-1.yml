@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  APP_NAME: ${{ parameters.appName }}
+  APP_NAME: 'frontend-app-1'
   ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
     ENV: 'prod'
   ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
