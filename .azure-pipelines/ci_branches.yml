@@ -76,7 +76,6 @@ stages:
           - template: templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' lint
             displayName: running lint
-            failOnStderr: true
 
       - job: test
         displayName: test projects
@@ -100,7 +99,6 @@ stages:
           - template: templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' test
             displayName: running tests
-            failOnStderr: true
 
       - job: build
         displayName: build projects
@@ -126,7 +124,6 @@ stages:
           - template: templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' build $(ENV)
             displayName: running builds
-            failOnStderr: true
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
             artifact: apps
 
@@ -152,4 +149,3 @@ stages:
           - template: templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV)
             displayName: running git push
-            failOnStderr: true
