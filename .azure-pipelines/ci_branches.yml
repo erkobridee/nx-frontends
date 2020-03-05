@@ -126,7 +126,11 @@ stages:
   - stage: git_push
     displayName: git push
     dependsOn: validate_build
-    condition: succeeded()
+    condition: | 
+      and(
+        succeeded(),
+        ne(variables['Build.BuildId'], 'false')
+      )
     jobs:
       - job: push_all
         displayName: push the builded apps
