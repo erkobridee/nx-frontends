@@ -1,28 +1,29 @@
-# parameters:
-# - name: appName
-#   type: string
-#   default: ''
+parameters:
+  - name: appName
+    type: string
+    default: ''
+
 stages:
   - stage: validate_build
     displayName: validate and build
     condition: ne(variables['ENV'], 'feat')
     jobs:
       - job: lint_one
-        displayName: nx lint ${{variables['APP_NAME']}}
+        displayName: nx lint $[variables['APP_NAME']]
         steps:
           - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) lint
             displayName: running lint
 
       - job: test_one
-        displayName: nx test ${{variables['APP_NAME']}}
+        displayName: nx test $[variables['APP_NAME']]
         steps:
           - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) test
             displayName: running test
 
       - job: build_one
-        displayName: nx build ${{variables['APP_NAME']}}
+        displayName: nx build $[variables['APP_NAME']]
         dependsOn:
           - lint_one
           - test_one
@@ -44,7 +45,7 @@ stages:
     condition: succeeded()
     jobs:
       - job: push_all
-        displayName: push the builded ${{variables['APP_NAME']}}
+        displayName: push the builded $[variables['APP_NAME']]
         steps:
           - checkout: self
             persistCredentials: true
