@@ -23,3 +23,4 @@ stages:
   - template: templates/build-one.yml
     parameters:
       appName: ${{variables.APP_NAME}}
+      env: ${{variables.ENV}}
