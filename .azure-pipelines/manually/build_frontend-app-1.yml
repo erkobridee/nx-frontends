@@ -15,5 +15,5 @@ variables:
 stages:
   - template: templates/build-one.yml
     parameters:
-      appName: 'frontend-app-1'
       env: ${{variables.ENV}}
+      appName: 'frontend-app-1'

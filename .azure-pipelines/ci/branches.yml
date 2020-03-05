@@ -21,10 +21,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-    ENV: 'prod'
-  ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-    ENV: 'dev'
+  - template: ../templates/var_env.yml
 
 stages:
   - stage: validate_build
