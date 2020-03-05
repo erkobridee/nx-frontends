@@ -26,7 +26,7 @@ stages:
             displayName: running test
 
       - job: build_one
-        displayName: nx build ${{parameters.appName}}
+        displayName: nx build ${{parameters.appName}} ${{parameters.env}}
         dependsOn:
           - lint_one
           - test_one
