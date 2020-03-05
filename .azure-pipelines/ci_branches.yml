@@ -40,18 +40,30 @@ stages:
           - script: echo $(setCommands.COMMANDS)
             name: echoCommands
 
-      - job: lint
-        displayName: lint projects
+      - job: failure
+        displayName: failure - no app to build
         dependsOn: initial_setup
         condition: |
+          contains(
+            dependencies.initial_setup.outputs['setCommands.COMMANDS'],
+            '"build":[]'
+          )
+        steps:
+          - checkout: none
+          - script: |
+              echo "##vso[task.complete result=SucceededWithIssues;]DONE"
+              # exit 1
+            displayName: trigger the failure
+
+      - job: lint
+        displayName: lint projects
+        dependsOn: 
+          - failure
+          - initial_setup
+        condition: |
           and(
-            succeeded(),
-            not(
-              contains(
-                dependencies.initial_setup.outputs['setCommands.COMMANDS'],
-                '"build":[]'
-              )
-            ),
+            eq(dependencies.failure.result, 'Skipped'),
+            succeeded('initial_setup'),
             not(
               contains(
                 dependencies.initial_setup.outputs['setCommands.COMMANDS'],
@@ -69,16 +81,13 @@ stages:
 
       - job: test
         displayName: test projects
-        dependsOn: initial_setup
+        dependsOn: 
+          - failure
+          - initial_setup
         condition: |
           and(
-            succeeded(),
-            not(
-              contains(
-                dependencies.initial_setup.outputs['setCommands.COMMANDS'],
-                '"build":[]'
-              )
-            ),
+            eq(dependencies.failure.result, 'Skipped'),
+            succeeded('initial_setup'),
             not(
               contains(
                 dependencies.initial_setup.outputs['setCommands.COMMANDS'],
@@ -97,14 +106,14 @@ stages:
       - job: build
         displayName: build projects
         dependsOn:
-          - initial_setup
           - lint
           - test
+          - initial_setup
         condition: |
           and(
-            succeeded('initial_setup'),
             succeeded('lint'),
             succeeded('test'),
+            succeeded('initial_setup'),
             not(
               contains(
                 dependencies.initial_setup.outputs['setCommands.COMMANDS'],
@@ -126,11 +135,7 @@ stages:
   - stage: git_push
     displayName: git push
     dependsOn: validate_build
-    condition: | 
-      and(
-        succeeded(),
-        ne(variables['Build.BuildId'], 'false')
-      )
+    condition: succeeded()
     jobs:
       - job: push_all
         displayName: push the builded apps
