@@ -43,6 +43,7 @@ stages:
           - checkout: self
             persistCredentials: true
             clean: true
+          - script: echo $(Pipeline.Resources.current)
           - download: current
             artifact: apps
           - script: |
