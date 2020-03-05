@@ -1,16 +1,10 @@
-# pipeline suggested name: MANUALLY build frontend-app-1
-# for master or develop branch
-
-name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
-
-trigger: none
-pr: none
-
-pool:
-  vmImage: 'ubuntu-latest'
+parameters:
+  - name: appName
+    type: string
+    default: ''
 
 variables:
-  APP_NAME: 'frontend-app-1'
+  APP_NAME: ${{ parameters.appName }}
   ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
     ENV: 'prod'
   ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
@@ -27,14 +21,14 @@ stages:
       - job: lint_one
         displayName: nx lint ${{variables['APP_NAME']}}
         steps:
-          - template: ../templates/steps_install-node-modules.yml
+          - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) lint
             displayName: running lint
 
       - job: test_one
         displayName: nx test ${{variables['APP_NAME']}}
         steps:
-          - template: ../templates/steps_install-node-modules.yml
+          - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) test
             displayName: running test
 
@@ -49,7 +43,7 @@ stages:
             succeeded('test_one')
           )
         steps:
-          - template: ../templates/steps_install-node-modules.yml
+          - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) build $(ENV)
             displayName: running build
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
@@ -72,6 +66,6 @@ stages:
               cd $(Pipeline.Workspace)/apps
               ls
             displayName: list apps available on $(Pipeline.Workspace)/apps
-          - template: ../templates/steps_install-node-modules.yml
+          - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV)
             displayName: running git push
