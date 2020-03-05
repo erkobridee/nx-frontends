@@ -2,11 +2,14 @@ parameters:
   - name: appName
     type: string
     default: ''
+  - name: env
+    type: string
+    default: 'feat'
 
 stages:
   - stage: validate_build
     displayName: validate and build
-    condition: ne(variables['ENV'], 'feat')
+    condition: ne(parameters['env'], 'feat')
     jobs:
       - job: lint_one
         displayName: nx lint ${{parameters.appName}}
@@ -34,7 +37,7 @@ stages:
           )
         steps:
           - template: ../../templates/steps_install-node-modules.yml
-          - script: node ./tools/scripts/nx-run-one.js ${{parameters.appName}} build $(ENV)
+          - script: node ./tools/scripts/nx-run-one.js ${{parameters.appName}} build ${{parameters.env}}
             displayName: running build
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
             artifact: apps
@@ -57,5 +60,5 @@ stages:
               ls
             displayName: list apps available on $(Pipeline.Workspace)/apps
           - template: ../../templates/steps_install-node-modules.yml
-          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV)
+          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps ${{parameters.env}}
             displayName: running git push
