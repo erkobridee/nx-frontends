@@ -9,7 +9,7 @@ parameters:
 stages:
   - stage: validate_build
     displayName: validate and build
-    condition: ne(parameters['env'], 'feat')
+    condition: ne('${{parameters.env}}', 'feat')
     jobs:
       - job: lint_one
         displayName: nx lint ${{parameters.appName}}
