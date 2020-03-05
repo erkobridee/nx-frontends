@@ -17,7 +17,7 @@ const buildOutput = ['prod', 'production'].includes(environment)
   : '';
 
 try {
-  exec(`npx nx run-many --target=${build}${buildOutput} --all --parallel`, {
+  exec(`npx nx run-many --target=${target}${buildOutput} --all --parallel`, {
     stdio: [0, 1, 2]
   });
   console.log('success');
