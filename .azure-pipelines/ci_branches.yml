@@ -135,7 +135,7 @@ stages:
   - stage: git_push
     displayName: git push
     dependsOn: validate_build
-    condition: succeeded()
+    condition: eq(dependencies.validate_build.result, 'Succeeded')
     jobs:
       - job: push_all
         displayName: push the builded apps
