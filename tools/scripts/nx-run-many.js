@@ -30,7 +30,8 @@ try {
   );
   console.log('success');
 } catch (e) {
+  console.log('\n\n');
   console.error('failure');
-  console.log('\n');
+  console.log('\n\n');
   process.exit(1);
 }
