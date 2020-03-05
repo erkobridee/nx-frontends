@@ -10,6 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-  - template: template/build-one.yml
+  - template: templates/build-one.yml
     parameters:
       appName: 'frontend-app-1'
