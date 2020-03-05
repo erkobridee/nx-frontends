@@ -19,21 +19,44 @@ variables:
       ENV: 'feat'
 
 stages:
-  - stage: build
+  - stage: validate_build
+    displayName: validate all and build all
     condition: ne(variables['ENV'], 'feat')
     jobs:
+      - job: lint_all
+        displayName: nx lint all apps
+        steps:
+          - template: templates/steps_install-node-modules.yml
+          - script: node ./tools/scripts/nx-run-all.js lint
+            displayName: running lint all
+
+      - job: test_all
+        displayName: nx test all apps
+        steps:
+          - template: templates/steps_install-node-modules.yml
+          - script: node ./tools/scripts/nx-run-all.js test
+            displayName: running test all
+
       - job: build_all
         displayName: nx build all apps
+        dependsOn:
+          - lint_all
+          - test_all
+        condition: |
+          and(
+            succeeded('lint_all'),
+            succeeded('test_all')
+          )
         steps:
           - template: templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-all.js build $(ENV)
-            displayName: nx build all apps
+            displayName: running build all
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
             artifact: apps
 
   - stage: git_push
     displayName: git push
-    dependsOn: build
+    dependsOn: validate_build
     condition: succeeded()
     jobs:
       - job: push_all
