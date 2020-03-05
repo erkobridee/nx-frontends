@@ -12,14 +12,14 @@ stages:
         displayName: nx lint ${{parameters.appName}}
         steps:
           - template: ../../templates/steps_install-node-modules.yml
-          - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) lint
+          - script: node ./tools/scripts/nx-run-one.js ${{parameters.appName}} lint
             displayName: running lint
 
       - job: test_one
         displayName: nx test ${{parameters.appName}}
         steps:
           - template: ../../templates/steps_install-node-modules.yml
-          - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) test
+          - script: node ./tools/scripts/nx-run-one.js ${{parameters.appName}} test
             displayName: running test
 
       - job: build_one
@@ -34,7 +34,7 @@ stages:
           )
         steps:
           - template: ../../templates/steps_install-node-modules.yml
-          - script: node ./tools/scripts/nx-run-one.js $(APP_NAME) build $(ENV)
+          - script: node ./tools/scripts/nx-run-one.js ${{parameters.appName}} build $(ENV)
             displayName: running build
           - publish: $(System.DefaultWorkingDirectory)/dist/apps
             artifact: apps
