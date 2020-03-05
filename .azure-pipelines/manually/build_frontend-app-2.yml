@@ -1,0 +1,19 @@
+# pipeline suggested name: MANUALLY build frontend-app-2
+# for master or develop branch
+
+name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - template: ../templates/var_env.yml
+
+stages:
+  - template: templates/build-one.yml
+    parameters:
+      env: ${{variables.ENV}}
+      appName: 'frontend-app-2'
