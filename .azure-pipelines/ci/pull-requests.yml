@@ -26,8 +26,11 @@ jobs:
       - script: |
           npx nx format:check --base=origin/develop --head=origin/$(Build.SourceBranchName)
         displayName: running check
+  
   - job: initial_setup
     displayName: nx calculate commandas
+    dependsOn: check_format
+    condition: succeeded()
     steps:
       - template: ../templates/steps_install-node-modules.yml
       - script: |
