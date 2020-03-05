@@ -22,4 +22,4 @@ variables:
 stages:
   - template: templates/build-one.yml
     parameters:
-      appName: $(APP_NAME)
+      appName: ${{variables.APP_NAME}}
