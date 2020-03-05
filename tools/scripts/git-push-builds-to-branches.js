@@ -1,3 +1,4 @@
+const exec = require('./libs/execute-sync-command');
 const listDirectoriesFrom = require('./libs/list-directories-from');
 const publishToBranch = require('./libs/git-publish-to-branch');
 
@@ -43,4 +44,10 @@ const publishApp = async appName => {
   }, Promise.resolve());
 
   console.log('\nDONE');
+
+  try {
+    exec('git fetch', {
+      stdio: [0, 1, 2]
+    });
+  } catch (e) {}
 })();
