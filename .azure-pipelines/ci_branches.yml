@@ -139,7 +139,6 @@ stages:
           - checkout: self
             persistCredentials: true
             clean: true
-          - script: echo $(dependencies['validate_build'].result)
           - download: current
             artifact: apps
           - script: |
