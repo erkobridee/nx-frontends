@@ -19,11 +19,18 @@ const buildOutput = ['prod', 'production'].includes(environment)
   ? ' --prod'
   : '';
 
-exec(
-  `npx nx run-many --target=${target}${buildOutput} --projects=${projects.join(
-    ','
-  )} --parallel`,
-  {
-    stdio: [0, 1, 2]
-  }
-);
+try {
+  exec(
+    `npx nx run-many --target=${target}${buildOutput} --projects=${projects.join(
+      ','
+    )} --parallel`,
+    {
+      stdio: [0, 1, 2]
+    }
+  );
+  console.log('success');
+} catch (e) {
+  console.error('failure');
+  console.log('\n');
+  process.exit(1);
+}
