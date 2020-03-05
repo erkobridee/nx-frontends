@@ -41,7 +41,7 @@ stages:
             name: echoCommands
 
       - job: failure
-        displayName: failure - no app to build
+        displayName: no app to build
         dependsOn: initial_setup
         condition: |
           contains(
@@ -52,8 +52,6 @@ stages:
           - checkout: none
           - script: |
               echo "##vso[task.complete result=SucceededWithIssues;]DONE"
-              # echo "##vso[task.complete result=Failed;]DONE"
-              # exit 1
             displayName: trigger the failure
 
       - job: lint
