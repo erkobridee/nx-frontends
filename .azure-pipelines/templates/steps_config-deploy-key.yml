@@ -6,6 +6,10 @@
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/download-secure-file
 #
 steps:
+  - script: |
+      cat .git/config
+    displayName: check .git/config
+
   - task: DownloadSecureFile@1
     name: deployKey
     inputs:
