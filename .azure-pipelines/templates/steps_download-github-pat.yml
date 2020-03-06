@@ -8,4 +8,4 @@ steps:
     name: githubPat
     inputs:
       secureFile: github_pat
-    displayName: 'Get the github PAT'
+    displayName: 'Get the GitHub PAT file'
