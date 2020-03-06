@@ -8,6 +8,8 @@ if (!appsDir) {
   process.exit();
 }
 
+require('gh-pages').clean();
+
 // Why Using reduce() to Sequentially Resolve Promises Works
 // https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works/
 
@@ -42,13 +44,14 @@ const publishApp = async appName => {
   console.log(`environment: ${environment}`);
   console.log(`apps to publish: ${apps.join(', ')}`);
 
-  const { failures } = await apps.reduce(async (failures, appName) => {
+  const failures = await apps.reduce(async (failures, appName) => {
     const status = await publishApp(appName);
+    console.log(status);
     return failures + (status === STATUS_FAILURE ? 1 : 0);
   }, 0);
 
   if (failures > 0) {
-    console.error('\nFAILURE\n');
+    console.error(`\nFAILURE count: ${failures}\n`);
     process.exit(1);
   } else {
     console.log('\nDONE');
