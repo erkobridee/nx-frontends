@@ -1,0 +1,20 @@
+# based on:
+# Publishing GitHub Pages from Azure Pipelines
+# https://cloudblogs.microsoft.com/opensource/2019/04/05/publishing-github-pages-from-azure-pipelines/
+#
+# Download Secure File task
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/download-secure-file
+#
+steps:
+  - task: DownloadSecureFile@1
+    name: deployKey
+    inputs:
+      secureFile: deploy_key
+    displayName: 'Get the deploy key'
+
+  - script: |
+      echo 'Installing $(deployKey.secureFilePath)'
+      mkdir ~/.ssh && mv $(deployKey.secureFilePath) ~/.ssh/id_rsa
+      chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa
+      ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+    displayName: 'Configure to use the deploy key'
