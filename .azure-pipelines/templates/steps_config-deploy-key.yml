@@ -20,8 +20,15 @@ steps:
       echo 'Installing $(deployKey.secureFilePath)'
       mkdir ~/.ssh && mv $(deployKey.secureFilePath) ~/.ssh/id_rsa
       chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa
+
+      echo 'eval ssh-agent'
       eval "$(ssh-agent -s)"
+
+      echo 'add the key'
       ssh-add ~/.ssh/id_rsa
-      ssh -T git@github.com
+
+      # ssh -T git@github.com
+
+      echo 'ssh-keyscan'
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
     displayName: 'Configure to use the deploy key'
