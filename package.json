@@ -25,6 +25,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "clean": "rimraf dist",
+    "clean:gh-pages:cache": "npx gh-pages-clean",
     "dist-app": "node ./tools/scripts/serve-dist-app.js",
     "nx:calculate-commands": "node ./tools/scripts/nx-calculate-commands.js",
     "nx:run-many": "node ./tools/scripts/nx-run-many.js",
