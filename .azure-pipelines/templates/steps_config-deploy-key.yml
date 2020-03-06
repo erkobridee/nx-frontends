@@ -12,12 +12,6 @@ steps:
       secureFile: deploy_key
     displayName: 'Get the deploy key'
 
-  - task: DownloadSecureFile@1
-    name: deployPass
-    inputs:
-      secureFile: deploy_pass
-    displayName: 'Get the deploy pass'
-
   - script: |
       echo 'Installing deployment key'
       mkdir ~/.ssh
@@ -26,16 +20,12 @@ steps:
       mv $(deployKey.secureFilePath) ~/.ssh/deploy_key
       chmod 600 ~/.ssh/deploy_key
 
-      mv $(deployPass.secureFilePath) ~/.ssh/deploy_pass
-      chmod 600 ~/.ssh/deploy_pass
-
       echo 'add the deployment key to the ssh'
-      chmod +x tools/scripts/ssh-add-pass.sh
-      tools/scripts/ssh-add-pass.sh ~/.ssh/deploy_key ~/.ssh/deploy_pass
-
-      echo 'check github authentication'
-      ssh -T git@github.com
+      ssh-add ~/.ssh/deploy_key
 
       echo 'ssh-keyscan'
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+
+      echo 'check github authentication'
+      ssh -T git@github.com
     displayName: 'Configure to use the deploy key'
