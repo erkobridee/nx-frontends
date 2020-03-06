@@ -8,8 +8,6 @@ if (!appsDir) {
   process.exit();
 }
 
-require('gh-pages').clean();
-
 // Why Using reduce() to Sequentially Resolve Promises Works
 // https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works/
 
