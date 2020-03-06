@@ -13,6 +13,9 @@ if (!appsDir) {
 
 console.log('');
 
+const STATUS_SUCCESS = 'success';
+const STATUS_FAILURE = 'failure';
+
 const publishApp = async appName => {
   console.log(`\npublishing ${appName}`);
   const toBranch = `build/${environment}/${appName}`;
@@ -22,10 +25,11 @@ const publishApp = async appName => {
   try {
     await publishToBranch(fromAppPath, toBranch);
     console.log(`${appName} published`);
+    return STATUS_SUCCESS;
   } catch (e) {
     console.error(e);
+    return STATUS_FAILURE;
   }
-  return appName;
 };
 
 (async () => {
@@ -38,16 +42,20 @@ const publishApp = async appName => {
   console.log(`environment: ${environment}`);
   console.log(`apps to publish: ${apps.join(', ')}`);
 
-  await apps.reduce(async (previousPromise, appName) => {
-    await previousPromise;
-    return publishApp(appName);
-  }, Promise.resolve());
+  const { failures } = await apps.reduce(async (failures, appName) => {
+    const status = await publishApp(appName);
+    return failures + (status === STATUS_FAILURE ? 1 : 0);
+  }, 0);
 
-  console.log('\nDONE');
-
-  try {
-    exec('git fetch', {
-      stdio: [0, 1, 2]
-    });
-  } catch (e) {}
+  if (failures > 0) {
+    console.error('\nFAILURE\n');
+    process.exit(1);
+  } else {
+    console.log('\nDONE');
+    try {
+      exec('git fetch', {
+        stdio: [0, 1, 2]
+      });
+    } catch (e) {}
+  }
 })();
