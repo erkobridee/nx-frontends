@@ -61,5 +61,7 @@ stages:
               ls
             displayName: list apps available on $(Pipeline.Workspace)/apps
           - template: ../../templates/steps_install-node-modules.yml
-          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps ${{parameters.env}} ci
+          - script: |
+              eval `ssh-agent -s`
+              node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps ${{parameters.env}} ci
             displayName: running git push
