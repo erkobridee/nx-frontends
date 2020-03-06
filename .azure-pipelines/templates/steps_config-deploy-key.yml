@@ -6,28 +6,35 @@
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/download-secure-file
 #
 steps:
-  - script: |
-      cat .git/config
-    displayName: check .git/config
-
   - task: DownloadSecureFile@1
     name: deployKey
     inputs:
       secureFile: deploy_key
     displayName: 'Get the deploy key'
 
+  - task: DownloadSecureFile@1
+    name: deployPass
+    inputs:
+      secureFile: deploy_pass
+    displayName: 'Get the deploy pass'
+
   - script: |
-      echo 'Installing $(deployKey.secureFilePath)'
-      mkdir ~/.ssh && mv $(deployKey.secureFilePath) ~/.ssh/id_rsa
-      chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa
+      echo 'Installing deployment key'
+      mkdir ~/.ssh
+      chmod 700 ~/.ssh
 
-      echo 'eval ssh-agent'
-      eval "$(ssh-agent -s)"
+      mv $(deployKey.secureFilePath) ~/.ssh/deploy_key
+      chmod 600 ~/.ssh/deploy_key
 
-      echo 'add the key'
-      ssh-add ~/.ssh/id_rsa
+      mv $(deployPass.secureFilePath) ~/.ssh/deploy_pass
+      chmod 600 ~/.ssh/deploy_pass
 
-      # ssh -T git@github.com
+      echo 'add the deployment key to the ssh'
+      chmod +x tools/scripts/ssh-add-pass.sh
+      tools/scripts/ssh-add-pass.sh ~/.ssh/deploy_key ~/.ssh/deploy_pass
+
+      echo 'check github authentication'
+      ssh -T git@github.com
 
       echo 'ssh-keyscan'
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
