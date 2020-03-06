@@ -24,8 +24,7 @@ const buildPublishOptions = branch => {
   const ciOptions = githubPat
     ? {
         repo: buildGitPatRepoUrl(githubPat),
-        message:
-          'Auto-generated commit from Azure DevOps pipeline  ***NO_CI***',
+        message: `[Azure DevOps] ${new Date().toISOString()} - Auto-generated commit  ***NO_CI***`,
         user: {
           name: 'Azure Pipelines',
           email: 'azuredevops@microsoft.com'
@@ -35,7 +34,7 @@ const buildPublishOptions = branch => {
   return {
     branch,
     history: false,
-    message: 'Auto-generated commit from dev machine',
+    message: `[dev machine] ${new Date().toISOString()} - Auto-generated commit`,
     ...ciOptions
   };
 };
