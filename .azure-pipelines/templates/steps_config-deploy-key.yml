@@ -31,3 +31,4 @@ steps:
       echo 'check github authentication'
       ssh -T git@github.com
     displayName: 'Configure to use the deploy key'
+    continueOnError: true
