@@ -6,7 +6,7 @@ const exec = (cmd, options = undefined) => {
     return '';
   }
 
-  if (!options) {
+  if (options) {
     return output;
   }
 

@@ -1,25 +1,17 @@
 const ghPages = require('gh-pages');
 
-function publish(path, branch) {
+function publish(path, options) {
+  // for DEBUG propose
+  // console.log('git-publish-to-branch: ', { path, options });
+  // return Promise.resolve();
+
   return new Promise((resolve, reject) => {
-    ghPages.publish(
-      path,
-      {
-        branch,
-        history: false,
-        message: 'Auto-generated commit',
-        user: {
-          name: 'Azure Pipelines',
-          email: 'azuredevops@microsoft.com'
-        }
-      },
-      err => {
-        if (err) {
-          return reject(err);
-        }
-        resolve();
+    ghPages.publish(path, options, err => {
+      if (err) {
+        return reject(err);
       }
-    );
+      resolve();
+    });
   });
 }
 
