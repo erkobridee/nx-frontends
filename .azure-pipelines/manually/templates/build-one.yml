@@ -63,5 +63,8 @@ stages:
           - template: ../../templates/steps_config-deploy-key.yml
           - script: |
               eval `ssh-agent -s`
+
+              ssh -T git@github.com
+
               node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps ${{parameters.env}} ci
             displayName: running git push

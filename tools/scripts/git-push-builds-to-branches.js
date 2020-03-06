@@ -14,7 +14,7 @@ require('gh-pages').clean();
 const exec = require('./libs/execute-sync-command');
 const listDirectoriesFrom = require('./libs/list-directories-from');
 const publishToBranch = require('./libs/git-publish-to-branch');
-const sshGitRepoUrl = require('./libs/git-ssh-repo-url');
+// const sshGitRepoUrl = require('./libs/git-ssh-repo-url');
 
 console.log('');
 
@@ -24,7 +24,7 @@ const STATUS_FAILURE = 'failure';
 const buildPublishOptions = branch => {
   const ciOptions = isCI
     ? {
-        repo: sshGitRepoUrl,
+        // repo: sshGitRepoUrl,
         message:
           'Auto-generated commit from Azure DevOps pipeline  ***NO_CI***',
         user: {
