@@ -20,6 +20,8 @@ steps:
       mv $(deployKey.secureFilePath) ~/.ssh/deploy_key
       chmod 600 ~/.ssh/deploy_key
 
+      eval `ssh-agent -s`
+
       echo 'add the deployment key to the ssh'
       ssh-add ~/.ssh/deploy_key
 
