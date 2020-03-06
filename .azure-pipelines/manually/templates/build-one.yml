@@ -60,11 +60,6 @@ stages:
               ls
             displayName: list apps available on $(Pipeline.Workspace)/apps
           - template: ../../templates/steps_install-node-modules.yml
-          - template: ../../templates/steps_config-deploy-key.yml
-          - script: |
-              eval `ssh-agent -s`
-
-              ssh -T git@github.com
-
-              node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps ${{parameters.env}} ci
+          - template: ../../templates/steps_download-github-pat.yml
+          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps ${{parameters.env}} $(cat githubPat.secureFilePath)
             displayName: running git push

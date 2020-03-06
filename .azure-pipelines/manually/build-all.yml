@@ -59,7 +59,6 @@ stages:
           - checkout: self
             persistCredentials: true
             clean: true
-          - template: ../templates/steps_config-deploy-key.yml
           - download: current
             artifact: apps
           - script: |
@@ -67,5 +66,6 @@ stages:
               ls
             displayName: list apps available on $(Pipeline.Workspace)/apps
           - template: ../templates/steps_install-node-modules.yml
-          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV) ci
+          - template: ../templates/steps_download-github-pat.yml
+          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV) $(cat githubPat.secureFilePath)
             displayName: running git push

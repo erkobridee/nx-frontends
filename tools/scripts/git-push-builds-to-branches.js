@@ -1,9 +1,8 @@
 const [
   appsDir = '',
   environment = 'dev',
-  ci = 'false'
+  githubPat = ''
 ] = require('./libs/get-cli-args');
-const isCI = ci !== 'false';
 
 if (!appsDir) {
   process.exit();
@@ -14,7 +13,7 @@ require('gh-pages').clean();
 const exec = require('./libs/execute-sync-command');
 const listDirectoriesFrom = require('./libs/list-directories-from');
 const publishToBranch = require('./libs/git-publish-to-branch');
-// const sshGitRepoUrl = require('./libs/git-ssh-repo-url');
+const buildGitPatRepoUrl = require('./libs/git-pat-repo-url');
 
 console.log('');
 
@@ -22,9 +21,9 @@ const STATUS_SUCCESS = 'success';
 const STATUS_FAILURE = 'failure';
 
 const buildPublishOptions = branch => {
-  const ciOptions = isCI
+  const ciOptions = githubPat
     ? {
-        // repo: sshGitRepoUrl,
+        repo: buildGitPatRepoUrl(githubPat),
         message:
           'Auto-generated commit from Azure DevOps pipeline  ***NO_CI***',
         user: {

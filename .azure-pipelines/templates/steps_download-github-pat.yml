@@ -1,0 +1,11 @@
+#
+# Azure Pipelines Building GitHub Repositories By Example
+#   Step 1 - Get a GitHub PAT
+# https://www.codeproject.com/Articles/1278417/Azure-Pipelines-Building-GitHub-Repositories-By-Ex#step-1-get-a-github-pat
+#
+steps:
+  - task: DownloadSecureFile@1
+    name: githubPat
+    inputs:
+      secureFile: github_pat
+    displayName: 'Get the github PAT'
