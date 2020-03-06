@@ -11,6 +11,8 @@ if (!appsDir) {
 // Why Using reduce() to Sequentially Resolve Promises Works
 // https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works/
 
+require('gh-pages').clean();
+
 console.log('');
 
 const STATUS_SUCCESS = 'success';
@@ -42,17 +44,18 @@ const publishApp = async appName => {
   console.log(`environment: ${environment}`);
   console.log(`apps to publish: ${apps.join(', ')}`);
 
-  const failures = await apps.reduce(async (failures, appName) => {
+  const failures = await apps.reduce(async (previousPromise, appName) => {
+    const failures = await previousPromise;
     const status = await publishApp(appName);
     console.log(status);
-    return failures + (status === STATUS_FAILURE ? 1 : 0);
-  }, 0);
+    return Promise.resolve(status === STATUS_FAILURE ? failures + 1 : failures);
+  }, Promise.resolve(0));
 
   if (failures > 0) {
     console.error(`\nFAILURE count: ${failures}\n`);
     process.exit(1);
   } else {
-    console.log('\nDONE');
+    console.log('\nDONE\n');
     try {
       exec('git fetch', {
         stdio: [0, 1, 2]
