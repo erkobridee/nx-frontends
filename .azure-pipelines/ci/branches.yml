@@ -49,7 +49,7 @@ stages:
           - checkout: none
           - script: |
               echo "##vso[task.complete result=SucceededWithIssues;]DONE"
-            displayName: trigger the failure
+            displayName: stop the pipeline
 
       - job: lint
         displayName: lint projects
