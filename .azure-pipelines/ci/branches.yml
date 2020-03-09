@@ -118,10 +118,17 @@ stages:
         variables:
           COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
         steps:
+          - checkout: self
+            persistCredentials: true
+            clean: true
           - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' build $(ENV)
             displayName: running builds
           - template: ../templates/steps_apps-artifact_publish.yml
+          - script: |
+              git tag ci-build/$(ENV)/v$(Date:yyyyMMdd)$(Rev:.r)
+              git push origin ci-build/$(ENV)/v$(Date:yyyyMMdd)$(Rev:.r)
+            displayName: add a git tag
 
   - stage: git_push
     displayName: git push
