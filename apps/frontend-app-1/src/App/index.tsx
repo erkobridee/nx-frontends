@@ -9,7 +9,7 @@ export const App = () => {
   return (
     <Layout className="app" headerGreetings="Welcome to frontend-app-1!">
       <main>
-        <p>app content from the frontend-app-1 application...</p>
+        <p>app content from the frontend-app-1 application</p>
       </main>
 
       {/* START: routes */}
