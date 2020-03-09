@@ -39,8 +39,6 @@ stages:
           - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-one.js ${{parameters.appName}} build ${{parameters.env}}
             displayName: running build
-          # - publish: $(System.DefaultWorkingDirectory)/dist/apps
-          #   artifact: apps
           - template: ../../templates/steps_apps-artifact_publish.yml
 
   - stage: git_push
@@ -54,12 +52,6 @@ stages:
           - checkout: self
             persistCredentials: true
             clean: true
-          # - download: current
-          #   artifact: apps
-          # - script: |
-          #     cd $(Pipeline.Workspace)/apps
-          #     ls
-          #   displayName: list apps available on $(Pipeline.Workspace)/apps
           - template: ../../templates/steps_apps-artifact_download.yml
           - template: ../../templates/steps_install-node-modules.yml
           - template: ../../templates/steps_download-github-pat.yml
