@@ -29,7 +29,9 @@
     "nx:calculate-commands": "node ./tools/scripts/nx-calculate-commands.js",
     "nx:run-many": "node ./tools/scripts/nx-run-many.js",
     "nx:run-all": "node ./tools/scripts/nx-run-all.js",
-    "nx:run-one": "node ./tools/scripts/nx-run-one.js"
+    "nx:run-one": "node ./tools/scripts/nx-run-one.js",
+    "git-clean:build:tags": "node ./tools/scripts/git-clean-ci-build-tags.js",
+    "git-clean:build:branches": "node ./tools/scripts/git-clean-build-branches.js"
   },
   "private": true,
   "dependencies": {
