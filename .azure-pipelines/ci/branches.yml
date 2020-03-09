@@ -125,10 +125,6 @@ stages:
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' build $(ENV)
             displayName: running builds
           - template: ../templates/steps_apps-artifact_publish.yml
-          # - script: |
-          #     git tag ci-build/$(ENV)/$(date '+%Y%m%d')_$(Build.BuildId)
-          #     git push origin ci-build/$(ENV)/$(date '+%Y%m%d')_$(Build.BuildId)
-          #   displayName: add a git tag
           - script: |
               git tag ci-build/$(Build.BuildNumber)
               git push origin ci-build/$(Build.BuildNumber)
