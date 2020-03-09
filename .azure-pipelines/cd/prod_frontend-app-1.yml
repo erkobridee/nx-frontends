@@ -1,0 +1,11 @@
+# pipeline suggested name: CD PROD frontend-app-1
+# pipeline to deploy the application to the server
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - build/prod/frontend-app-1
+
+steps:
+  - template: templates/deploy-one.yml

@@ -1,0 +1,30 @@
+# Template types & usage
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops
+#
+# deploy a static web site to the MS Azure Cloud Storage and CDN
+#
+parameters:
+  - name: azureSubscription
+    type: string
+    default: ''
+  - name: azureStorageName
+    type: string
+    default: ''
+  - name: azureCdnResouseGroup
+    type: string
+    default: ''
+  - name: azureCdnName
+    type: string
+    default: ''
+  - name: azureCdnProfileName
+    type: string
+    default: ''
+
+steps:
+  - checkout: self
+    clean: true
+  - script: ls
+    displayName: list files
+  - ${{ if ne(parameters.azureSubscription, '') }}:
+      - scripts: echo ${{ parameters.azureSubscription }}
+        displayName: display the Azure Subscription
