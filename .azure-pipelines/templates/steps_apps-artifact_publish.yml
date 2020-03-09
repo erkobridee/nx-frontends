@@ -1,0 +1,3 @@
+steps:
+  - publish: $(System.DefaultWorkingDirectory)/dist/apps
+    artifact: apps

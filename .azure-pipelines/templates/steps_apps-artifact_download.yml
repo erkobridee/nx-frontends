@@ -1,0 +1,7 @@
+steps:
+  - download: current
+    artifact: apps
+  - script: |
+      cd $(Pipeline.Workspace)/apps
+      ls
+    displayName: list apps available on $(Pipeline.Workspace)/apps
