@@ -126,8 +126,8 @@ stages:
             displayName: running builds
           - template: ../templates/steps_apps-artifact_publish.yml
           - script: |
-              git tag ci-build/$(ENV)/v$(Date:yyyyMMdd)$(Rev:.r)
-              git push origin ci-build/$(ENV)/v$(Date:yyyyMMdd)$(Rev:.r)
+              git tag ci-build/$(ENV)/$(date '+%Y%m%d')_$(Build.BuildId)
+              git push origin ci-build/$(ENV)/$(date '+%Y%m%d')_$(Build.BuildId)
             displayName: add a git tag
 
   - stage: git_push
