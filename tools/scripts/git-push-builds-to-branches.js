@@ -19,12 +19,19 @@ console.log('');
 
 const STATUS_SUCCESS = 'success';
 const STATUS_FAILURE = 'failure';
+/*
+  MS Azure DevOps - Run Git commands in a script
+  https://docs.microsoft.com/en-us/azure/devops/pipelines/scripts/git-commands?view=azure-devops&tabs=yaml
 
+  MS Azure DevOps -  skip CI
+  https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml#skipping-ci-for-individual-commits
+*/
 const buildPublishOptions = branch => {
   const ciOptions = githubPat
     ? {
         repo: buildGitPatRepoUrl(githubPat),
-        message: `[Azure DevOps] ${new Date().toISOString()} - Auto-generated commit  ***NO_CI***`,
+        silent: true,
+        message: `[Azure DevOps] ${new Date().toISOString()} - Auto-generated commit`,
         user: {
           name: 'Azure Pipelines',
           email: 'azuredevops@microsoft.com'
