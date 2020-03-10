@@ -1,31 +1,10 @@
-# Template types & usage
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops
-#
-# Use a template parameter as part of a condition
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/conditions?view=azure-devops&tabs=yaml#use-a-template-parameter-as-part-of-a-condition
-#
 # Azure CLI task
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/deploy/azure-cli?view=azure-devops
 #
 # deploy a static web site to the MS Azure Cloud Storage and CDN
 #
-parameters:
-  - name: azureSubscription
-    type: string
-    default: ''
-  - name: azureStorageName
-    type: string
-    default: ''
-  - name: azureCdnResouseGroup
-    type: string
-    default: ''
-  - name: azureCdnName
-    type: string
-    default: ''
-  - name: azureCdnProfileName
-    type: string
-    default: ''
-
+# configurations defined as a variable group
+#
 steps:
   - checkout: self
     clean: true
@@ -42,54 +21,54 @@ steps:
 
   - script: |
       echo 'success'
-      echo 'azureSubscription: ${{ parameters.azureSubscription }}'
-      echo 'azureStorageName: ${{ parameters.azureStorageName }}'
+      echo 'azureSubscription: $(azureSubscription)'
+      echo 'azureStorageName: $(azureStorageName)'
     displayName: test condition to Copy files to Azure Blob storage
     condition: |
       and(
-        ne('${{ parameters.azureSubscription }}', ''),
-        ne('${{ parameters.azureStorageName }}', '')
+        ne(variables.azureSubscription, ''),
+        ne(variables.azureStorageName', '')
       )
   # - task: AzureCLI@2
   #   displayName: Copy files to Azure Blob storage
   #   condition: |
   #     and(
-  #       ne('${{ parameters.azureSubscription }}', ''),
-  #       ne('${{ parameters.azureStorageName }}', '')
+  #       ne(variables.azureSubscription, ''),
+  #       ne(variables.azureStorageName, '')
   #     )
   #   inputs:
-  #     azureSubscription: ${{ parameters.azureSubscription }}
+  #     azureSubscription: $(azureSubscription)
   #     scriptType: ps
   #     scriptLocation: inlineScript
   #     inlineScript: |
-  #       az storage blob upload-batch -s "$(System.DefaultWorkingDirectory)/dist" -d \$web --account-name "${{ parameters.azureStorageName }}"
+  #       az storage blob upload-batch -s "$(System.DefaultWorkingDirectory)/dist" -d \$web --account-name "$(azureStorageName)"
 
   - script: |
       echo 'success'
-      echo 'azureSubscription: ${{ parameters.azureSubscription }}'
-      echo 'azureCdnResouseGroup: ${{ parameters.azureCdnResouseGroup }}'
-      echo 'azureCdnName: ${{ parameters.azureCdnName }}'
-      echo 'azureCdnProfileName: ${{ parameters.azureCdnProfileName }}'
+      echo 'azureSubscription: $(azureSubscription)'
+      echo 'azureCdnResouseGroup: $(azureCdnResouseGroup)'
+      echo 'azureCdnName: $(azureCdnName)'
+      echo 'azureCdnProfileName: $(azureCdnProfileName)'
     displayName: test condition to Purge Azure CDN
     condition: |
       and(
-        ne('${{ parameters.azureSubscription }}', ''),
-        ne('${{ parameters.azureCdnResouseGroup }}', ''),
-        ne('${{ parameters.azureCdnName }}', ''),
-        ne('${{ parameters.azureCdnProfileName }}', '')
+        ne(variables.azureSubscription, ''),
+        ne(variables.azureCdnResouseGroup, ''),
+        ne(variables.azureCdnName, ''),
+        ne(variables.azureCdnProfileName, '')
       )
   # - task: AzureCLI@2
   #   displayName: Purge Azure CDN
   #   condition: |
   #     and(
-  #       ne('${{ parameters.azureSubscription }}', ''),
-  #       ne('${{ parameters.azureCdnResouseGroup }}', ''),
-  #       ne('${{ parameters.azureCdnName }}', ''),
-  #       ne('${{ parameters.azureCdnProfileName }}', '')
+  #       ne(variables.azureSubscription, ''),
+  #       ne(variables.azureCdnResouseGroup, ''),
+  #       ne(variables.azureCdnName, ''),
+  #       ne(variables.azureCdnProfileName, '')
   #     )
   #   inputs:
-  #     azureSubscription: ${{ parameters.azureSubscription }}
+  #     azureSubscription: $(azureSubscription)
   #     scriptType: ps
   #     scriptLocation: inlineScript
   #     inlineScript: |
-  #       az cdn endpoint purge --resource-group ${{ parameters.azureCdnResouseGroup }} --name ${{ parameters.azureCdnName }} --profile-name ${{ parameters.azureCdnProfileName }} --content-paths "/*"
+  #       az cdn endpoint purge --resource-group $(azureCdnResouseGroup) --name $(azureCdnName) --profile-name $(azureCdnProfileName) --content-paths "/*"

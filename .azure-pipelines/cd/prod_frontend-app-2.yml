@@ -17,9 +17,3 @@ variables:
 
 steps:
   - template: templates/deploy-one.yml
-    parameters:
-      azureSubscription: ${{ variables.azureSubscription }}
-      azureStorageName: ${{ variables.azureStorageName }}
-      azureCdnResouseGroup: ${{ variables.azureCdnResouseGroup }}
-      azureCdnName: ${{ variables.azureCdnName }}
-      azureCdnProfileName: ${{ variables.azureCdnProfileName }}
