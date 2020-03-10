@@ -1,5 +1,7 @@
 steps:
-  - script: cp -r $(System.DefaultWorkingDirectory)/.azure-pipelines/cd $(System.DefaultWorkingDirectory)/dist/apps/.azure-pipelines/cd
+  - script: |
+      ls
+      cp -r $(System.DefaultWorkingDirectory)/.azure-pipelines/cd $(System.DefaultWorkingDirectory)/dist/apps/.azure-pipelines/cd
     displayName: copy CD pipelines from .azure-pipelines
   - publish: $(System.DefaultWorkingDirectory)/dist/apps
     artifact: apps
