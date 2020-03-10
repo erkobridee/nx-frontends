@@ -33,6 +33,14 @@ steps:
     displayName: list files
 
   - script: |
+      echo 'azureSubscription: $(azureSubscription)'
+      echo 'azureStorageName: $(azureStorageName)'
+      echo 'azureCdnResouseGroup: $(azureCdnResouseGroup)'
+      echo 'azureCdnName: $(azureCdnName)'
+      echo 'azureCdnProfileName: $(azureCdnProfileName)'
+    displayName: show variables from the library
+
+  - script: |
       echo 'success'
       echo 'azureSubscription: ${{ parameters.azureSubscription }}'
       echo 'azureStorageName: ${{ parameters.azureStorageName }}'
@@ -60,7 +68,8 @@ steps:
       echo 'success'
       echo 'azureSubscription: ${{ parameters.azureSubscription }}'
       echo 'azureCdnResouseGroup: ${{ parameters.azureCdnResouseGroup }}'
-      echo 'azureCdnProfileName ${{ parameters.azureCdnProfileName }}'
+      echo 'azureCdnName: ${{ parameters.azureCdnName }}'
+      echo 'azureCdnProfileName: ${{ parameters.azureCdnProfileName }}'
     displayName: test condition to Purge Azure CDN
     condition: |
       and(
