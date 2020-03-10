@@ -1,6 +1,9 @@
 # Template types & usage
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops
 #
+# Azure CLI task
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/deploy/azure-cli?view=azure-devops
+#
 # deploy a static web site to the MS Azure Cloud Storage and CDN
 #
 parameters:
@@ -25,6 +28,25 @@ steps:
     clean: true
   - script: ls
     displayName: list files
-  - ${{ if ne(parameters.azureSubscription, '') }}:
-      - scripts: echo ${{ parameters.azureSubscription }}
-        displayName: display the Azure Subscription
+
+  - scripts: echo 'success'
+    displayName: condition has Azure Subscription
+    condition: ne(parameters.azureSubscription, '')
+
+  - scripts: echo 'success'
+    displayName: condition to update Azure Storage
+    condition: |
+      and(
+        ne(parameters.azureSubscription, ''),
+        ne(parameters.azureStorageName, '')
+      )
+
+  - scripts: echo 'success'
+    displayName: condition to update Azure CDN
+    condition: |
+      and(
+        ne(parameters.azureSubscription, ''),
+        ne(parameters.azureCdnResouseGroup, ''),
+        ne(parameters.azureCdnName, ''),
+        ne(parameters.azureCdnProfileName, '')
+      )

@@ -1,13 +1,13 @@
 # pipeline suggested name: CD PROD frontend-app-1
 # pipeline to deploy the application to the server
 
-name: CD_PROD_frontend-app-1_$(Date:yyyyMMdd)$(Rev:.r)
+name: CD_DEV_frontend-app-1_$(Date:yyyyMMdd)$(Rev:.r)
 
 trigger:
   batch: true
   branches:
     include:
-      - build/prod/frontend-app-1
+      - build/dev/frontend-app-1
 
 pr: none
 
