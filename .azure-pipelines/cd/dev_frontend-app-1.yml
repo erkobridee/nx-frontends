@@ -1,4 +1,4 @@
-# pipeline suggested name: CD PROD frontend-app-1
+# pipeline suggested name: CD DEV frontend-app-1
 # pipeline to deploy the application to the server
 
 name: CD_DEV_frontend-app-1_$(Date:yyyyMMdd)$(Rev:.r)
