@@ -1,7 +1,7 @@
 # pipeline suggested name: CD PROD frontend-app-1
 # pipeline to deploy the application to the server
 
-name: CD_PROD_frontend-app-1_$(Date:yyyyMMdd)$(Rev:.r)
+name: $(Date:yyyyMMdd)$(Rev:.r)
 
 trigger:
   batch: true
