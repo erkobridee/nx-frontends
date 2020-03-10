@@ -8,16 +8,13 @@
 steps:
   - checkout: self
     clean: true
-  - script: ls
-    displayName: list files
-
   - script: |
-      echo 'azureSubscription: $(azureSubscription)'
-      echo 'azureStorageName: $(azureStorageName)'
-      echo 'azureCdnResouseGroup: $(azureCdnResouseGroup)'
-      echo 'azureCdnName: $(azureCdnName)'
-      echo 'azureCdnProfileName: $(azureCdnProfileName)'
-    displayName: show variables from the library
+      echo 'project directory'
+      ls -a
+      echo 'dist directory'
+      cd dist
+      ls - a
+    displayName: list repository files
 
   - script: |
       echo 'success'
