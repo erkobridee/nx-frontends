@@ -14,7 +14,7 @@ export const LayoutFooter: React.FunctionComponent<ILayoutFooterProps> = ({
     <div>
       © {new Date().getFullYear()}, Built with
       {` `}{' '}
-      <a href="https://nx.dev/react" target="_blank">
+      <a href="https://nx.dev/react" target="_blank" rel="noopener noreferrer">
         Nx (Extensible Dev Tools for Monorepos)
       </a>
     </div>
