@@ -9,9 +9,13 @@ steps:
   - checkout: self
     clean: true
   - script: |
-      echo '\nproject directory'
+      echo ''
+      echo 'project directory'
+      echo ''
       ls -a
-      echo '\ndist directory'
+      echo ''
+      echo 'dist directory'
+      echo ''
       cd dist
       ls -a
       echo ''
