@@ -1,6 +1,9 @@
 # Template types & usage
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops
 #
+# Use a template parameter as part of a condition
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/conditions?view=azure-devops&tabs=yaml#use-a-template-parameter-as-part-of-a-condition
+#
 # Azure CLI task
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/deploy/azure-cli?view=azure-devops
 #
@@ -31,22 +34,22 @@ steps:
 
   - script: echo 'success'
     displayName: condition has Azure Subscription
-    condition: ne(parameters.azureSubscription, '')
+    condition: ne('${{ parameters.azureSubscription }}', '')
 
   - script: echo 'success'
     displayName: condition to update Azure Storage
     condition: |
       and(
-        ne(parameters.azureSubscription, ''),
-        ne(parameters.azureStorageName, '')
+        ne('${{ parameters.azureSubscription }}', ''),
+        ne('${{ parameters.azureStorageName }}', '')
       )
 
   - script: echo 'success'
     displayName: condition to update Azure CDN
     condition: |
       and(
-        ne(parameters.azureSubscription, ''),
-        ne(parameters.azureCdnResouseGroup, ''),
-        ne(parameters.azureCdnName, ''),
-        ne(parameters.azureCdnProfileName, '')
+        ne('${{ parameters.azureSubscription }}', ''),
+        ne('${{ parameters.azureCdnResouseGroup }}', ''),
+        ne('${{ parameters.azureCdnName }}', ''),
+        ne('${{ parameters.azureCdnProfileName }}', '')
       )
