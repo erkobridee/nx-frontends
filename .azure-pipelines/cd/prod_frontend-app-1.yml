@@ -11,5 +11,15 @@ trigger:
 
 pr: none
 
+variables:
+  - group: cd-vars_common
+  - group: cd-vars_prod_frontend-app-1
+
 steps:
   - template: templates/deploy-one.yml
+    parameters:
+      azureSubscription: ${{ variables.azureSubscription }}
+      azureStorageName: ${{ variables.azureStorageName }}
+      azureCdnResouseGroup: ${{ variables.azureCdnResouseGroup }}
+      azureCdnName: ${{ variables.azureCdnName }}
+      azureCdnProfileName: ${{ variables.azureCdnProfileName }}

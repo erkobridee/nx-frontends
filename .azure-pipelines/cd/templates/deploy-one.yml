@@ -32,20 +32,36 @@ steps:
   - script: ls
     displayName: list files
 
-  - script: echo 'success'
-    displayName: condition has Azure Subscription
-    condition: ne('${{ parameters.azureSubscription }}', '')
-
-  - script: echo 'success'
-    displayName: condition to update Azure Storage
+  - script: |
+      echo 'success'
+      echo 'azureSubscription: ${{ parameters.azureSubscription }}'
+      echo 'azureStorageName: ${{ parameters.azureStorageName }}'
+    displayName: test condition to Copy files to Azure Blob storage
     condition: |
       and(
         ne('${{ parameters.azureSubscription }}', ''),
         ne('${{ parameters.azureStorageName }}', '')
       )
+  # - task: AzureCLI@2
+  #   displayName: Copy files to Azure Blob storage
+  #   condition: |
+  #     and(
+  #       ne('${{ parameters.azureSubscription }}', ''),
+  #       ne('${{ parameters.azureStorageName }}', '')
+  #     )
+  #   inputs:
+  #     azureSubscription: ${{ parameters.azureSubscription }}
+  #     scriptType: ps
+  #     scriptLocation: inlineScript
+  #     inlineScript: |
+  #       az storage blob upload-batch -s "$(System.DefaultWorkingDirectory)/dist" -d \$web --account-name "${{ parameters.azureStorageName }}"
 
-  - script: echo 'success'
-    displayName: condition to update Azure CDN
+  - script: |
+      echo 'success'
+      echo 'azureSubscription: ${{ parameters.azureSubscription }}'
+      echo 'azureCdnResouseGroup: ${{ parameters.azureCdnResouseGroup }}'
+      echo 'azureCdnProfileName ${{ parameters.azureCdnProfileName }}'
+    displayName: test condition to Purge Azure CDN
     condition: |
       and(
         ne('${{ parameters.azureSubscription }}', ''),
@@ -53,3 +69,18 @@ steps:
         ne('${{ parameters.azureCdnName }}', ''),
         ne('${{ parameters.azureCdnProfileName }}', '')
       )
+  # - task: AzureCLI@2
+  #   displayName: Purge Azure CDN
+  #   condition: |
+  #     and(
+  #       ne('${{ parameters.azureSubscription }}', ''),
+  #       ne('${{ parameters.azureCdnResouseGroup }}', ''),
+  #       ne('${{ parameters.azureCdnName }}', ''),
+  #       ne('${{ parameters.azureCdnProfileName }}', '')
+  #     )
+  #   inputs:
+  #     azureSubscription: ${{ parameters.azureSubscription }}
+  #     scriptType: ps
+  #     scriptLocation: inlineScript
+  #     inlineScript: |
+  #       az cdn endpoint purge --resource-group ${{ parameters.azureCdnResouseGroup }} --name ${{ parameters.azureCdnName }} --profile-name ${{ parameters.azureCdnProfileName }} --content-paths "/*"
