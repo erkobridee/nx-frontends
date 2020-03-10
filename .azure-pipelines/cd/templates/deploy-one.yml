@@ -9,11 +9,12 @@ steps:
   - checkout: self
     clean: true
   - script: |
-      echo 'project directory'
+      echo '\nproject directory'
       ls -a
-      echo 'dist directory'
+      echo '\ndist directory'
       cd dist
-      ls - a
+      ls -a
+      echo ''
     displayName: list repository files
 
   - script: |
