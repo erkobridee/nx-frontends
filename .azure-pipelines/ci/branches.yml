@@ -144,5 +144,5 @@ stages:
           - template: ../templates/steps_apps-artifact_download.yml
           - template: ../templates/steps_install-node-modules.yml
           - template: ../templates/steps_download-github-pat.yml
-          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps $(ENV) $(cat $(githubPat.secureFilePath))
+          - script: node ./tools/scripts/git-push-builds-to-branches.js $(ENV) $(Pipeline.Workspace)/apps $(cat $(githubPat.secureFilePath))
             displayName: running git push

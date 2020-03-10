@@ -29,11 +29,11 @@ steps:
   - script: ls
     displayName: list files
 
-  - scripts: echo 'success'
+  - script: echo 'success'
     displayName: condition has Azure Subscription
     condition: ne(parameters.azureSubscription, '')
 
-  - scripts: echo 'success'
+  - script: echo 'success'
     displayName: condition to update Azure Storage
     condition: |
       and(
@@ -41,7 +41,7 @@ steps:
         ne(parameters.azureStorageName, '')
       )
 
-  - scripts: echo 'success'
+  - script: echo 'success'
     displayName: condition to update Azure CDN
     condition: |
       and(

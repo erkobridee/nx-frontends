@@ -55,5 +55,5 @@ stages:
           - template: ../../templates/steps_apps-artifact_download.yml
           - template: ../../templates/steps_install-node-modules.yml
           - template: ../../templates/steps_download-github-pat.yml
-          - script: node ./tools/scripts/git-push-builds-to-branches.js $(Pipeline.Workspace)/apps ${{parameters.env}} $(cat $(githubPat.secureFilePath))
+          - script: node ./tools/scripts/git-push-builds-to-branches.js ${{parameters.env}} $(Pipeline.Workspace)/apps $(cat $(githubPat.secureFilePath))
             displayName: running git push

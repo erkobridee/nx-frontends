@@ -1,15 +1,12 @@
 const [
-  appsDir = '',
   environment = 'dev',
+  appsDir = 'dist/apps',
   githubPat = ''
 ] = require('./libs/get-cli-args');
 
-if (!appsDir) {
-  process.exit();
-}
-
 require('gh-pages').clean();
 
+const { copy, move } = require('./libs/fs-toolkit');
 const exec = require('./libs/execute-sync-command');
 const listDirectoriesFrom = require('./libs/list-directories-from');
 const publishToBranch = require('./libs/git-publish-to-branch');
@@ -41,12 +38,27 @@ const buildPublishOptions = branch => {
   return {
     branch,
     history: false,
+    dotfiles: true,
     message: `[dev machine] ${new Date().toISOString()} - Auto-generated commit`,
     ...ciOptions
   };
 };
 
+const prepareToPublishApp = async appName => {
+  console.log('\npreparing to publish: ', appName);
+
+  const appPath = `${appsDir}/${appName}`;
+  await move(appPath, `${appsDir}/tmp/${appName}`);
+  await move(`${appsDir}/tmp/${appName}`, `${appPath}/dist`);
+  await copy(
+    `${appsDir}/.azure-pipelines/cd`,
+    `${appPath}/.azure-pipelines/cd`
+  );
+};
+
 const publishApp = async appName => {
+  await prepareToPublishApp(appName);
+
   console.log(`\npublishing ${appName}`);
   const toBranch = `build/${environment}/${appName}`;
   console.log(`to branch: ${toBranch}`);
@@ -62,8 +74,26 @@ const publishApp = async appName => {
   }
 };
 
+const prepareLocalRun = async () => {
+  if (githubPat) {
+    return;
+  }
+
+  await copy('.azure-pipelines', 'dist/apps/.azure-pipelines');
+};
+
 (async () => {
-  const apps = listDirectoriesFrom(appsDir);
+  await prepareLocalRun();
+
+  let apps = listDirectoriesFrom(appsDir);
+
+  if (apps.filter(dir => dir === '.azure-pipelines').length === 0) {
+    console.error('the .azure-pipelines directory is not present');
+    process.exit(1);
+  }
+
+  apps = apps.filter(dir => dir !== '.azure-pipelines');
+
   if (apps.length === 0) {
     console.log('there is no application to publish to any branch');
   }
