@@ -10,7 +10,7 @@ if (!appName || !['lint', 'test', 'build'].includes(target)) {
 }
 
 if (target === 'build') {
-  require('rimraf').sync('./dist/');
+  require('./libs/fs-toolkit').removeSync('dist');
 }
 
 const buildOutput = ['prod', 'production'].includes(environment)

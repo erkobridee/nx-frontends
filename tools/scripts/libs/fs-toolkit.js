@@ -13,6 +13,7 @@ const remove = async path => {
   }
 };
 module.exports.remove = remove;
+module.exports.removeSync = fse.removeSync;
 
 /**
  * move the files from the `src` to `dest`
