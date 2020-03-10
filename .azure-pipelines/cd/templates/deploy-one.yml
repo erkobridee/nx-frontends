@@ -27,7 +27,7 @@ steps:
     condition: |
       and(
         ne(variables.azureSubscription, ''),
-        ne(variables.azureStorageName', '')
+        ne(variables.azureStorageName, '')
       )
   # - task: AzureCLI@2
   #   displayName: Copy files to Azure Blob storage
