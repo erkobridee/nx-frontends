@@ -44,3 +44,4 @@ const copy = async (src, dest) => {
   }
 };
 module.exports.copy = copy;
+module.exports.copySync = fse.copySync;
