@@ -1,0 +1,27 @@
+# Publish test results
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/javascript?view=azure-devops#publish-test-results
+#
+# Publish Test Results task
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=yaml
+#
+#
+# Publish code coverage results
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/javascript?view=azure-devops#publish-test-results
+#
+# Publish Code Coverage Results task
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-code-coverage-results?view=azure-devops
+#
+steps:
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/reports/junit/test-report.xml'
+      testRunTitle: 'Jest Unit Tests'
+      mergeTestResults: true
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: cobertura
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+      reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'

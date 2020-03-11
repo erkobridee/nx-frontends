@@ -30,6 +30,7 @@ stages:
           - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-all.js test
             displayName: running test all
+          - template: ../templates/steps_publish-test-results.yml
 
       - job: build_all
         displayName: nx build all apps

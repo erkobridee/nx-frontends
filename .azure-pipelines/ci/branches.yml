@@ -96,6 +96,7 @@ stages:
           - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' test
             displayName: running tests
+          - template: ../templates/steps_publish-test-results.yml
 
       - job: build
         displayName: build projects

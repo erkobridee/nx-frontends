@@ -24,6 +24,7 @@ stages:
           - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-one.js ${{parameters.appName}} test
             displayName: running test
+          - template: ../../templates/steps_publish-test-results.yml
 
       - job: build_one
         displayName: nx build ${{parameters.appName}} ${{parameters.env}}
