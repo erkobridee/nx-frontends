@@ -32,7 +32,10 @@ const ERROR = (...args) => console.error(MESSAGE_PREFIX, ...args);
  */
 const findCoverageFiles = rootDir =>
   glob
-    .sync('**/*coverage.xml', { cwd: rootDir })
+    .sync('**/*coverage.xml', {
+      cwd: rootDir,
+      ignore: '**/coverage/merged-cobertura-coverage.xml'
+    })
     .map(relativeCoverageFile => path.resolve(rootDir, relativeCoverageFile));
 
 /**
@@ -160,6 +163,60 @@ const arrayToKeyedObject = (arr, ...key) => {
   }, {});
 };
 
+/**
+ * Adjuste report content to always have at least one package
+ * and all the packages should start from the src/ folder
+ *
+ * @param {*} content
+ */
+const adjustContent = content => {
+  const ATTR_DOLLAR = `$`;
+  const ATTR_LINE_RATE = `line-rate`;
+  const ATTR_BRANCH_RATE = `branch-rate`;
+
+  const { packages, ...others } = content.coverage;
+
+  const buildPackageName = classItem => {
+    const { name, filename } = classItem;
+    return filename
+      .substring(filename.lastIndexOf('src'), filename.lastIndexOf(`/${name}`))
+      .replace(/\//g, '.');
+  };
+
+  const addPackage = item => {
+    const itemClass0 = item.class[0][ATTR_DOLLAR];
+    return {
+      package: [
+        {
+          [ATTR_DOLLAR]: {
+            name: buildPackageName(itemClass0),
+            [ATTR_LINE_RATE]: itemClass0[ATTR_LINE_RATE],
+            [ATTR_BRANCH_RATE]: itemClass0[ATTR_BRANCH_RATE]
+          },
+          classes: [item]
+        }
+      ]
+    };
+  };
+
+  const updatePackage = item => {
+    return {
+      package: item.package.map(pack => {
+        pack[ATTR_DOLLAR].name = buildPackageName(
+          pack.classes[0].class[0][ATTR_DOLLAR]
+        );
+        return pack;
+      })
+    };
+  };
+
+  const newPackages = packages.map(item =>
+    'class' in item ? addPackage(item) : updatePackage(item)
+  );
+
+  return { coverage: { ...others, packages: newPackages } };
+};
+
 // @end: content helpers
 //----------------------------------------------------------------------------//
 // @begin: merge contents
@@ -279,7 +336,7 @@ const mergeReportValues = (report1, report2) => {
  */
 const mergeCobertura = (
   coverageReportsDir = './coverage',
-  coverageMergedFileOutput = './coverage/cobertura-coverage.xml'
+  coverageMergedFileOutput = './coverage/merged-cobertura-coverage.xml'
 ) => {
   coverageMergedFileOutput = path.resolve(coverageMergedFileOutput);
 
@@ -300,13 +357,7 @@ const mergeCobertura = (
 
   LOG('reports to merge: ', coverageFiles);
 
-  let reportsContent = coverageFiles.map(getFileContent);
-
-  // TODO: adjust reports contents
-  // in case of have only one file
-  // and always considere the package from src/ folder
-
-  // LOG('JSON', JSON.stringify(reportsContent, null, 2));
+  let reportsContent = coverageFiles.map(getFileContent).map(adjustContent);
 
   const firstReportContent = reportsContent[0];
   reportsContent.splice(0, 1);
