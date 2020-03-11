@@ -24,7 +24,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "clean": "node ./tools/scripts/remove-dir.js",
+    "clean": "node ./tools/scripts/cleanup.js",
     "dist-app": "node ./tools/scripts/serve-dist-app.js",
     "nx:calculate-commands": "node ./tools/scripts/nx-calculate-commands.js",
     "nx:run-many": "node ./tools/scripts/nx-run-many.js",
