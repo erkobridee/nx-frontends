@@ -23,5 +23,5 @@ steps:
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: cobertura
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
-      reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/merged-cobertura-coverage.xml'
+      reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'

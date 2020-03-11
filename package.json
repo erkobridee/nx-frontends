@@ -32,7 +32,8 @@
     "nx:run-one": "node ./tools/scripts/nx-run-one.js",
     "git-clean:build:tags": "node ./tools/scripts/git-clean-ci-build-tags.js",
     "git-clean:build:branches": "node ./tools/scripts/git-clean-build-branches.js",
-    "git-publish:builds": "node ./tools/scripts/git-push-builds-to-branches.js"
+    "git-publish:builds": "node ./tools/scripts/git-push-builds-to-branches.js",
+    "merge-cobertura": "node ./tools/scripts/merge-cobertura.js"
   },
   "private": true,
   "dependencies": {

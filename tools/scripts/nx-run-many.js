@@ -15,6 +15,10 @@ if (target === 'build') {
   require('./libs/fs-toolkit').removeSync('dist');
 }
 
+if (target === 'test') {
+  require('./libs/fs-toolkit').removeSync('coverage');
+}
+
 const buildOutput = ['prod', 'production'].includes(environment)
   ? ' --prod'
   : '';
@@ -28,7 +32,14 @@ try {
       stdio: [0, 1, 2]
     }
   );
+
+  if (target === 'test') {
+    require('./libs/merge-cobertura')();
+  }
+
+  console.log('\n\n');
   console.log('success');
+  console.log('\n\n');
 } catch (e) {
   console.log('\n\n');
   console.error('failure');
