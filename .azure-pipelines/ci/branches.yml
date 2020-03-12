@@ -13,8 +13,10 @@ trigger:
     exclude:
       - .azure-pipelines/*
       - .vscode/*
-      - docs/*
       - tools/*
+      - docs/*
+      - README.md
+
 pr: none
 
 pool:

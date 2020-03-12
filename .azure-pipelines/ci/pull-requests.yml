@@ -12,8 +12,9 @@ pr:
     exclude:
       - .azure-pipelines/*
       - .vscode/*
-      - docs/*
       - tools/*
+      - docs/*
+      - README.md
 
 pool:
   vmImage: 'ubuntu-latest'
