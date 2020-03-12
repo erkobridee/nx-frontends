@@ -4,6 +4,11 @@
 
 # Microsoft Azure DevOps
 
+**Assumptions:**
+
+- have 2 environments (servers) per application from the mono repository, production (code from the `master` branch) and development (code from the `develop` branch)
+- an application (_static application based on the React_) will be deployed on the Microsoft Azure Cloud and it will use a storage and a CDN (with it own URL domain)
+
 ## Goal
 
 - Handle the build and release flows to a mono repository
