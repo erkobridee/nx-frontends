@@ -6,7 +6,9 @@
 
 ## Goal
 
-- Follow the [proposed idea](proposed-idea.md)
+- Handle the build and release flows to a mono repository
+
+  - Follow the [proposed idea](proposed-idea.md)
 
 - Have the pipelines definitions as code ([YAML](https://yaml.org/) files) inside of the repository on the `.azure-pipelines`
 
@@ -26,11 +28,11 @@
 
 ## Build Flows
 
-???
+> **TODO:** define the content
 
 ## Release Flows
 
-???
+> **TODO:** define the content
 
 ## Further help
 
