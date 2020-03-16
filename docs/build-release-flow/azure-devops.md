@@ -31,11 +31,41 @@
 
     - one pipeline per environment and application, triggered by any commit on the auxiliary build branch (CD - continuous deployment)
 
+## Abastract flow
+
+> view to a single application from inside of the mono repository
+
+### Build and deploy to development server
+
+![abstract build release dev flow](assets/abstract_build-cd_dev_flow.png)
+
+### Build and deploy to production server
+
+![abstract build release prod flow](assets/abstract_build-cd_prod_flow.png)
+
 ## Build Flows
+
+### CI (Continuous Integration) flows
+
+#### Pull Request
+
+> Triggered when there is any new pull request that targets the **develop** branch
+
+![ci pull requests](assets/ci_pull-requests.png)
+
+check the file: **.azure-pipelines/ci/pull-requests.yml**
+
+#### Branches
+
+> Triggered when there is any `git push` to the **master** or **develop** branch
+
+### Manually triggered flows
 
 > **TODO:** define the content
 
 ## Release Flows
+
+> CD - Continuous Deployment
 
 > **TODO:** define the content
 
