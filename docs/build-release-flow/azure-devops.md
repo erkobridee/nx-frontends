@@ -53,19 +53,30 @@
 
 ![ci pull requests](assets/ci_pull-requests.png)
 
-check the file: **.azure-pipelines/ci/pull-requests.yml**
+📝 **.azure-pipelines/ci/pull-requests.yml**
 
 #### Branches
 
 > Triggered when there is any `git push` to the **master** or **develop** branch
 
+![ci branches](assets/ci_branches.png)
+
+📝 **.azure-pipelines/ci/branches.yml**
+
 ### Manually triggered flows
+
+#### Build one application
+
+> **TODO:** define the content
+
+#### Build all applications
 
 > **TODO:** define the content
 
 ## Release Flows
 
 > CD - Continuous Deployment
+> must be defined one by application and environment (production/development)
 
 > **TODO:** define the content
 
