@@ -72,7 +72,7 @@
 
 📝 **.azure-pipelines/ci/branches.yml**
 
-⚠️ to run this pipeline you must had created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
+⚠️ to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
 
 ### Manually triggered flows
 
