@@ -82,6 +82,8 @@
 
 ## Further help
 
+### Azure Pipelines
+
 - [YAML Release Pipelines in Azure DevOps | Microsoft Azure](https://azure.microsoft.com/en-us/resources/videos/build-2019-yaml-release-pipelines-in-azure-devops/)
 
 - [Azure Pipelines documentation | Azure DevOps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops)
@@ -100,8 +102,28 @@
 
   - [Add stages, dependencies, & conditions](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/stages?view=azure-devops&tabs=yaml)
 
-### Configure Azure Cloud Resources through templates
+- [Moving your Azure DevOps build pipelines to your code repository](https://blog.bredvid.no/moving-your-azure-devops-build-pipelines-to-your-code-repository-dff60488c0f9)
 
-- [Azure Quickstart Templates](https://azure.microsoft.com/en-us/resources/templates/) - Deploy Azure resources through the Azure Resource Manager with community contributed templates to get more done. Deploy, learn, fork and contribute back.
+- [Azure Pipelines | VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-devops.azure-pipelines)
 
-  - [[GitHub] Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates)
+### Azure Resource Manager templates
+
+- [Azure Resource Manager templates overview | MS Docs](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)
+
+- [Tutorial: Create and deploy your first Azure Resource Manager template | MS Docs](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-tutorial-create-first-template?tabs=azure-powershell)
+
+- [Understand the structure and syntax of Azure Resource Manager templates | MS Docs](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-syntax)
+
+- [Azure Quickstart Templates](https://azure.microsoft.com/en-us/resources/templates/)
+
+  - [[GitHub] Azure / azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates)
+
+### Mono Repository
+
+- [Blazing Fast Distributed CI with Nx | Nrwl](https://blog.nrwl.io/blazing-fast-distributed-ci-with-nx-a1f5974f7393)
+
+  - [[GitHub] nrwl/nx-azure-build](https://github.com/nrwl/nx-azure-build) - Example of setting up distributed Azure build for Nx workspace
+
+- [Azure DevOps YAML build for Mono Repository with multiple projects](https://dev.to/nikolicbojan/azure-devops-yaml-build-for-mono-repository-with-multiple-projects-146g)
+
+  - [[GitHub] nikolic-bojan/azure-yaml-build](https://github.com/nikolic-bojan/azure-yaml-build)
