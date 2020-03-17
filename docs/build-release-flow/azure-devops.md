@@ -7,7 +7,11 @@
 **Assumptions:**
 
 - have installed the [Azure Pipelines application](https://github.com/marketplace/azure-pipelines) on the GitHub repository
+
+![github app azure pipelines](assets/github_apps_azure_pipelines.png)
+
 - have 2 environments (servers) per application from the mono repository, production (code from the `master` branch) and development (code from the `develop` branch)
+
 - an application (_static application based on the React_) will be deployed on the Microsoft Azure Cloud and it will use a storage and a CDN (with it own URL domain)
 
 ## Goal
@@ -68,6 +72,8 @@
 
 📝 **.azure-pipelines/ci/branches.yml**
 
+⚠️ to run this pipeline you must had created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
+
 ### Manually triggered flows
 
 #### Build one application
@@ -86,6 +92,8 @@
 > **TODO:** define the content
 
 ## Further help
+
+- [Get started documentation | Azure DevOps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/get-started/?view=azure-devops)
 
 ### Azure Pipelines
 

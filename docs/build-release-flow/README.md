@@ -10,6 +10,8 @@
 
 - [Microsoft Azure DevOps](azure-devops.md)
 
+- [Create and use a GitHub PAT](github-pat.md)
+
 ## Further help
 
 - [Support for generic task execution, displaying affecting projects, new commands for schematics discovery, and more in Nx 8.7 | Nrwl](https://blog.nrwl.io/support-for-generic-task-execution-displaying-affecting-libraries-new-commands-for-schematics-1b62b444ad0e)
