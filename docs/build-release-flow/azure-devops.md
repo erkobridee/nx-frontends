@@ -6,6 +6,7 @@
 
 **Assumptions:**
 
+- have installed the [Azure Pipelines application](https://github.com/marketplace/azure-pipelines) on the GitHub repository
 - have 2 environments (servers) per application from the mono repository, production (code from the `master` branch) and development (code from the `develop` branch)
 - an application (_static application based on the React_) will be deployed on the Microsoft Azure Cloud and it will use a storage and a CDN (with it own URL domain)
 
@@ -50,6 +51,8 @@
 #### Pull Request
 
 > Triggered when there is any new pull request that targets the **develop** branch
+>
+> The main goal of this pipeline is to validate the code from the pull request
 
 ![ci pull requests](assets/ci_pull-requests.png)
 
@@ -58,6 +61,8 @@
 #### Branches
 
 > Triggered when there is any `git push` to the **master** or **develop** branch
+>
+> This pipeline will run the validation, build and branch build publish of the applications that needs to be executed
 
 ![ci branches](assets/ci_branches.png)
 
