@@ -36,4 +36,4 @@ export NODE_LOCAL_BIN=./node_modules/.bin
 export PATH=$PATH:$NODE_LOCAL_BIN
 ```
 
-👉 For the node installed on your machine, I strongly recommend to you the `nvm` (https://github.com/nvm-sh/nvm) to manage your node version
+👉 For the node installed on your machine, I strongly recommend you to use the `nvm` (https://github.com/nvm-sh/nvm) to manage your node version
