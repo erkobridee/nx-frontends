@@ -76,11 +76,17 @@
 
 ### Manually triggered flows
 
-#### Build one application
-
-> **TODO:** define the content
+> Like the name suggests, this following flow will be triggered manually by the developer on the Azure DevOps
 
 #### Build all applications
+
+![manually trigger build all](assets/manually_build_all.png)
+
+📝 **.azure-pipelines/manually/build-all.yml**
+
+⚠️ to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
+
+#### Build one application
 
 > **TODO:** define the content
 
