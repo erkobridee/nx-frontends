@@ -88,7 +88,11 @@
 
 #### Build one application
 
-> **TODO:** define the content
+![manually build one app](assets/manually_build_one.png)
+
+It should be created one by application and use the template **.azure-pipelines/manually/templates/build-one.yml**
+
+⚠️ to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
 
 ## Release Flows
 
