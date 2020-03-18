@@ -26,7 +26,7 @@ npm i
 
 If you had a message saying that the `nx` is not recognized command:
 
-- you can try to run it with `npx` before of it, so it will look if you have the dependency inside of you local `node_modules/` to run it, if it's not there, that will download the dependency and then run the given command
+- you can run the `nx` with `npx` before of it, so it will look if you have the dependency inside of you local `node_modules/` to run it, if it's not there, that will download the dependency and then run the given command
 
 - or add the following to your `.bash_profile` or `.zshrc` file
 
