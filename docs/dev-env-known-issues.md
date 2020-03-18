@@ -19,3 +19,17 @@ npm i
 - [[GitHub] schnerd/d3-scale-cluster/issues/7](https://github.com/schnerd/d3-scale-cluster/issues/7)
 
 - [[GitHub] nodejs/node-gyp - Installation notes for macOS Catalina (v10.15)](https://github.com/nodejs/node-gyp/blob/master/macOS_Catalina.md)
+
+## Unix systems
+
+> Linux or Mac OS
+
+If you had a message saying that the `nx` is not recognized command, add the following to your `.bash_profile` or `.zshrc` file
+
+```
+export NODE_HOME=/usr/local/bin
+export NODE_LOCAL_BIN=./node_modules/.bin
+export PATH=$PATH:$NODE_LOCAL_BIN
+```
+
+For the node installed on your machine, I strongly recommend to you the `nvm` (https://github.com/nvm-sh/nvm) to manage your node version
