@@ -101,6 +101,10 @@ It should be created one by application and use the template **.azure-pipelines/
 
 > **TODO:** define the content
 
+## Load `.yml` pipeline into Azure DevOps
+
+> **TODO:** define the content
+
 ## Further help
 
 - [Get started documentation | Azure DevOps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/get-started/?view=azure-devops)
