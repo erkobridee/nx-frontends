@@ -44,7 +44,15 @@
 
 ## Further help
 
+- [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/)
+
+- [Create Azure DevOps account | Sergey .NET](https://sergeydotnet.com/create-azure-devops-account/)
+
+- [Azure DevOps Labs](https://www.azuredevopslabs.com/)
+
 - [Get started documentation | Azure DevOps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/get-started/?view=azure-devops)
+
+- [Quickstart: Create an organization or project collection | Azure DevOps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops)
 
 ### Azure Resource Manager templates
 
