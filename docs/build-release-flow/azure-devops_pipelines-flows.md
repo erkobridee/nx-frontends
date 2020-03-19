@@ -88,6 +88,8 @@ It should be created one by application, environment (`prod` - production or `de
 
 ### Azure Pipelines
 
+- [Learn to Use Variable Groups in Azure DevOps Pipelines | @slalom](https://medium.com/slalom-technology/learn-to-use-variable-groups-in-azure-devops-pipelines-203a485b4731)
+
 - [YAML Release Pipelines in Azure DevOps | Microsoft Azure](https://azure.microsoft.com/en-us/resources/videos/build-2019-yaml-release-pipelines-in-azure-devops/)
 
 - [Azure Pipelines documentation | Azure DevOps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops)
