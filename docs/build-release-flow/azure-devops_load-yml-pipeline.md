@@ -8,7 +8,7 @@
 
 ## Steps
 
-> The following steps shows how to setup the _**CI branches**_ on the Azure DevOps, loading the `.yml`pipeline definition 📄[.azure-pipelines/ci/brances.yml](../../.azure-pipelines/ci/brances.yml)
+> The following steps shows how to setup the _**CI branches**_ on the Azure DevOps, loading the `.yml`pipeline definition 📄[.azure-pipelines/ci/brances.yml](../../.azure-pipelines/ci/branches.yml)
 >
 > Keep in mind: to setup the others pipelines, just follow the sames steps bellow.
 
