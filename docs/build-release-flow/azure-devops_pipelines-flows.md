@@ -6,6 +6,8 @@
 
 # Microsoft Azure DevOps Pipelines flows
 
+> all the pipelines definitions and its templates they're defined inside of the directory **[.azure-pipelines](../../.azure-pipelines)**
+
 ## Abastract flow
 
 > view to a single application from inside of the mono repository
