@@ -10,6 +10,10 @@
 
 - [Microsoft Azure DevOps](azure-devops.md)
 
+  - [Pipelines flows](azure-devops_pipelines-flows.md)
+
+  - [Load `.yml` pipeline into Azure DevOps](azure-devops_load-yml-pipeline.md)
+
 - [Create and use a GitHub PAT](github-pat.md)
 
 ## Further help

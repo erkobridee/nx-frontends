@@ -36,104 +36,15 @@
 
     - one pipeline per environment and application, triggered by any commit on the auxiliary build branch (CD - continuous deployment)
 
-## Abastract flow
+## Topics
 
-> view to a single application from inside of the mono repository
+- [Pipelines flows](azure-devops_pipelines-flows.md)
 
-### Build and deploy to development server
-
-![abstract build release dev flow](assets/abstract_build-cd_dev_flow.png)
-
-### Build and deploy to production server
-
-![abstract build release prod flow](assets/abstract_build-cd_prod_flow.png)
-
-## Build Flows
-
-### CI (Continuous Integration) flows
-
-#### Pull Request
-
-> Triggered when there is any new pull request that targets the **develop** branch
->
-> The main goal of this pipeline is to validate the code from the pull request
-
-![ci pull requests](assets/ci_pull-requests.png)
-
-📝 **.azure-pipelines/ci/pull-requests.yml**
-
-#### Branches
-
-> Triggered when there is any `git push` to the **master** or **develop** branch
->
-> This pipeline will run the validation, build and branch build publish of the applications that needs to be executed
-
-![ci branches](assets/ci_branches.png)
-
-📝 **.azure-pipelines/ci/branches.yml**
-
-⚠️ to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
-
-### Manually triggered flows
-
-> Like the name suggests, this following flow will be triggered manually by the developer on the Azure DevOps
-
-#### Build all applications
-
-![manually trigger build all](assets/manually_build_all.png)
-
-📝 **.azure-pipelines/manually/build-all.yml**
-
-⚠️ to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
-
-#### Build one application
-
-![manually build one app](assets/manually_build_one.png)
-
-It should be created one by application and use the template **.azure-pipelines/manually/templates/build-one.yml**
-
-⚠️ to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
-
-## Release Flows
-
-> CD - Continuous Deployment
-> must be defined one by application and environment (production/development)
-
-> **TODO:** define the content
-
-## Load `.yml` pipeline into Azure DevOps
-
-> **TODO:** define the content
+- [Load `.yml` pipeline into Azure DevOps](azure-devops_load-yml-pipeline.md)
 
 ## Further help
 
 - [Get started documentation | Azure DevOps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/get-started/?view=azure-devops)
-
-### Azure Pipelines
-
-- [YAML Release Pipelines in Azure DevOps | Microsoft Azure](https://azure.microsoft.com/en-us/resources/videos/build-2019-yaml-release-pipelines-in-azure-devops/)
-
-- [Azure Pipelines documentation | Azure DevOps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops)
-
-  - [YAML schema reference](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema)
-
-  - [Template types & usage](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops)
-
-  - [Use predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml)
-
-  - [Define variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch)
-
-  - [Expressions](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/expressions?view=azure-devops)
-
-  - [Specify conditions](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/conditions?view=azure-devops&tabs=yaml)
-
-  - [Add stages, dependencies, & conditions](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/stages?view=azure-devops&tabs=yaml)
-
-  - [Specify events that trigger pipeline builds and releases](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml)
-
-- [Moving your Azure DevOps build pipelines to your code repository](https://blog.bredvid.no/moving-your-azure-devops-build-pipelines-to-your-code-repository-dff60488c0f9)
-
-- [Azure Pipelines | VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-devops.azure-pipelines)
 
 ### Azure Resource Manager templates
 
