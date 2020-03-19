@@ -1,4 +1,4 @@
-# pipeline suggested name: CD DEV frontend-app-1
+# pipeline suggested name: CD frontend-app-2 DEV
 # pipeline to deploy the application to the server
 
 name: $(Date:yyyyMMdd)$(Rev:.r)
@@ -7,13 +7,13 @@ trigger:
   batch: true
   branches:
     include:
-      - build/dev/frontend-app-1
+      - build/dev/frontend-app-2
 
 pr: none
 
 variables:
   - group: cd-vars_common
-  - group: cd-vars_dev_frontend-app-1
+  - group: cd-vars_dev_frontend-app-2
 
 steps:
   - template: templates/deploy-one.yml
