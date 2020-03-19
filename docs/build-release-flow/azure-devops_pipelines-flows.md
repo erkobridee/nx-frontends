@@ -114,6 +114,6 @@ It should be created one by application, environment (`prod` - production or `de
 
   - [Specify events that trigger pipeline builds and releases](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml)
 
-- [Moving your Azure DevOps build pipelines to your code repository](https://blog.bredvid.no/moving-your-azure-devops-build-pipelines-to-your-code-repository-dff60488c0f9)
+- [Using Templates in YAML Pipelines in Azure DevOps](https://jpearson.blog/2019/10/01/using-templates-in-yaml-pipelines-in-azure-devops/)
 
 - [Azure Pipelines | VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-devops.azure-pipelines)
