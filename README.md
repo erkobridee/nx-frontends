@@ -24,6 +24,12 @@ This project was generated using [Nx](https://nx.dev).
 
   - [Using the Microsoft Azure DevOps](docs/build-release-flow/azure-devops.md)
 
+    - [Pipelines flows](docs/build-release-flow/azure-devops_pipelines-flows.md)
+
+    - [Load `.yml` pipeline into Azure DevOps](docs/build-release-flow/azure-devops_load-yml-pipeline.md)
+
+  - [Create and use a GitHub PAT](docs/build-release-flow/github-pat.md)
+
 ## Project dependencies graph
 
 ![nx dep-graph](docs/assets/nx_dep-graphs.png)
