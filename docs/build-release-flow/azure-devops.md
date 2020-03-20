@@ -46,6 +46,8 @@
 
 - [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/)
 
+  - [Azure DevOps - Marketplace](https://marketplace.visualstudio.com/azuredevops)
+
 - [Create Azure DevOps account | Sergey .NET](https://sergeydotnet.com/create-azure-devops-account/)
 
 - [Azure DevOps Labs](https://www.azuredevopslabs.com/)
