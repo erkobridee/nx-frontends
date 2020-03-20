@@ -1,6 +1,9 @@
 # Pipeline caching
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/release/caching
 #
+# Cache task is missing (yaml pipeline)
+# https://developercommunity.visualstudio.com/content/problem/950320/cache-task-is-missing-yaml-pipeline.html?inRegister=true
+#
 steps:
   # - task: Cache@2
   - task: CacheBeta@1
