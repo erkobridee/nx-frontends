@@ -4,6 +4,8 @@ This project was generated using [Nx](https://nx.dev).
 
 ℹ️ use the node.js v12.16.1 LTS
 
+🌎[Pipelines (builds) on MS Azure DevOps](https://dev.azure.com/ErkoBrideeAzure/nx-frontends/_build)
+
 ## Goal
 
 - create 2 simple frontend application using react, have one a shared assets lib and a shared ui components lib used from both of the applications
