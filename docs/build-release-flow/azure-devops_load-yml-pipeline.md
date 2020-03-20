@@ -71,3 +71,7 @@
 - [Azure DevOps YAML build for Mono Repository with multiple projects](https://dev.to/nikolicbojan/azure-devops-yaml-build-for-mono-repository-with-multiple-projects-146g)
 
   - [[GitHub] nikolic-bojan/azure-yaml-build](https://github.com/nikolic-bojan/azure-yaml-build) - Sample of Azure DevOps Build Pipeline with YAML
+
+### Known issue
+
+- [Cache task is missing (yaml pipeline) | Azure DevOps | Microsoft Developer Community](https://developercommunity.visualstudio.com/content/problem/950320/cache-task-is-missing-yaml-pipeline.html)
