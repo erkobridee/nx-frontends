@@ -91,6 +91,16 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
   - [Rebuilding and Retesting What is Affected](https://nx.dev/react/guides/monorepo-affected)
 
+  - [Environment Variables](https://nx.dev/react/guides/environment-variables)
+
+---
+
+- [[GitHub] motdotla/dotenv](https://github.com/motdotla/dotenv) - Loads environment variables from .env for nodejs projects.
+
+- [[GitHub] toddbluhm/env-cmd](https://github.com/toddbluhm/env-cmd) - Setting the environment from a file
+
+  - [[GitHub] toddbluhm/env-cmd-examples](https://github.com/toddbluhm/env-cmd-examples) - Examples repository for npm module
+
 ---
 
 - [[YouTube] Nx Quickstart - How to Scale a JavaScript Project](https://www.youtube.com/watch?v=VUyBY72mwrQ)
