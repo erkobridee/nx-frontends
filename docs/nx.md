@@ -69,6 +69,44 @@ Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
 Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
+## Environment Variables
+
+- [Environment Variables | Nx Documentation](https://nx.dev/react/guides/environment-variables)
+
+- [[GitHub] motdotla/dotenv](https://github.com/motdotla/dotenv) - Loads environment variables from .env for nodejs projects.
+
+  > available on the project added by the Nx tools
+  >
+  > besides the fact that the dependency is already available on the project only defining the `.env` file wasn't enough because those variable weren't available inside of the react application
+  >
+  > to be able to use the variables from the `.env` files I need to define a custom webpack config to be sure to load and make the variables available to the applications
+
+## Custom Webpack Config
+
+- Unfortunally there is no mention on the [nx.dev](https://nx.dev/) site about how to define a custom webpack config
+
+  - The only 'official' mention about the subject was founded on the following blog post: [Powering Up React Development With Nx | Nrwl Blog](https://blog.nrwl.io/powering-up-react-development-with-nx-cf0a9385dbec)
+
+- The first mentions about the topic was in some issues on the nx github repository
+
+  - [Babel and React ? Or maybe react-create-app's support ? #1510](https://github.com/nrwl/nx/issues/1510#issuecomment-504605552)
+
+  - [Cannot load SVG in React application #1931](https://github.com/nrwl/nx/issues/1931)
+
+  - [Custom Webpack Configuration - Url Loader #2112](https://github.com/nrwl/nx/issues/2112)
+
+- after the knowledge aquired by the links above, that makes me read the code of [@nrwl/react/plugins/webpack](https://github.com/nrwl/nx/blob/master/packages/react/plugins/webpack.ts)
+
+  - reading this code I notice that I just need to follow the same code pattern, do what I need and also use this plugin as well before return the webpack config object
+
+    - custom webpack config: `tools/custom-webpack.config.js`
+
+    - changed to use it on the `workspace.json`
+
+      - previous webpack config: `"webpackConfig": "@nrwl/react/plugins/webpack"`
+
+      - changed to use the custom webpack config: `"webpackConfig": "tools/custom-webpack.config.js"`
+
 ## Further help
 
 - [How to develop React apps like Facebook, Microsoft, and Google | Nrwl](https://blog.nrwl.io/how-to-develop-react-apps-like-facebook-microsoft-and-google-bdcafcfbc9be)
@@ -91,11 +129,7 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
   - [Rebuilding and Retesting What is Affected](https://nx.dev/react/guides/monorepo-affected)
 
-  - [Environment Variables](https://nx.dev/react/guides/environment-variables)
-
 ---
-
-- [[GitHub] motdotla/dotenv](https://github.com/motdotla/dotenv) - Loads environment variables from .env for nodejs projects.
 
 - [[GitHub] toddbluhm/env-cmd](https://github.com/toddbluhm/env-cmd) - Setting the environment from a file
 
