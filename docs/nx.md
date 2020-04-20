@@ -8,11 +8,11 @@
 
 ## Adding capabilities to your workspace
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+Nx supports many plugins wich add capabilities for developing different types of applications and different tools.
 
 These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
 
-Below are some plugins which you can add to your workspace:
+Below are some plugins wich you can add to your workspace:
 
 - [React](https://reactjs.org)
   - `npm install --save-dev @nrwl/react`
@@ -80,6 +80,8 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
   > besides the fact that the dependency is already available on the project only defining the `.env` file wasn't enough because those variable weren't available inside of the react application
   >
   > to be able to use the variables from the `.env` files I need to define a custom webpack config to be sure to load and make the variables available to the applications
+  >
+  > to define wich environment file to be load, the logic is defined on the `tools/scripts/lib/current-environment.js`
 
 ## Custom Webpack Config
 
@@ -128,12 +130,6 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
   - [Using Nx at Enterprises](https://nx.dev/react/guides/monorepo-nx-enterprise)
 
   - [Rebuilding and Retesting What is Affected](https://nx.dev/react/guides/monorepo-affected)
-
----
-
-- [[GitHub] toddbluhm/env-cmd](https://github.com/toddbluhm/env-cmd) - Setting the environment from a file
-
-  - [[GitHub] toddbluhm/env-cmd-examples](https://github.com/toddbluhm/env-cmd-examples) - Examples repository for npm module
 
 ---
 
