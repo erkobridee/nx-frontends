@@ -33,7 +33,8 @@
               "apps/frontend-app-1/src/styles.scss"
             ],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "webpackConfig//": "@nrwl/react/plugins/webpack",
+            "webpackConfig": "tools/custom-webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -154,7 +155,8 @@
               "apps/frontend-app-2/src/styles.scss"
             ],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "webpackConfig//": "@nrwl/react/plugins/webpack",
+            "webpackConfig": "tools/custom-webpack.config.js"
           },
           "configurations": {
             "production": {

@@ -5,6 +5,10 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 
+// variables from the .env file
+console.log(`process.env.HELLO: ${process.env.HELLO}`);
+console.log(`process.env.NX_HELLO: ${process.env.NX_HELLO}`);
+
 ReactDOM.render(
   <BrowserRouter>
     <App />
