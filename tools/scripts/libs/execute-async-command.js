@@ -1,4 +1,4 @@
-const childProcess = require("child_process");
+const childProcess = require('child_process');
 
 /**
  * @param {string} command A shell command to execute
