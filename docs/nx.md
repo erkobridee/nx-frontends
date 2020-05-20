@@ -139,6 +139,8 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
 - [[YouTube] Nx Storybook Integration: Demo by Isaac Mann of Nrwl](https://www.youtube.com/watch?v=sFpqyjT7u4s)
 
+- [[YouTube] Scalable React Development for Large Projects - Jason Jean | React Conferences by GitNation](https://www.youtube.com/watch?v=Lr-u2ALSEQg)
+
 ---
 
 - Nx Console
