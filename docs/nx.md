@@ -69,6 +69,12 @@ Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
 Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
+## Updating Nx
+
+- [Nx Workspace Update | Nx Docs](https://nx.dev/react/workspace/update)
+
+> to be able to update the current project, you first need to remove the references from the `libs/shared/assets` from the `workspace.json` and `nx.json`, run the migration and later add it back
+
 ## Environment Variables
 
 - [Environment Variables | Nx Documentation](https://nx.dev/react/guides/environment-variables)

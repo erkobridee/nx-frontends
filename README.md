@@ -36,6 +36,8 @@ This project was generated using [Nx](https://nx.dev).
 
 ![nx dep-graph](docs/assets/nx_dep-graphs.png)
 
+> **implicit** - means kind of manual mapping
+
 ## Findings
 
 - it's possible to have more flexible libs

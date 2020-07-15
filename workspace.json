@@ -34,7 +34,8 @@
             ],
             "scripts": [],
             "webpackConfig//": "@nrwl/react/plugins/webpack",
-            "webpackConfig": "tools/custom-webpack.config.js"
+            "webpackConfig": "tools/custom-webpack.config.js",
+            "buildLibsFromSource": true
           },
           "configurations": {
             "production": {
@@ -76,12 +77,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/frontend-app-1/.eslintrc",
             "tsConfig": [
               "apps/frontend-app-1/tsconfig.app.json",
               "apps/frontend-app-1/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/frontend-app-1/**"]
+            "exclude": ["**/node_modules/**", "!apps/frontend-app-1/**/*"]
           }
         },
         "test": {
@@ -116,9 +116,8 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/frontend-app-1-e2e/.eslintrc",
             "tsConfig": ["apps/frontend-app-1-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/frontend-app-1-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/frontend-app-1-e2e/**/*"]
           }
         }
       }
@@ -156,7 +155,8 @@
             ],
             "scripts": [],
             "webpackConfig//": "@nrwl/react/plugins/webpack",
-            "webpackConfig": "tools/custom-webpack.config.js"
+            "webpackConfig": "tools/custom-webpack.config.js",
+            "buildLibsFromSource": true
           },
           "configurations": {
             "production": {
@@ -198,12 +198,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/frontend-app-2/.eslintrc",
             "tsConfig": [
               "apps/frontend-app-2/tsconfig.app.json",
               "apps/frontend-app-2/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/frontend-app-2/**"]
+            "exclude": ["**/node_modules/**", "!apps/frontend-app-2/**/*"]
           }
         },
         "test": {
@@ -238,18 +237,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/frontend-app-2-e2e/.eslintrc",
             "tsConfig": ["apps/frontend-app-2-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/frontend-app-2-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/frontend-app-2-e2e/**/*"]
           }
         }
       }
-    },
-    "shared-assets": {
-      "root": "libs/shared/assets",
-      "sourceRoot": "libs/shared/assets",
-      "projectType": "library",
-      "schematics": {}
     },
     "shared-ui-components": {
       "root": "libs/shared/ui-components",
@@ -261,12 +253,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/ui-components/.eslintrc",
             "tsConfig": [
               "libs/shared/ui-components/tsconfig.lib.json",
               "libs/shared/ui-components/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/ui-components/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/ui-components/**/*"]
           }
         },
         "test": {
@@ -278,6 +269,11 @@
           }
         }
       }
+    },
+    "shared-assets": {
+      "root": "libs/shared/assets",
+      "sourceRoot": "libs/shared/assets",
+      "projectType": "library"
     }
   },
   "cli": {
