@@ -28,10 +28,19 @@
       "implicitDependencies": ["frontend-app-2"]
     },
     "shared-ui-components": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["shared-assets"]
     },
     "shared-assets": {
       "tags": []
+    },
+    "gatsby-site": {
+      "tags": [],
+      "implicitDependencies": ["shared-assets"]
+    },
+    "gatsby-site-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gatsby-site"]
     }
   },
   "tasksRunnerOptions": {

@@ -1,0 +1,12 @@
+@import '@nx-frontends/shared/assets/styles/_base';
+
+.svg-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-gray;
+
+  svg:not(:last-child) {
+    margin-right: 15px;
+  }
+}

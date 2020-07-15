@@ -12,6 +12,8 @@ This project was generated using [Nx](https://nx.dev).
 
 - master how to define and use the [Azure DevOps Services | Microsoft Azure](https://dev.azure.com/) CI/CD pipelines as code ([YAML](https://yaml.org/))
 
+- integrate the gatsby support and identify how to use it
+
 ## Documentation
 
 - [Dev environment known issues](docs/dev-env-known-issues.md)
