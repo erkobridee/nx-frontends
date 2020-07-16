@@ -9,7 +9,7 @@ import {
   GatsbyAstronautImage,
   GatsbyLogoImage,
   NxLogoImage,
-} from '../components/Image';
+} from '@this/components/Image';
 
 import '@nx-frontends/shared/assets/styles-site.scss';
 import './_styles.scss';

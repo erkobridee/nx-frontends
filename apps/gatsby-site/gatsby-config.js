@@ -65,6 +65,7 @@ module.exports = {
       resolve: 'gatsby-plugin-root-import',
       options: {
         '@this': path.join(__dirname, 'src'),
+
         '@nx-frontends/shared/ui-components': uiComponentsSharedLibPath,
         '@nx-frontends/shared/assets': assetsSharedLibPath,
 
