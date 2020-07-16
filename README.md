@@ -20,6 +20,8 @@ This project was generated using [Nx](https://nx.dev).
 
 - [Nx](docs/nx.md)
 
+  - [Nx Gatsby Plugin](docs/nx-gatsby-plugin.md)
+
 - [Project creation commands (steps)](docs/project-creation-commands.md)
 
 - [Build and release flows](docs/build-release-flow/README.md)
@@ -47,3 +49,5 @@ This project was generated using [Nx](https://nx.dev).
   - create an assets lib to share the SASS (.scss) common files and also the images, which is a folder with the given content needed inside (no ts or other nx lib stuff related inside of it)
 
   - have a component lib that expose the whole content of itself and with that gain more flexibility to access the shared components from others libs or applications
+
+- it's possible to use the gatsby inside of the nx workspace, but it demands a bit of some extra manual steps to map the paths alias that will be used on the code and with that avoid to handl e the relative imports (avoid the need of this: `../..`)
