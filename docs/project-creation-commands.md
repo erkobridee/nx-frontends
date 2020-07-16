@@ -91,3 +91,9 @@ and also update the configuration on the `tsconfig.json` to expose the whole con
 name: gatsby-site
 styles: SASS
 ```
+
+12. update the configs of the `gatsby-site`
+
+- copy the paths from the root `tsconfig.json` into the local `tsconfig.json` and adjust the libs paths mapping to be at the same level used on the `extends` attribute
+- add the local alias `@this/*` mapping to `src/*`
+- update the `gatsby-config.js` and also add the config of `gatsby-plugin-root-import` that will map the alias to be set to the internal `webpack` used by the `gatsby-cli` (this step is needed because the Gastby relays on the babel typescript plugin which doesn't support preatty well the `baseUrl` config from the `tsconfig.js`)
