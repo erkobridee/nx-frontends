@@ -6,7 +6,18 @@
   align-items: center;
   background: $color-gray;
 
+  span,
   svg:not(:last-child) {
     margin-right: 15px;
+  }
+}
+
+.gatsby-images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .gatsby-image-wrapper {
+    width: 150px;
   }
 }
