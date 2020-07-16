@@ -255,7 +255,8 @@
     ],
     "no-useless-constructor": "off",
     "@typescript-eslint/no-useless-constructor": "warn",
-    "@typescript-eslint/camelcase": "off"
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-var-requires": "off"
   },
   "env": {
     "browser": true,
