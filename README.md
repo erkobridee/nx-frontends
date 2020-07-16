@@ -12,11 +12,15 @@ This project was generated using [Nx](https://nx.dev).
 
 - master how to define and use the [Azure DevOps Services | Microsoft Azure](https://dev.azure.com/) CI/CD pipelines as code ([YAML](https://yaml.org/))
 
+- integrate the gatsby support and identify how to use it
+
 ## Documentation
 
 - [Dev environment known issues](docs/dev-env-known-issues.md)
 
 - [Nx](docs/nx.md)
+
+  - [Nx Gatsby Plugin](docs/nx-gatsby-plugin.md)
 
 - [Project creation commands (steps)](docs/project-creation-commands.md)
 
@@ -45,3 +49,5 @@ This project was generated using [Nx](https://nx.dev).
   - create an assets lib to share the SASS (.scss) common files and also the images, which is a folder with the given content needed inside (no ts or other nx lib stuff related inside of it)
 
   - have a component lib that expose the whole content of itself and with that gain more flexibility to access the shared components from others libs or applications
+
+- it's possible to use the gatsby inside of the nx workspace, but it demands a bit of some extra manual steps to map the paths alias that will be used on the code and with that avoid to handl e the relative imports (avoid the need of this: `../..`)

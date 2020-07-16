@@ -71,10 +71,29 @@ after define the code and the libs code structure
 
 also added a new project dependency to the components
 
-`yarn add classnames`
+`npm i --save-dev classnames`
 
 to load the SASS mixins and variables definitions from the `shared-assets` lib, we should use an import on the .scss file like the following one:
 
 `@import 'libs/shared/assets/styles/_base';`
 
 and also update the configuration on the `tsconfig.json` to expose the whole content from the lib to have more flexibility to access the components from it
+
+10. add the gatsby dev dependency to the nx workspace:
+
+`npm i --save-dev @nrwl/gatsby gatsby-cli gatsby-plugin-root-import`
+
+11. create a gatsby site inside of the nx workspace:
+
+`nx generate @nrwl/gatsby:app`
+
+```
+name: gatsby-site
+styles: SASS
+```
+
+12. update the configs of the `gatsby-site`
+
+- copy the paths from the root `tsconfig.json` into the local `tsconfig.json` and adjust the libs paths mapping to be at the same level used on the `extends` attribute
+- add the local alias `@this/*` mapping to `src/*`
+- update the `gatsby-config.js` and also add the config of `gatsby-plugin-root-import` that will map the alias to be set to the internal `webpack` used by the `gatsby-cli` (this step is needed because the Gastby relays on the babel typescript plugin which doesn't support preatty well the `baseUrl` config from the `tsconfig.js`)
