@@ -12,7 +12,7 @@
 
 - Using the MS VS Code, it needs to have a proper paths mapping on the `tsconfig.json` inside of the project directory, and to be able to map the current project with the `@this` alias, it was need to map again the alias mapped on the root tsconfig file.
 
-> extra information could be finded on the step 12 of the [project creation commands](project-creation-commands.md)
+> extra information could be found on the step 12 of the [project creation commands](project-creation-commands.md)
 
 ## Further help
 
