@@ -315,6 +315,7 @@
             "exclude": [
               "**/node_modules/**",
               "apps/gatsby-site/public/**/*",
+              "apps/gatsby-site/__mock__/**/*",
               "!apps/gatsby-site/**/*"
             ]
           }
