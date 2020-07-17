@@ -20,6 +20,8 @@
 
   - [Gatsby Docs](https://www.gatsbyjs.org/docs/)
 
+    - [Node APIs | Gatsby Docs](https://www.gatsbyjs.org/docs/node-apis/)
+
     - [Adding Testing | Gatsby Docs](https://www.gatsbyjs.org/docs/testing/)
 
       - [Testing Components with GraphQL | Gatsby Docs](https://www.gatsbyjs.org/docs/testing-components-with-graphql/)
