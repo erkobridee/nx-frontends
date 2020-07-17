@@ -20,8 +20,24 @@
 
   - [Gatsby Docs](https://www.gatsbyjs.org/docs/)
 
+    - [Adding Testing | Gatsby Docs](https://www.gatsbyjs.org/docs/testing/)
+
+      - [Testing Components with GraphQL | Gatsby Docs](https://www.gatsbyjs.org/docs/testing-components-with-graphql/)
+
+      - [Mock Gatsby's useStaticQuery with Jest | FE](https://florian.ec/blog/mock-gatsby-usestaticquery-jest/)
+
   - [gatsby-plugin-typescript](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/) - [caveats](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/?=#caveats)
 
   - [gatsby-source-filesystem](https://www.gatsbyjs.org/packages/gatsby-source-filesystem/)
 
     - [Sourcing from the Filesystem](https://www.gatsbyjs.org/docs/sourcing-from-the-filesystem/)
+
+- [Jest](https://jestjs.io/)
+
+  - [Manual Mocks | Jest](https://jestjs.io/docs/en/manual-mocks)
+
+  - [Understanding Jest Mocks | by Rick Hanlon II - Medium](https://medium.com/@rickhanlonii/understanding-jest-mocks-f0046c68e53c)
+
+  - [How to Use Jest to Mock Constructors | Brian Ambielli](https://bambielli.com/til/2018-01-07-mocking-constructors/)
+
+  - [Writing the First Test & Component | dev.to](https://dev.to/_lexedwards/writing-the-first-test-component-5h1o) - [code example](https://github.com/lexedwards/alexedwards-co)
