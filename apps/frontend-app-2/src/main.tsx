@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 
 import { BrowserRouter } from 'react-router-dom';
 
+// this import fix the typing error during the compilation time
+import * as process from 'process';
+
 import App from './App';
 
 // variables from the .env file
