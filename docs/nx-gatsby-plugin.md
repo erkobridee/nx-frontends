@@ -34,6 +34,14 @@
 
     - [Sourcing from the Filesystem](https://www.gatsbyjs.org/docs/sourcing-from-the-filesystem/)
 
+  - handle the builded output
+
+    - [[GitHub] gatsbyjs/gatsby - Configurable output folder #1878](https://github.com/gatsbyjs/gatsby/issues/1878)
+
+    - [Gatsby Multi Website Deployments | AppFoundry](https://www.appfoundry.be/blog/gatsby-multi-website-deployments)
+
+    - [Supporting multiple build outputs from one GatsbyJS setup | Glamanate](https://glamanate.com/blog/supporting-multiple-build-outputs-one-gatsbyjs-setup)
+
 - [Jest](https://jestjs.io/)
 
   - [Manual Mocks | Jest](https://jestjs.io/docs/en/manual-mocks)
