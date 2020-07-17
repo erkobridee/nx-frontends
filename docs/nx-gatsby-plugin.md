@@ -14,6 +14,8 @@
 
 > extra information could be found on the step 12 of the [project creation commands](project-creation-commands.md)
 
+- even using the nx gatsby plugin, the gatsby site/app generates the build on its internal `/public` folder, so `onPostBuild` defined on the `gatsby-node.js` we need to copy its content to the nx workspace build directory following the same structure from a react application inside of the nx workspace
+
 ## Further help
 
 - [Gatsby](https://www.gatsbyjs.org/)
