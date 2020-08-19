@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react",
     "allowJs": true,
@@ -9,16 +9,17 @@
     "baseUrl": ".",
     "paths": {
       "@this/*": ["src/*"],
-
       "@nx-frontends/shared/assets/*": ["../../libs/shared/assets/*"],
       "@nx-frontends/shared/ui-components/*": [
         "../../libs/shared/ui-components/src/*"
       ]
     }
   },
-  "files": [
-    "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
-    "../../node_modules/@nrwl/react/typings/image.d.ts"
-  ],
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"]
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }

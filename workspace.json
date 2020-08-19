@@ -88,7 +88,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/frontend-app-1/jest.config.js",
-            "tsConfig": "apps/frontend-app-1/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -209,7 +208,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/frontend-app-2/jest.config.js",
-            "tsConfig": "apps/frontend-app-2/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -264,7 +262,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/ui-components/jest.config.js",
-            "tsConfig": "libs/shared/ui-components/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -324,7 +321,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/gatsby-site/jest.config.js",
-            "tsConfig": "apps/gatsby-site/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
