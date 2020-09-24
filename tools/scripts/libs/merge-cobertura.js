@@ -30,13 +30,13 @@ const ERROR = (...args) => console.error(MESSAGE_PREFIX, ...args);
  *
  * @param {string} rootDir - glob pattern
  */
-const findCoverageFiles = rootDir =>
+const findCoverageFiles = (rootDir) =>
   glob
     .sync('**/*coverage.xml', {
       cwd: rootDir,
-      ignore: '**/coverage/merged-cobertura-coverage.xml'
+      ignore: '**/coverage/merged-cobertura-coverage.xml',
     })
-    .map(relativeCoverageFile => path.resolve(rootDir, relativeCoverageFile));
+    .map((relativeCoverageFile) => path.resolve(rootDir, relativeCoverageFile));
 
 /**
  * Format XML content to JSON
@@ -61,10 +61,10 @@ const xmlToObject = (data, parserOptions = undefined) => {
  *
  * @param {string} fileName
  */
-const getFileContent = file => {
+const getFileContent = (file) => {
   let obj;
   LOG('reading', file);
-  const data = fs.readFileSync(file, 'utf-8', err => {
+  const data = fs.readFileSync(file, 'utf-8', (err) => {
     if (err) {
       ERROR('!!! Error while reading', err);
       throw err;
@@ -90,7 +90,7 @@ const buildAndWriteDestinationFile = (
   const coverageMergedReportsXmlOutput = builder.buildObject(
     mergedReportsContent
   );
-  fs.writeFile(destFile, coverageMergedReportsXmlOutput, err => {
+  fs.writeFile(destFile, coverageMergedReportsXmlOutput, (err) => {
     if (err) {
       ERROR('!!! Error while writing', err);
       throw err;
@@ -158,7 +158,7 @@ const arrayToKeyedObject = (arr, ...key) => {
   return arr.reduce((acc, item) => {
     return {
       [item[key[0]][key[1]]]: item,
-      ...acc
+      ...acc,
     };
   }, {});
 };
@@ -169,21 +169,21 @@ const arrayToKeyedObject = (arr, ...key) => {
  *
  * @param {*} content
  */
-const adjustContent = content => {
+const adjustContent = (content) => {
   const ATTR_DOLLAR = `$`;
   const ATTR_LINE_RATE = `line-rate`;
   const ATTR_BRANCH_RATE = `branch-rate`;
 
   const { packages, ...others } = content.coverage;
 
-  const buildPackageName = classItem => {
+  const buildPackageName = (classItem) => {
     const { name, filename } = classItem;
     return filename
       .substring(filename.lastIndexOf('src'), filename.lastIndexOf(`/${name}`))
       .replace(/\//g, '.');
   };
 
-  const addPackage = item => {
+  const addPackage = (item) => {
     const itemClass0 = item.class[0][ATTR_DOLLAR];
     return {
       package: [
@@ -191,27 +191,27 @@ const adjustContent = content => {
           [ATTR_DOLLAR]: {
             name: buildPackageName(itemClass0),
             [ATTR_LINE_RATE]: itemClass0[ATTR_LINE_RATE],
-            [ATTR_BRANCH_RATE]: itemClass0[ATTR_BRANCH_RATE]
+            [ATTR_BRANCH_RATE]: itemClass0[ATTR_BRANCH_RATE],
           },
-          classes: [item]
-        }
-      ]
+          classes: [item],
+        },
+      ],
     };
   };
 
-  const updatePackage = item => {
+  const updatePackage = (item) => {
     return {
-      package: item.package.map(pack => {
+      package: (item.package || []).map((pack) => {
         pack[ATTR_DOLLAR].name = buildPackageName(
           pack.classes[0].class[0][ATTR_DOLLAR]
         );
         return pack;
-      })
+      }),
     };
   };
 
-  const newPackages = packages.map(item =>
-    'class' in item ? addPackage(item) : updatePackage(item)
+  const newPackages = packages.map((item) =>
+    item.hasOwnProperty('class') ? addPackage(item) : updatePackage(item)
   );
 
   return { coverage: { ...others, packages: newPackages } };
@@ -226,8 +226,8 @@ const adjustContent = content => {
  *
  * @param {any[]} packages
  */
-const processPackageNames = packages => {
-  return packages.map(p => {
+const processPackageNames = (packages) => {
+  return packages.map((p) => {
     const newPack = { ...p };
     const fileName = newPack.classes[0].class[0]['$'].filename;
     const packagePrefix = fileName
@@ -261,7 +261,7 @@ const filterBestPackages = (packages1, packages2) => {
 
   let obj = {};
   // merge the best
-  Object.keys(packMap1).forEach(name => {
+  Object.keys(packMap1).forEach((name) => {
     if (packMap2[name]) {
       obj[name] = best(packMap1[name], packMap2[name]);
       delete packMap2[name];
@@ -318,7 +318,7 @@ const mergeReportValues = (report1, report2) => {
     package: filterBestPackages(
       report1.coverage.packages[0].package,
       report2.coverage.packages[0].package
-    )
+    ),
   };
   report.coverage.$['timestamp'] = Date.now();
 
@@ -368,7 +368,9 @@ const mergeCobertura = (
 
   LOG('output merged reports to: ', coverageMergedFileOutput);
   buildAndWriteDestinationFile(mergedReportContent, coverageMergedFileOutput, {
-    doctype: { sysID: 'http://cobertura.sourceforge.net/xml/coverage-04.dtd' }
+    doctype: {
+      sysID: 'http://cobertura.sourceforge.net/xml/coverage-04.dtd',
+    },
   });
 };
 
