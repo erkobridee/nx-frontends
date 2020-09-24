@@ -6,6 +6,8 @@
 
 - [[GitHub] gatsbyjs/gatsby - gatsby starter failed Building development bundle #25657](https://github.com/gatsbyjs/gatsby/issues/25657)
 
+- [Error: Input file contains unsupported image format, gatsby | Support - Netlify Community](https://community.netlify.com/t/error-input-file-contains-unsupported-image-format-gatsby/10891)
+
 ## MacOS Catalina
 
 Using the node.js v12 LTS, when you try to install the dependencies you get and error related to missing XCode CLI tools support, to fix that we need to remove the XCode CLI tools, install it again and after it use the command to reset the configurations `sudo xcode-select --reset`

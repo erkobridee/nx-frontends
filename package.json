@@ -96,6 +96,7 @@
     "prettier": "2.0.4",
     "prop-types": "15.7.2",
     "serve-handler": "^6.1.2",
+    "sharp": "^0.26.1",
     "shelljs": "^0.8.4",
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
