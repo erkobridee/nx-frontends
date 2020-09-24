@@ -75,7 +75,7 @@
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.4",
     "fs-extra": "^8.1.0",
-    "gatsby": "2.23.18",
+    "gatsby": "^2.24.64",
     "gatsby-cli": "^2.12.60",
     "gatsby-image": "2.2.39",
     "gatsby-plugin-manifest": "2.2.39",
