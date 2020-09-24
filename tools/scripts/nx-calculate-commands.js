@@ -2,7 +2,7 @@ const exec = require('./libs/execute-sync-command');
 const [branchName = 'master'] = require('./libs/get-cli-args');
 
 const LAST_COMMITS_AMOUNT = 1;
-const headParam = `origin/${branchName}`;
+const headParam = branchName === 'merge' ? 'HEAD' : `origin/${branchName}`;
 let baseParam = '';
 switch (branchName) {
   case 'master':
@@ -20,7 +20,7 @@ const getAffectedProjects = (target = 'build') => {
       exec(
         `npx nx print-affected --base=${baseParam} --head=${headParam} --target=${target}`
       )
-    ).tasks.map(t => t.target.project)
+    ).tasks.map((t) => t.target.project),
   };
 };
 
@@ -28,6 +28,6 @@ console.log(
   JSON.stringify({
     ...getAffectedProjects('lint'),
     ...getAffectedProjects('test'),
-    ...getAffectedProjects('build')
+    ...getAffectedProjects('build'),
   })
 );

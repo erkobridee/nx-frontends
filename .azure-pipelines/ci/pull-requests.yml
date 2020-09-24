@@ -25,7 +25,7 @@ jobs:
     steps:
       - template: ../templates/steps_install-node-modules.yml
       - script: |
-          npx nx format:check --base=origin/develop --head=origin/$(Build.SourceBranchName)
+          npx nx format:check --base=origin/develop --head=HEAD
         displayName: running check
 
   - job: initial_setup
@@ -35,7 +35,7 @@ jobs:
     steps:
       - template: ../templates/steps_install-node-modules.yml
       - script: |
-          echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(SourceBranchName))"
+          echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js merge)"
         name: setCommands
       - script: echo $(setCommands.COMMANDS)
         name: echoCommands
