@@ -34,7 +34,7 @@ stages:
         steps:
           - template: ../templates/steps_install-node-modules.yml
           - script: |
-              echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(SourceBranchName))"
+              echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(Build.SourceBranchName))"
             name: setCommands
           - script: echo $(setCommands.COMMANDS)
             name: echoCommands
