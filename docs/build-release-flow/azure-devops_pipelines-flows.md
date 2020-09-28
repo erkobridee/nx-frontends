@@ -76,7 +76,9 @@ It should be created one by application, environment (`prod` - production or `de
 
 ⚠️ to run this pipeline you must have created two variable groups on the pipelines library (remember to allow the access to all the pipelines):
 
-- `cd-vars_commons` to have the `azureSubscription`, this one will be used to all CD (**_continuous deployment_**) pipelines
+- `cd-vars_commons` it will be used to all CD (**_continuous deployment_**) pipelines
+  - `azureSubscriptionID` - the subscription ID
+  - `azureSubscriptionResource` - the MS Azure DevOps service connection name
 - `cd-vars_$ENV_$appName` which should contains
   - `STATUS` - it must have the value `active` to update the Azure Cloud Storage and Azure Could CDN
   - to update the storage
@@ -113,6 +115,14 @@ It should be created one by application, environment (`prod` - production or `de
   - [Add stages, dependencies, & conditions](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/stages?view=azure-devops&tabs=yaml)
 
   - [Specify events that trigger pipeline builds and releases](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml)
+
+  - [Deploy Apps to Azure - Connect to Microsoft Azure](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure)
+
+- [Azure Command-Line Interface (CLI) documentation | Microsoft Docs](https://docs.microsoft.com/en-us/cli/azure/)
+
+  - [az storage blob upload-batch](https://docs.microsoft.com/en-us/cli/azure/storage/blob?view=azure-cli-latest#az_storage_blob_upload_batch)
+
+  - [az cdn endpoint purge](https://docs.microsoft.com/en-us/cli/azure/cdn/endpoint?view=azure-cli-latest#az_cdn_endpoint_purge)
 
 - [Using Templates in YAML Pipelines in Azure DevOps](https://jpearson.blog/2019/10/01/using-templates-in-yaml-pipelines-in-azure-devops/)
 

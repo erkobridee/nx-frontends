@@ -8,7 +8,11 @@
 steps:
   - checkout: self
     clean: true
+
   - script: |
+      echo ''
+      echo 'pwd'
+      pwd
       echo ''
       echo 'project directory'
       echo ''
@@ -21,44 +25,44 @@ steps:
       echo ''
     displayName: list repository files
 
-  - ${{ if or(ne(variables.STATUS, 'active'), eq(variables.azureSubscription, '')) }}:
-    - script: |
-        echo 'DEBUG variables values'
-        echo 'STATUS: $(STATUS)'
-        echo 'azureSubscription: $(azureSubscription)'
-        echo 'azureStorageName: $(azureStorageName)'
-        echo 'azureCdnResouseGroup: $(azureCdnResouseGroup)'
-        echo 'azureCdnName: $(azureCdnName)'
-        echo 'azureCdnProfileName: $(azureCdnProfileName)'
-      displayName: DEBUG variables values
+  - script: |
+      echo 'DEBUG variables values'
+      echo 'STATUS: $(STATUS)'
+      echo 'azureSubscriptionID: $(azureSubscriptionID)'
+      echo 'azureSubscriptionResource: $(azureSubscriptionResource)'
+      echo 'azureStorageName: $(azureStorageName)'
+      echo 'azureCdnResouseGroup: $(azureCdnResouseGroup)'
+      echo 'azureCdnName: $(azureCdnName)'
+      echo 'azureCdnProfileName: $(azureCdnProfileName)'
+    displayName: DEBUG variables values
+    condition: ne(variables['STATUS'], 'active')
 
-  - ${{ if eq(variables.STATUS, 'active') }}:
-    - task: AzureCLI@2
-      displayName: Copy files to Azure Blob storage
-      condition: |
-        and(
-          ne(variables.azureSubscription, ''),
-          ne(variables.azureStorageName, '')
-        )
-      inputs:
-        azureSubscription: $(azureSubscription)
-        scriptType: ps
-        scriptLocation: inlineScript
-        inlineScript: |
-          az storage blob upload-batch -s "$(System.DefaultWorkingDirectory)/dist" -d \$web --account-name "$(azureStorageName)"
+  - task: AzureCLI@1
+    displayName: Copy files to Azure Blob storage
+    condition: |
+      and(
+        eq(variables['STATUS'], 'active'),
+        ne(variables.azureSubscriptionResource, ''),
+        ne(variables.azureStorageName, '')
+      )
+    inputs:
+      azureSubscription: $(azureSubscriptionResource)
+      scriptLocation: inlineScript
+      inlineScript: |
+        az storage blob upload-batch -s "$(System.DefaultWorkingDirectory)/dist" -d \$web --account-name "$(azureStorageName)"
 
-    - task: AzureCLI@2
-      displayName: Purge Azure CDN
-      condition: |
-        and(
-          ne(variables.azureSubscription, ''),
-          ne(variables.azureCdnResouseGroup, ''),
-          ne(variables.azureCdnName, ''),
-          ne(variables.azureCdnProfileName, '')
-        )
-      inputs:
-        azureSubscription: $(azureSubscription)
-        scriptType: ps
-        scriptLocation: inlineScript
-        inlineScript: |
-          az cdn endpoint purge --resource-group $(azureCdnResouseGroup) --name $(azureCdnName) --profile-name $(azureCdnProfileName) --content-paths "/*"
+  - task: AzureCLI@1
+    displayName: Purge Azure CDN
+    condition: |
+      and(
+        eq(variables['STATUS'], 'active'),
+        ne(variables.azureSubscriptionResource, ''),
+        ne(variables.azureCdnResouseGroup, ''),
+        ne(variables.azureCdnName, ''),
+        ne(variables.azureCdnProfileName, '')
+      )
+    inputs:
+      azureSubscription: $(azureSubscriptionResource)
+      scriptLocation: inlineScript
+      inlineScript: |
+        az cdn endpoint purge --resource-group $(azureCdnResouseGroup) --name $(azureCdnName) --profile-name $(azureCdnProfileName) --content-paths "/*"
