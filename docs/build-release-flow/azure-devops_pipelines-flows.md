@@ -116,4 +116,6 @@ It should be created one by application, environment (`prod` - production or `de
 
 - [Using Templates in YAML Pipelines in Azure DevOps](https://jpearson.blog/2019/10/01/using-templates-in-yaml-pipelines-in-azure-devops/)
 
+- [Azure DevOps YAML Pipelines | Dave Mateer's Blog](https://davemateer.com/2019/03/21/Azure-DevOps-YAML-Pipelines)
+
 - [Azure Pipelines | VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-devops.azure-pipelines)
