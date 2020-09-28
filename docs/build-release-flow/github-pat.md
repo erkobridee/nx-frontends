@@ -1,6 +1,6 @@
-[⬅️ Build and Release Flow](README.md)
+[⬅️&nbsp;&nbsp;Build and Release Flow](README.md)
 
-[⬅️ README](../../README.md)
+[⬅️&nbsp;&nbsp;README](../../README.md)
 
 # Create and use a GitHub PAT
 
@@ -8,7 +8,7 @@
 
 Since that in the build flow I'm using auxiliaries branches to host the build output from the applications inside of the mono repository. To be able to use the Node Module [gh-pages](https://github.com/tschaub/gh-pages) to help with the tasks, since it's running outsite of the current repo folder on the Azure DevOps server we'll need to use another way to authenticate and be able to push the code to the GitHub repository.
 
-💼 in case of a company, it's recommended to create an Automation User account on the GitHub, gave to this account the rights to access the company repositories and on that account create the GitHub PAT to be used.
+💼&nbsp;&nbsp;in case of a company, it's recommended to create an Automation User account on the GitHub, gave to this account the rights to access the company repositories and on that account create the GitHub PAT to be used.
 
 ## Steps
 

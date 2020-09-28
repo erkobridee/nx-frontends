@@ -1,14 +1,14 @@
-[⬅️ Microsoft Azure DevOps](azure-devops.md)
+[⬅️&nbsp;&nbsp;Microsoft Azure DevOps](azure-devops.md)
 
-[⬅️ Build and Release Flow](README.md)
+[⬅️&nbsp;&nbsp;Build and Release Flow](README.md)
 
-[⬅️ README](../../README.md)
+[⬅️&nbsp;&nbsp;README](../../README.md)
 
 # Microsoft Azure DevOps load `.yml` pipeline
 
 ## Steps
 
-> The following steps shows how to setup the _**CI branches**_ on the Azure DevOps, loading the `.yml`pipeline definition 📄[.azure-pipelines/ci/brances.yml](../../.azure-pipelines/ci/branches.yml)
+> The following steps shows how to setup the _**CI branches**_ on the Azure DevOps, loading the `.yml`pipeline definition 📄&nbsp;&nbsp;[.azure-pipelines/ci/brances.yml](../../.azure-pipelines/ci/branches.yml)
 >
 > Keep in mind: to setup the others pipelines, just follow the sames steps bellow.
 

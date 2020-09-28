@@ -1,6 +1,6 @@
-[⬅️ Build and Release Flow](README.md)
+[⬅️&nbsp;&nbsp;Build and Release Flow](README.md)
 
-[⬅️ README](../../README.md)
+[⬅️&nbsp;&nbsp;README](../../README.md)
 
 # Proposed idea
 

@@ -1,8 +1,8 @@
-[⬅️ Microsoft Azure DevOps](azure-devops.md)
+[⬅️&nbsp;&nbsp;Microsoft Azure DevOps](azure-devops.md)
 
-[⬅️ Build and Release Flow](README.md)
+[⬅️&nbsp;&nbsp;Build and Release Flow](README.md)
 
-[⬅️ README](../../README.md)
+[⬅️&nbsp;&nbsp;README](../../README.md)
 
 # Microsoft Azure DevOps Pipelines flows
 
@@ -32,7 +32,7 @@
 
 ![ci pull requests](assets/ci_pull-requests.png)
 
-📝 **.azure-pipelines/ci/pull-requests.yml**
+📝&nbsp;&nbsp;**.azure-pipelines/ci/pull-requests.yml**
 
 #### Branches
 
@@ -42,9 +42,9 @@
 
 ![ci branches](assets/ci_branches.png)
 
-📝 **.azure-pipelines/ci/branches.yml**
+📝&nbsp;&nbsp;**.azure-pipelines/ci/branches.yml**
 
-⚠️ to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
+⚠️&nbsp;&nbsp;to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
 
 ### Manually triggered flows
 
@@ -54,9 +54,9 @@
 
 ![manually trigger build all](assets/manually_build_all.png)
 
-📝 **.azure-pipelines/manually/build-all.yml**
+📝&nbsp;&nbsp;**.azure-pipelines/manually/build-all.yml**
 
-⚠️ to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
+⚠️&nbsp;&nbsp;to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
 
 #### Build one application
 
@@ -64,7 +64,7 @@
 
 It should be created one by application and use the template **.azure-pipelines/manually/templates/build-one.yml**
 
-⚠️ to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
+⚠️&nbsp;&nbsp;to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
 
 ## Release Flows
 
@@ -74,7 +74,7 @@ It should be created one by application and use the template **.azure-pipelines/
 
 It should be created one by application, environment (`prod` - production or `dev` - development) and use the template **.azure-pipelines/cd/templates/deploy-one.yml**
 
-⚠️ to run this pipeline you must have created two variable groups on the pipelines library (remember to allow the access to all the pipelines):
+⚠️&nbsp;&nbsp;to run this pipeline you must have created two variable groups on the pipelines library (remember to allow the access to all the pipelines):
 
 - `cd-vars_commons` it will be used to all CD (**_continuous deployment_**) pipelines
   - `azureSubscriptionID` - the subscription ID
