@@ -84,8 +84,8 @@ It should be created one by application, environment (`prod` - production or `de
   - to update the storage
     - `azureStorageName`
   - to update the cdn
-    - `azureCdnResouseGroup`
-    - `azureCdnName`
+    - `azureResourceGroupName` - name of the service connection added to the `Service connections` under the MS Azure DevOps project settings
+    - `azureCdnEndpointName`
     - `azureCdnProfileName`
 
 ## Further help

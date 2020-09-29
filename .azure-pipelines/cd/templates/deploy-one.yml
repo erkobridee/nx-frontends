@@ -31,8 +31,8 @@ steps:
       echo 'azureSubscriptionID: $(azureSubscriptionID)'
       echo 'azureSubscriptionResource: $(azureSubscriptionResource)'
       echo 'azureStorageName: $(azureStorageName)'
-      echo 'azureCdnResouseGroup: $(azureCdnResouseGroup)'
-      echo 'azureCdnName: $(azureCdnName)'
+      echo 'azureResourceGroupName: $(azureResourceGroupName)'
+      echo 'azureCdnEndpointName: $(azureCdnEndpointName)'
       echo 'azureCdnProfileName: $(azureCdnProfileName)'
     displayName: DEBUG variables values
     condition: ne(variables['STATUS'], 'active')
@@ -57,12 +57,12 @@ steps:
       and(
         eq(variables['STATUS'], 'active'),
         ne(variables.azureSubscriptionResource, ''),
-        ne(variables.azureCdnResouseGroup, ''),
-        ne(variables.azureCdnName, ''),
+        ne(variables.azureResourceGroupName, ''),
+        ne(variables.azureCdnEndpointName, ''),
         ne(variables.azureCdnProfileName, '')
       )
     inputs:
       azureSubscription: $(azureSubscriptionResource)
       scriptLocation: inlineScript
       inlineScript: |
-        az cdn endpoint purge --resource-group $(azureCdnResouseGroup) --name $(azureCdnName) --profile-name $(azureCdnProfileName) --content-paths "/*"
+        az cdn endpoint purge --resource-group $(azureResourceGroupName) --name $(azureCdnEndpointName) --profile-name $(azureCdnProfileName) --content-paths "/*"
