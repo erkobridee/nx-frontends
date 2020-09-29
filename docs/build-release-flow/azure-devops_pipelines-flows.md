@@ -74,6 +74,8 @@ It should be created one by application and use the template **.azure-pipelines/
 
 It should be created one by application, environment (`prod` - production or `dev` - development) and use the template **.azure-pipelines/cd/templates/deploy-one.yml**
 
+⚠️&nbsp;&nbsp;you need to create a `service connection` under the MS Azure DevOps project settings to connect with the MS Azure Cloud (use the Azure Resouce Manager connection to connect to your MS Azure Cloud subscription)
+
 ⚠️&nbsp;&nbsp;to run this pipeline you must have created two variable groups on the pipelines library (remember to allow the access to all the pipelines):
 
 - `cd-vars_commons` it will be used to all CD (**_continuous deployment_**) pipelines
