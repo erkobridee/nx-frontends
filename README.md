@@ -2,9 +2,9 @@
 
 This project was generated using [Nx](https://nx.dev).
 
-ℹ️ use the node.js v12.16.1 LTS
+ℹ️&nbsp;&nbsp;use the node.js v12.16.1 LTS
 
-🌎[Pipelines (builds) on MS Azure DevOps](https://dev.azure.com/ErkoBrideeAzure/nx-frontends/_build)
+🌎&nbsp;&nbsp;[Pipelines (builds) on MS Azure DevOps](https://dev.azure.com/ErkoBrideeAzure/nx-frontends/_build)
 
 ## Goal
 
