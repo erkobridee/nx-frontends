@@ -34,6 +34,8 @@ This project was generated using [Nx](https://nx.dev).
 
     - [Load `.yml` pipeline into Azure DevOps](docs/build-release-flow/azure-devops_load-yml-pipeline.md)
 
+    - [Trigger pipeline over a REST API call](docs/build-release-flow/azure-devops_rest-api_trigger_pipeline.md)
+
   - [Create and use a GitHub PAT](docs/build-release-flow/github-pat.md)
 
 ## Project dependencies graph
