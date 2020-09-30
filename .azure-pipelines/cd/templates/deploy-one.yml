@@ -53,6 +53,7 @@ steps:
     displayName: Purge Azure CDN
     condition: |
       and(
+        succeeded(),
         eq(variables['STATUS'], 'active'),
         ne(variables.azureResourceGroupName, ''),
         ne(variables.azureCdnEndpointName, ''),
