@@ -28,10 +28,8 @@ steps:
   - script: |
       echo 'DEBUG variables values'
       echo 'STATUS: $(STATUS)'
-      echo 'azureSubscriptionID: $(azureSubscriptionID)'
-      echo 'azureSubscriptionResource: $(azureSubscriptionResource)'
-      echo 'azureStorageName: $(azureStorageName)'
       echo 'azureResourceGroupName: $(azureResourceGroupName)'
+      echo 'azureStorageName: $(azureStorageName)'
       echo 'azureCdnEndpointName: $(azureCdnEndpointName)'
       echo 'azureCdnProfileName: $(azureCdnProfileName)'
     displayName: DEBUG variables values
@@ -42,11 +40,11 @@ steps:
     condition: |
       and(
         eq(variables['STATUS'], 'active'),
-        ne(variables.azureSubscriptionResource, ''),
+        ne(variables.azureResourceGroupName, ''),
         ne(variables.azureStorageName, '')
       )
     inputs:
-      azureSubscription: $(azureSubscriptionResource)
+      azureSubscription: $(azureResourceGroupName)
       scriptLocation: inlineScript
       inlineScript: |
         az storage blob upload-batch -s "$(System.DefaultWorkingDirectory)/dist" -d \$web --account-name "$(azureStorageName)"
@@ -56,13 +54,12 @@ steps:
     condition: |
       and(
         eq(variables['STATUS'], 'active'),
-        ne(variables.azureSubscriptionResource, ''),
         ne(variables.azureResourceGroupName, ''),
         ne(variables.azureCdnEndpointName, ''),
         ne(variables.azureCdnProfileName, '')
       )
     inputs:
-      azureSubscription: $(azureSubscriptionResource)
+      azureSubscription: $(azureResourceGroupName)
       scriptLocation: inlineScript
       inlineScript: |
         az cdn endpoint purge --resource-group $(azureResourceGroupName) --name $(azureCdnEndpointName) --profile-name $(azureCdnProfileName) --content-paths "/*"
