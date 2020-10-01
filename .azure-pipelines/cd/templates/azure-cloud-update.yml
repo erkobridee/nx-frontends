@@ -1,0 +1,31 @@
+#
+# Azure CLI task
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/deploy/azure-cli?view=azure-devops
+#
+steps:
+  - task: AzureCLI@1
+    displayName: Copy files to Azure Blob storage
+    condition: |
+      and(
+        ne(variables.azureResourceGroupName, ''),
+        ne(variables.azureStorageName, '')
+      )
+    inputs:
+      azureSubscription: $(azureResourceGroupName)
+      scriptLocation: inlineScript
+      inlineScript: |
+        az storage blob upload-batch -s "$(System.DefaultWorkingDirectory)/dist" -d \$web --account-name "$(azureStorageName)"
+  - task: AzureCLI@1
+    displayName: Purge Azure CDN
+    condition: |
+      and(
+        succeeded(),
+        ne(variables.azureResourceGroupName, ''),
+        ne(variables.azureCdnEndpointName, ''),
+        ne(variables.azureCdnProfileName, '')
+      )
+    inputs:
+      azureSubscription: $(azureResourceGroupName)
+      scriptLocation: inlineScript
+      inlineScript: |
+        az cdn endpoint purge --resource-group $(azureResourceGroupName) --name $(azureCdnEndpointName) --profile-name $(azureCdnProfileName) --content-paths "/*"

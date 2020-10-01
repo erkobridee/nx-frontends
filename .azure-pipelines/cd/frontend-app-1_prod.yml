@@ -14,5 +14,5 @@ pr: none
 variables:
   - group: cd-vars_prod_frontend-app-1
 
-steps:
+jobs:
   - template: templates/deploy-one.yml

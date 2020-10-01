@@ -1,68 +1,47 @@
-# Azure CLI task
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/deploy/azure-cli?view=azure-devops
 #
 # deploy a static web site to the MS Azure Cloud Storage and CDN
 #
 # configurations defined as a variable group
 #
-steps:
-  - checkout: self
-    clean: true
+jobs:
+  - job: check
+    steps:
+      - checkout: self
+        clean: true
 
-  - script: |
-      echo ''
-      echo 'pwd'
-      pwd
-      echo ''
-      echo 'project directory'
-      echo ''
-      ls -a
-      echo ''
-      echo 'dist directory'
-      echo ''
-      cd dist
-      ls -a
-      echo ''
-    displayName: list repository files
+      - script: |
+          echo ''
+          echo 'pwd'
+          pwd
+          echo ''
+          echo 'project directory'
+          echo ''
+          ls -a
+          echo ''
+          echo 'dist directory'
+          echo ''
+          cd dist
+          ls -a
+          echo ''
+        displayName: list repository files
 
-  - script: |
-      echo ''
-      echo 'variables values'
-      echo ''
-      echo 'STATUS: $(STATUS)'
-      echo 'azureResourceGroupName: $(azureResourceGroupName)'
-      echo 'azureStorageName: $(azureStorageName)'
-      echo 'azureCdnEndpointName: $(azureCdnEndpointName)'
-      echo 'azureCdnProfileName: $(azureCdnProfileName)'
-      echo ''
-    displayName: show variables values
+      - script: |
+          echo ''
+          echo 'variables values'
+          echo ''
+          echo 'status: $(STATUS)'
+          echo ''
+          echo 'azureResourceGroupName: $(azureResourceGroupName)'
+          echo 'azureStorageName: $(azureStorageName)'
+          echo 'azureCdnEndpointName: $(azureCdnEndpointName)'
+          echo 'azureCdnProfileName: $(azureCdnProfileName)'
+          echo ''
+        displayName: show variables values
 
-  - task: AzureCLI@1
-    displayName: Copy files to Azure Blob storage
+  - job: deploy
     condition: |
-      and(
-        eq(variables['STATUS'], 'active'),
-        ne(variables.azureResourceGroupName, ''),
-        ne(variables.azureStorageName, '')
-      )
-    inputs:
-      azureSubscription: $(azureResourceGroupName)
-      scriptLocation: inlineScript
-      inlineScript: |
-        az storage blob upload-batch -s "$(System.DefaultWorkingDirectory)/dist" -d \$web --account-name "$(azureStorageName)"
-
-  - task: AzureCLI@1
-    displayName: Purge Azure CDN
-    condition: |
-      and(
-        succeeded(),
-        eq(variables['STATUS'], 'active'),
-        ne(variables.azureResourceGroupName, ''),
-        ne(variables.azureCdnEndpointName, ''),
-        ne(variables.azureCdnProfileName, '')
-      )
-    inputs:
-      azureSubscription: $(azureResourceGroupName)
-      scriptLocation: inlineScript
-      inlineScript: |
-        az cdn endpoint purge --resource-group $(azureResourceGroupName) --name $(azureCdnEndpointName) --profile-name $(azureCdnProfileName) --content-paths "/*"
+      eq(variables.STATUS, 'active')
+    steps:
+      - checkout: self
+        clean: true
+      - template: azure-cloud-update.yml
