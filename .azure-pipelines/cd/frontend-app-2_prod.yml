@@ -12,7 +12,6 @@ trigger:
 pr: none
 
 variables:
-  - group: cd-vars_common
   - group: cd-vars_prod_frontend-app-2
 
 steps:
