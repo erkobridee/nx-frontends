@@ -18,6 +18,8 @@ This project was generated using [Nx](https://nx.dev).
 
 - [Dev environment known issues](docs/dev-env-known-issues.md)
 
+- [GitHub Tips](docs/github-tips.md)
+
 - [Nx](docs/nx.md)
 
   - [Nx Gatsby Plugin](docs/nx-gatsby-plugin.md)
