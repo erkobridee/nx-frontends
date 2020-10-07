@@ -8,7 +8,7 @@
 
 - [Error: Input file contains unsupported image format, gatsby | Support - Netlify Community](https://community.netlify.com/t/error-input-file-contains-unsupported-image-format-gatsby/10891)
 
-## MacOS Catalina
+## MacOS
 
 Using the node.js v12 LTS, when you try to install the dependencies you get and error related to missing XCode CLI tools support, to fix that we need to remove the XCode CLI tools, install it again and after it use the command to reset the configurations `sudo xcode-select --reset`
 
@@ -19,6 +19,8 @@ sudo xcode-select --reset
 
 npm i
 ```
+
+> if the command `xcode-select --install` didn't work and you get an error saying that it's no possible get it from the server, download it directly from the [Apple Developer site](https://developer.apple.com/download/more/) (Command Line Tools for Xcode)
 
 **references:**
 
