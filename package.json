@@ -52,6 +52,7 @@
     "@nrwl/eslint-plugin-nx": "10.0.12",
     "@nrwl/gatsby": "^0.10.0",
     "@nrwl/jest": "10.0.12",
+    "@nrwl/linter": "^10.0.12",
     "@nrwl/react": "10.0.12",
     "@nrwl/web": "10.0.12",
     "@nrwl/workspace": "10.0.12",
