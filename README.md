@@ -24,6 +24,8 @@ This project was generated using [Nx](https://nx.dev).
 
   - [Nx Gatsby Plugin](docs/nx-gatsby-plugin.md)
 
+  - [Nx Storybook Plugin](docs/nx-storybook-plugin.md)
+
 - [Project creation commands (steps)](docs/project-creation-commands.md)
 
 - [Build and release flows](docs/build-release-flow/README.md)
