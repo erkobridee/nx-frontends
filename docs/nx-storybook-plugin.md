@@ -12,6 +12,8 @@
 
 - build: `nx run {project name}:build-storybook`
 
+- print affected: `nx print-affected --target=build-storybook`
+
 ## Useful references
 
 - [[YouTube] Nx Tutorial: Nx Storybook Integration](https://www.youtube.com/watch?v=sFpqyjT7u4s)
