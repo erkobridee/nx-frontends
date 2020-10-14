@@ -62,7 +62,9 @@ jobs:
 
   - job: test
     displayName: test projects
-    dependsOn: lint
+    dependsOn:
+      - initial_setup
+      - lint
     condition: |
       and(
         succeeded(),
@@ -83,7 +85,9 @@ jobs:
 
   - job: build_storybook
     displayName: build the affected storybook
-    dependsOn: test
+    dependsOn:
+      - initial_setup
+      - test
     condition: |
       and(
         succeeded(),
@@ -103,7 +107,9 @@ jobs:
 
   - job: build
     displayName: build projects
-    dependsOn: test
+    dependsOn:
+      - initial_setup
+      - test
     condition: |
       and(
         succeeded(),
