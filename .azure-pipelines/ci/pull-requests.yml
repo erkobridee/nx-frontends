@@ -62,7 +62,7 @@ jobs:
 
   - job: test
     displayName: test projects
-    dependsOn: initial_setup
+    dependsOn: lint
     condition: |
       and(
         succeeded(),
@@ -81,9 +81,29 @@ jobs:
         displayName: running tests
       - template: ../templates/steps_publish-test-results.yml
 
+  - job: build_storybook
+    displayName: build the affected storybook
+    dependsOn: test
+    condition: |
+      and(
+        succeeded(),
+        not(
+          contains(
+            dependencies.initial_setup.outputs['setCommands.COMMANDS'],
+            '"build-storybook":[]'
+          )
+        )
+      )
+    variables:
+      COMMANDS: $[ dependencies.initial_setup.outputs['setCommands.COMMANDS'] ]
+    steps:
+      - template: ../templates/steps_install-node-modules.yml
+      - script: node ./tools/scripts/nx-run-many.js '$(COMMANDS)' build-storybook
+        displayName: running build storybook
+
   - job: build
     displayName: build projects
-    dependsOn: initial_setup
+    dependsOn: test
     condition: |
       and(
         succeeded(),
