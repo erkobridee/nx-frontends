@@ -56,6 +56,8 @@
 
 - [Quickstart: Create an organization or project collection | Azure DevOps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops)
 
+- [Azure DevOps Pipelines: Depends On with Conditionals in YAML | Eric L. Anderson](https://elanderson.net/2020/05/azure-devops-pipelines-depends-on-with-conditionals-in-yaml/)
+
 ### Azure Resource Manager templates
 
 - [Azure Resource Manager templates overview | MS Docs](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)
