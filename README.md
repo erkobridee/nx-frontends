@@ -1,6 +1,6 @@
 # NxFrontends
 
-This project was generated using [Nx](https://nx.dev).
+This project was generated using [Nx](https://nx.dev) ([v10.3.0](https://github.com/nrwl/nx/releases/tag/10.3.0))
 
 ℹ️&nbsp;&nbsp;use the node.js v12.16.1 LTS
 
