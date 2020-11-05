@@ -147,6 +147,8 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
 - [[YouTube] Scalable React Development for Large Projects - Jason Jean | React Conferences by GitNation](https://www.youtube.com/watch?v=Lr-u2ALSEQg)
 
+- [Course - Scale React Development with Nx from @juristr on @eggheadio](https://egghead.io/playlists/scale-react-development-with-nx-4038)
+
 ---
 
 - Nx Console
