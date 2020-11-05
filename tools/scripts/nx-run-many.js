@@ -2,7 +2,7 @@ const exec = require('./libs/execute-sync-command');
 const [
   commandsStr = '[]',
   target = '',
-  environment = 'development'
+  environment = 'development',
 ] = require('./libs/get-cli-args');
 const commands = JSON.parse(commandsStr);
 const projects = commands[target];
@@ -11,7 +11,7 @@ if (!projects) {
   process.exit();
 }
 
-if (target === 'build') {
+if (['build', 'build-storybook'].includes(target)) {
   require('./libs/fs-toolkit').removeSync('dist');
 }
 
@@ -23,13 +23,15 @@ const buildOutput = ['prod', 'production'].includes(environment)
   ? ' --prod'
   : '';
 
+const parallel = target !== 'build-storybook' ? ' --parallel' : '';
+
 try {
   exec(
     `npx nx run-many --target=${target}${buildOutput} --projects=${projects.join(
       ','
-    )} --parallel`,
+    )}${parallel}`,
     {
-      stdio: [0, 1, 2]
+      stdio: [0, 1, 2],
     }
   );
 

@@ -2,14 +2,17 @@ const exec = require('./libs/execute-sync-command');
 const [
   appName = '',
   target = '',
-  environment = 'development'
+  environment = 'development',
 ] = require('./libs/get-cli-args');
 
-if (!appName || !['lint', 'test', 'build'].includes(target)) {
+if (
+  !appName ||
+  !['lint', 'test', 'build', 'build-storybook'].includes(target)
+) {
   process.exit();
 }
 
-if (target === 'build') {
+if (['build', 'build-storybook'].includes(target)) {
   require('./libs/fs-toolkit').removeSync('dist');
 }
 
@@ -21,17 +24,25 @@ const buildOutput = ['prod', 'production'].includes(environment)
   ? ' --prod'
   : '';
 
-const cmdStr =
-  target === 'lint'
-    ? `npx nx run-many --target=${target} --parallel --projects=${[
-        appName,
-        `${appName}-e2e`
-      ].join(',')}`
-    : `npx nx ${target} ${appName}${buildOutput}`;
+let cmdStr = '';
+switch (target) {
+  case 'lint':
+    cmdStr = `npx nx run-many --target=${target} --parallel --projects=${[
+      appName,
+      `${appName}-e2e`,
+    ].join(',')}`;
+    break;
+  case 'build-storybook':
+    cmdStr = `npx nx run ${appName}:${target}${buildOutput}`;
+    break;
+  default:
+    cmdStr = `npx nx ${target} ${appName}${buildOutput}`;
+    break;
+}
 
 try {
   exec(cmdStr, {
-    stdio: [0, 1, 2]
+    stdio: [0, 1, 2],
   });
 
   if (target === 'test') {
