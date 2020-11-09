@@ -1,0 +1,9 @@
+steps:
+  - download: current
+    artifact: storybook
+  - script: |
+      cd $(Pipeline.Workspace)/storybook
+      ls -la
+      cd storybook/
+      ls
+    displayName: list storybook available on $(Pipeline.Workspace)/storybook
