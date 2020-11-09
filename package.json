@@ -27,6 +27,7 @@
     "clean": "node ./tools/scripts/cleanup.js",
     "clean:gatsby-site": "node ./tools/scripts/cleanup-gatsby.js gatsby-site",
     "dist-app": "node ./tools/scripts/serve-dist-app.js",
+    "dist-storybook": "node ./tools/scripts/serve-dist-storybook.js",
     "nx:calculate-commands": "node ./tools/scripts/nx-calculate-commands.js",
     "nx:run-many": "node ./tools/scripts/nx-run-many.js",
     "nx:run-all": "node ./tools/scripts/nx-run-all.js",
@@ -34,6 +35,7 @@
     "git-clean:build:tags": "node ./tools/scripts/git-clean-ci-build-tags.js",
     "git-clean:build:branches": "node ./tools/scripts/git-clean-build-branches.js",
     "git-publish:builds": "node ./tools/scripts/git-push-apps-builds-to-branches.js",
+    "git-publish:storybook-builds": "node ./tools/scripts/git-push-storybook-builds-to-branch.js",
     "merge-cobertura": "node ./tools/scripts/merge-cobertura.js"
   },
   "private": true,
