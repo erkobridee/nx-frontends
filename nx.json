@@ -14,41 +14,67 @@
   "projects": {
     "frontend-app-1": {
       "tags": [],
-      "implicitDependencies": ["shared-assets"]
+      "implicitDependencies": [
+        "shared-assets"
+      ]
     },
     "frontend-app-1-e2e": {
       "tags": [],
-      "implicitDependencies": ["frontend-app-1"]
+      "implicitDependencies": [
+        "frontend-app-1"
+      ]
     },
     "frontend-app-2": {
       "tags": [],
-      "implicitDependencies": ["shared-assets"]
+      "implicitDependencies": [
+        "shared-assets"
+      ]
     },
     "frontend-app-2-e2e": {
       "tags": [],
-      "implicitDependencies": ["frontend-app-2"]
+      "implicitDependencies": [
+        "frontend-app-2"
+      ]
     },
     "shared-ui-components": {
       "tags": [],
-      "implicitDependencies": ["shared-assets"]
+      "implicitDependencies": [
+        "shared-assets"
+      ]
     },
     "shared-assets": {
       "tags": []
     },
     "gatsby-site": {
       "tags": [],
-      "implicitDependencies": ["shared-assets"]
+      "implicitDependencies": [
+        "shared-assets"
+      ]
     },
     "gatsby-site-e2e": {
       "tags": [],
-      "implicitDependencies": ["gatsby-site"]
+      "implicitDependencies": [
+        "gatsby-site"
+      ]
+    },
+    "shared-ui-components-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "shared-ui-components"
+      ]
     }
   },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
       }
     }
   },
