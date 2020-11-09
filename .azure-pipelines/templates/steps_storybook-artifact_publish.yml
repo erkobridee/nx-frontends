@@ -1,0 +1,7 @@
+steps:
+  - script: |
+      mkdir -p $(System.DefaultWorkingDirectory)/dist/.azure-pipelines
+      cp -r $(System.DefaultWorkingDirectory)/.azure-pipelines/cd $(System.DefaultWorkingDirectory)/dist/.azure-pipelines
+    displayName: copy CD pipelines from .azure-pipelines
+  - publish: $(System.DefaultWorkingDirectory)/dist
+    artifact: storybook
