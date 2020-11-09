@@ -1,5 +1,9 @@
 # pipeline suggested name: CI branches
 # this pipeline validates and generate the builds for master or develop branch
+#
+# Define variables - MS Azure DevOps Docs
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables
+#
 
 name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
@@ -8,15 +12,14 @@ trigger:
   branches:
     include:
       - master
+      - staging
       - develop
   paths:
     exclude:
       - .azure-pipelines/*
       - .vscode/*
-      - tools/*
       - docs/*
-      - README.md
-
+      - tools/*
 pr: none
 
 pool:
@@ -33,6 +36,8 @@ stages:
         displayName: nx calculate commands
         steps:
           - template: ../templates/steps_install-node-modules.yml
+          - script: echo $(Build.SourceBranchName)
+            name: echoBranchName
           - script: |
               echo "##vso[task.setvariable variable=COMMANDS;isOutput=true]$(node ./tools/scripts/nx-calculate-commands.js $(Build.SourceBranchName))"
             name: setCommands
@@ -100,8 +105,38 @@ stages:
             displayName: running tests
           - template: ../templates/steps_publish-test-results.yml
 
-      - job: build
-        displayName: build projects
+      - job: build_storybook
+        displayName: build storybook
+        dependsOn:
+          - lint
+          - test
+          - initial_setup
+        condition: |
+          and(
+            eq(variables['ENV'], 'dev'),
+            succeeded('lint'),
+            succeeded('test'),
+            succeeded('initial_setup'),
+            not(
+              contains(
+                dependencies.initial_setup.outputs['setCommands.COMMANDS'],
+                '"build-storybook":[]'
+              )
+            )
+          )
+        steps:
+          - checkout: self
+            persistCredentials: true
+            clean: true
+          - template: ../templates/steps_install-node-modules.yml
+          - script: node ./tools/scripts/nx-run-all.js build-storybook prod
+            displayName: running build storybook
+          - script: node ./tools/scripts/storybook-create-root-index-html.js
+            displayName: generate the root index.html
+          - template: ../templates/steps_storybook-artifact_publish.yml
+
+      - job: build_apps
+        displayName: build applications
         dependsOn:
           - lint
           - test
@@ -138,7 +173,7 @@ stages:
     dependsOn: validate_build
     condition: eq(dependencies.validate_build.result, 'Succeeded')
     jobs:
-      - job: push_all
+      - job: push_apps
         displayName: push the builded apps
         steps:
           - checkout: self
@@ -148,4 +183,26 @@ stages:
           - template: ../templates/steps_install-node-modules.yml
           - template: ../templates/steps_download-github-pat.yml
           - script: node ./tools/scripts/git-push-apps-builds-to-branches.js $(ENV) $(Pipeline.Workspace)/apps $(cat $(githubPat.secureFilePath))
+            displayName: running git push
+
+      - job: push_storybook
+        displayName: push the builded storybook
+        condition: |
+          and(
+            eq(variables['ENV'], 'dev'),
+            not(
+              contains(
+                stageDependencies.validate_build.initial_setup.outputs['setCommands.COMMANDS'],
+                '"build-storybook":[]'
+              )
+            )
+          )
+        steps:
+          - checkout: self
+            persistCredentials: true
+            clean: true
+          - template: ../templates/steps_storybook-artifact_download.yml
+          - template: ../templates/steps_install-node-modules.yml
+          - template: ../templates/steps_download-github-pat.yml
+          - script: node ./tools/scripts/git-push-storybook-builds-to-branch.js $(Pipeline.Workspace)/storybook $(cat $(githubPat.secureFilePath))
             displayName: running git push
