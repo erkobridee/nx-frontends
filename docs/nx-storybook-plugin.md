@@ -16,6 +16,10 @@
 
 ## Useful references
 
+- [Storybook](https://storybook.js.org/)
+
+  - [Storybook for React](https://storybook.js.org/docs/react/)
+
 - [[YouTube] Nx Tutorial: Nx Storybook Integration](https://www.youtube.com/watch?v=sFpqyjT7u4s)
 
 - [[YouTube] Nx Tutorial: Group all your stories into a single viewable Storybook with Nx](https://www.youtube.com/watch?v=c323HOuFKkA)
