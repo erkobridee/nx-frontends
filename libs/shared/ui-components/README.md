@@ -11,3 +11,7 @@ Run `nx test shared-ui-components` to execute the unit tests via [Jest](https://
 - run: `nx run shared-ui-components:storybook`
 
 - build: `nx run shared-ui-components:build-storybook`
+
+## e2e tests
+
+- `nx run shared-ui-components-e2e:e2e`
