@@ -6,11 +6,11 @@ const fse = require('fs-extra');
  * @param {string} path
  */
 const remove = async (path) => {
-  try {
-    await fse.remove(path);
-  } catch (e) {
-    console.error(e);
-  }
+	try {
+		await fse.remove(path);
+	} catch (e) {
+		console.error(e);
+	}
 };
 module.exports.remove = remove;
 module.exports.removeSync = fse.removeSync;
@@ -22,11 +22,11 @@ module.exports.removeSync = fse.removeSync;
  * @param {string} dest
  */
 const move = async (src, dest) => {
-  try {
-    await fse.move(src, dest, { overwrite: true });
-  } catch (e) {
-    console.error(e);
-  }
+	try {
+		await fse.move(src, dest, { overwrite: true });
+	} catch (e) {
+		console.error(e);
+	}
 };
 module.exports.move = move;
 
@@ -37,11 +37,11 @@ module.exports.move = move;
  * @param {string} dest
  */
 const copy = async (src, dest) => {
-  try {
-    await fse.copy(src, dest, { overwrite: true });
-  } catch (e) {
-    console.error(e);
-  }
+	try {
+		await fse.copy(src, dest, { overwrite: true });
+	} catch (e) {
+		console.error(e);
+	}
 };
 module.exports.copy = copy;
 module.exports.copySync = fse.copySync;
@@ -53,11 +53,11 @@ module.exports.copySync = fse.copySync;
  * @param {*} data
  */
 const writeFile = async (filePath, data) => {
-  try {
-    await fse.writeFile(filePath, data);
-  } catch (e) {
-    console.error(e);
-  }
+	try {
+		await fse.writeFile(filePath, data);
+	} catch (e) {
+		console.error(e);
+	}
 };
 
 module.exports.writeFile = writeFile;
@@ -70,12 +70,12 @@ module.exports.writeFileSync = fse.writeFileSync;
  * @returns boolean
  */
 const pathExists = async (path) => {
-  try {
-    return await fse.pathExists(path);
-  } catch (e) {
-    console.error(e);
-    return false;
-  }
+	try {
+		return await fse.pathExists(path);
+	} catch (e) {
+		console.error(e);
+		return false;
+	}
 };
 
 module.exports.pathExists = pathExists;

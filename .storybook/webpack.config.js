@@ -8,44 +8,44 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
  * @param {'DEVELOPMENT' | 'PRODUCTION'} options.mode - change the build configuration. 'PRODUCTION' is used when building the static version of storybook.
  */
 module.exports = async ({ config, mode }) => {
-  // Make whatever fine-grained changes you need
+	// Make whatever fine-grained changes you need
 
-  const tsPaths = new TsconfigPathsPlugin({
-    configFile: './tsconfig.base.json',
-  });
+	const tsPaths = new TsconfigPathsPlugin({
+		configFile: './tsconfig.base.json',
+	});
 
-  config.resolve.plugins
-    ? config.resolve.plugins.push(tsPaths)
-    : (config.resolve.plugins = [tsPaths]);
+	config.resolve.plugins
+		? config.resolve.plugins.push(tsPaths)
+		: (config.resolve.plugins = [tsPaths]);
 
-  config.module.rules.push({
-    test: /\.scss$/,
-    use: [
-      'style-loader',
-      {
-        loader: 'css-loader',
-        options: {
-          importLoaders: 1,
-          modules: {
-            mode: 'local',
-          },
-          localsConvention: 'camelCase',
-        },
-      },
-      'sass-loader',
-    ],
-    include: path.resolve(__dirname, '../'),
-  });
+	config.module.rules.push({
+		test: /\.scss$/,
+		use: [
+			'style-loader',
+			{
+				loader: 'css-loader',
+				options: {
+					importLoaders: 1,
+					modules: {
+						mode: 'local',
+					},
+					localsConvention: 'camelCase',
+				},
+			},
+			'sass-loader',
+		],
+		include: path.resolve(__dirname, '../'),
+	});
 
-  // Alternately, for an alias:
-  config.resolve.alias = {
-    '@nx-frontends/shared/assets': path.resolve(
-      __dirname,
-      '../',
-      'libs/shared/assets'
-    ),
-  };
+	// Alternately, for an alias:
+	config.resolve.alias = {
+		'@nx-frontends/shared/assets': path.resolve(
+			__dirname,
+			'../',
+			'libs/shared/assets'
+		),
+	};
 
-  // Return the altered config
-  return config;
+	// Return the altered config
+	return config;
 };
