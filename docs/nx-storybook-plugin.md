@@ -32,6 +32,8 @@
 
   - [[GitHub] juristr/nx-react-cypress-blogpost](https://github.com/juristr/nx-react-cypress-blogpost)
 
+- [Use Cypress and Storybook to test your React Components in Isolation](https://egghead.io/lessons/javascript-use-cypress-and-storybook-to-test-your-react-components-in-isolation)
+
 ## Known issues
 
 ### Import path from other libraries
