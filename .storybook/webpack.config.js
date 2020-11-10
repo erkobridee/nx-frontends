@@ -20,20 +20,7 @@ module.exports = async ({ config, mode }) => {
 
 	config.module.rules.push({
 		test: /\.scss$/,
-		use: [
-			'style-loader',
-			{
-				loader: 'css-loader',
-				options: {
-					importLoaders: 1,
-					modules: {
-						mode: 'local',
-					},
-					localsConvention: 'camelCase',
-				},
-			},
-			'sass-loader',
-		],
+		use: ['style-loader', 'css-loader', 'sass-loader'],
 		include: path.resolve(__dirname, '../'),
 	});
 
