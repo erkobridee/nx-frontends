@@ -50,6 +50,14 @@
 
 > Like the name suggests, this following flow will be triggered manually by the developer on the Azure DevOps
 
+#### Build storybook
+
+![manually trigger build storybook](assets/manually_build_storybook.png)
+
+📝&nbsp;&nbsp;**.azure-pipelines/manually/build-storybook.yml**
+
+⚠️&nbsp;&nbsp;to run this pipeline you must have created a GitHub PAT and upload it to the Azure DevOps Pipelines Library as a Secure file. **Instructions:** [Create and use a GitHub PAT](github-pat.md)
+
 #### Build all applications
 
 ![manually trigger build all](assets/manually_build_all.png)
