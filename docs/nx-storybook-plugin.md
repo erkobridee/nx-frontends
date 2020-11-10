@@ -30,6 +30,8 @@
 
 - [Guest Post: High Quality React apps with Nx & Cypress | Cypress](https://www.cypress.io/blog/2020/04/14/high-quality-react-apps-with-nx-cypress/)
 
+  - [[GitHub] juristr/nx-react-cypress-blogpost](https://github.com/juristr/nx-react-cypress-blogpost)
+
 ## Known issues
 
 ### Import path from other libraries
