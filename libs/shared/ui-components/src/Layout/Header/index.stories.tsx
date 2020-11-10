@@ -4,6 +4,15 @@ import Header from './index';
 
 export default {
 	title: 'shared/ui-components/Layout/Header',
+	component: Header,
 };
 
-export const example = () => <Header greetings="Hello World" />;
+const Template = (args) => <Header {...args} />;
+
+export const Example = Template.bind({});
+Example.args = {
+	greetings: 'Hello World',
+};
+Example.argTypes = {
+	greetings: { control: 'text' },
+};

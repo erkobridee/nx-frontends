@@ -20,23 +20,31 @@
 
   - [Storybook for React](https://storybook.js.org/docs/react/)
 
-- [[YouTube] Nx Tutorial: Nx Storybook Integration](https://www.youtube.com/watch?v=sFpqyjT7u4s)
+    - [Essential addons](https://storybook.js.org/docs/react/essentials/introduction)
 
-- [[YouTube] Nx Tutorial: Group all your stories into a single viewable Storybook with Nx](https://www.youtube.com/watch?v=c323HOuFKkA)
+    - [Storybook Controls Addon](https://github.com/storybookjs/storybook/blob/6.0-docs/addons/controls/README.md)
 
-- [Creating a Storybook instance including stories from multiple libraries in a Nrwl Nx workspace](https://medium.com/@dSebastien/creating-a-storybook-instance-including-stories-from-multiple-libraries-in-a-nrwl-nx-workspace-89009a2bddf7)
+  - [Storybook 6 Migration Guide](https://medium.com/storybookjs/storybook-6-migration-guide-200346241bb5)
 
-- [VS Code Jest, Improved ESLint Support, Typescript 4, Storybook 6, and more with Nx 10.3 | Nx Blog](https://blog.nrwl.io/vs-code-jest-improved-eslint-support-typescript-4-storybook-6-and-more-with-nx-10-3-faf7c12fe556)
+  - [Storybook 6.0](https://storybook.js.org/blog/storybook-6-0/)
 
-- [Storybook for React tutorial | Storybook Tutorials](https://www.learnstorybook.com/intro-to-storybook/react/en/get-started/)
+* [[YouTube] Nx Tutorial: Nx Storybook Integration](https://www.youtube.com/watch?v=sFpqyjT7u4s)
 
-- [What is Storybook and How Can I Use It to Create a Component Library in React? | freeCodeCamp](https://www.freecodecamp.org/news/what-is-storybook-and-how-can-i-use-it-to-create-a-component-libary-in-react/)
+* [[YouTube] Nx Tutorial: Group all your stories into a single viewable Storybook with Nx](https://www.youtube.com/watch?v=c323HOuFKkA)
 
-- [Guest Post: High Quality React apps with Nx & Cypress | Cypress](https://www.cypress.io/blog/2020/04/14/high-quality-react-apps-with-nx-cypress/)
+* [Creating a Storybook instance including stories from multiple libraries in a Nrwl Nx workspace](https://medium.com/@dSebastien/creating-a-storybook-instance-including-stories-from-multiple-libraries-in-a-nrwl-nx-workspace-89009a2bddf7)
+
+* [VS Code Jest, Improved ESLint Support, Typescript 4, Storybook 6, and more with Nx 10.3 | Nx Blog](https://blog.nrwl.io/vs-code-jest-improved-eslint-support-typescript-4-storybook-6-and-more-with-nx-10-3-faf7c12fe556)
+
+* [Storybook for React tutorial | Storybook Tutorials](https://www.learnstorybook.com/intro-to-storybook/react/en/get-started/)
+
+* [What is Storybook and How Can I Use It to Create a Component Library in React? | freeCodeCamp](https://www.freecodecamp.org/news/what-is-storybook-and-how-can-i-use-it-to-create-a-component-libary-in-react/)
+
+* [Guest Post: High Quality React apps with Nx & Cypress | Cypress](https://www.cypress.io/blog/2020/04/14/high-quality-react-apps-with-nx-cypress/)
 
   - [[GitHub] juristr/nx-react-cypress-blogpost](https://github.com/juristr/nx-react-cypress-blogpost)
 
-- [Use Cypress and Storybook to test your React Components in Isolation](https://egghead.io/lessons/javascript-use-cypress-and-storybook-to-test-your-react-components-in-isolation)
+* [Use Cypress and Storybook to test your React Components in Isolation](https://egghead.io/lessons/javascript-use-cypress-and-storybook-to-test-your-react-components-in-isolation)
 
 ## Known issues
 
