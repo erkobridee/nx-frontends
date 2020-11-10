@@ -70,9 +70,30 @@ It should be created one by application and use the template **.azure-pipelines/
 
 > CD - Continuous Deployment
 
+### Storybook
+
+![continuous deploy storybook](assets/cd_storybook.png)
+
+**.azure-pipelines/cd/storybook.yml** it uses the template **.azure-pipelines/cd/templates/deploy-one.yml**
+
+⚠️&nbsp;&nbsp;you need to create a `service connection` under the MS Azure DevOps project settings to connect with the MS Azure Cloud (use the Azure Resouce Manager connection to connect to your MS Azure Cloud subscription. **IMPORTANT:** use the same name)
+
+⚠️&nbsp;&nbsp;to run this pipeline you must have created a variable group on the pipelines library (remember to allow the access to all the pipelines):
+
+- `cd-vars_storybook` which should contains
+  - `STATUS` - it must have the value `active` to update the Azure Cloud Storage and Azure Could CDN
+  - to update the storage
+    - `azureStorageName`
+  - to update the cdn
+    - `azureResourceGroupName` - name of the service connection added to the `Service connections` under the MS Azure DevOps project settings (**IMPORTANT:** remember to use the same name from the MS Azure Cloud subscription)
+    - `azureCdnEndpointName`
+    - `azureCdnProfileName`
+
+### Application
+
 ![continuous deploy one app](assets/cd_app.png)
 
-It should be created one by application, environment (`prod` - production or `dev` - development) and use the template **.azure-pipelines/cd/templates/deploy-one.yml**
+It should be created one by application, environment (`prod` - production, `uat` - pre-release/staging or `dev` - development) and use the template **.azure-pipelines/cd/templates/deploy-one.yml**
 
 ⚠️&nbsp;&nbsp;you need to create a `service connection` under the MS Azure DevOps project settings to connect with the MS Azure Cloud (use the Azure Resouce Manager connection to connect to your MS Azure Cloud subscription. **IMPORTANT:** use the same name)
 
