@@ -28,6 +28,8 @@
 
 - [What is Storybook and How Can I Use It to Create a Component Library in React? | freeCodeCamp](https://www.freecodecamp.org/news/what-is-storybook-and-how-can-i-use-it-to-create-a-component-libary-in-react/)
 
+- [Guest Post: High Quality React apps with Nx & Cypress | Cypress](https://www.cypress.io/blog/2020/04/14/high-quality-react-apps-with-nx-cypress/)
+
 ## Known issues
 
 ### Import path from other libraries
