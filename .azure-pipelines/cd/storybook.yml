@@ -1,0 +1,18 @@
+# pipeline suggested name: CD storybook
+# pipeline to deploy the storybook to the server
+
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - build/storybook
+
+pr: none
+
+variables:
+  - group: cd-vars_storybook
+
+jobs:
+  - template: templates/deploy-one.yml
