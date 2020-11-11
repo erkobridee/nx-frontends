@@ -4,31 +4,31 @@ const dotenv = require('dotenv');
 
 const getEnv = require('./current-environment');
 
-const loadDotEnvConfig = rootPath => {
-  const envName = getEnv();
-  const dotenvFallbackFilename = path.join(rootPath, `/.env`);
-  const dotenvSelectedFilename = path.join(rootPath, `/.env.${envName}`);
+const loadDotEnvConfig = (rootPath) => {
+	const envName = getEnv();
+	const dotenvFallbackFilename = path.join(rootPath, `/.env`);
+	const dotenvSelectedFilename = path.join(rootPath, `/.env.${envName}`);
 
-  const dotenvPath = fs.existsSync(dotenvSelectedFilename)
-    ? dotenvSelectedFilename
-    : fs.existsSync(dotenvFallbackFilename)
-    ? dotenvFallbackFilename
-    : undefined;
+	const dotenvPath = fs.existsSync(dotenvSelectedFilename)
+		? dotenvSelectedFilename
+		: fs.existsSync(dotenvFallbackFilename)
+		? dotenvFallbackFilename
+		: undefined;
 
-  if (!dotenvPath) {
-    return;
-  }
+	if (!dotenvPath) {
+		return;
+	}
 
-  const dotenvConfig = dotenv.config({
-    path: dotenvPath
-  });
+	const dotenvConfig = dotenv.config({
+		path: dotenvPath,
+	});
 
-  if (dotenvConfig.error) {
-    console.error('loadDotEnvConfig error:', dotenvConfig.error);
-    return;
-  }
+	if (dotenvConfig.error) {
+		console.error('loadDotEnvConfig error:', dotenvConfig.error);
+		return;
+	}
 
-  return dotenvConfig.parsed;
+	return dotenvConfig.parsed;
 };
 
 module.exports = loadDotEnvConfig;

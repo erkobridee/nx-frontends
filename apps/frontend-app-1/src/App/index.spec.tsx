@@ -6,23 +6,23 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './index';
 
 describe('App', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
+	it('should render successfully', () => {
+		const { baseElement } = render(
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		);
 
-    expect(baseElement).toBeTruthy();
-  });
+		expect(baseElement).toBeTruthy();
+	});
 
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
+	it('should have a greeting as the title', () => {
+		const { getByText } = render(
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		);
 
-    expect(getByText('Welcome to frontend-app-1!')).toBeTruthy();
-  });
+		expect(getByText('Welcome to frontend-app-1!')).toBeTruthy();
+	});
 });
