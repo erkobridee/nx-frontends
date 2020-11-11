@@ -14,6 +14,8 @@ This project was generated using [Nx](https://nx.dev) ([v10.3.3](https://github.
 
 - integrate the gatsby support and identify how to use it
 
+- use the storybook support and integrate it to the azure pipelines
+
 ## Documentation
 
 - [Dev environment known issues](docs/dev-env-known-issues.md)
@@ -53,6 +55,8 @@ This project was generated using [Nx](https://nx.dev) ([v10.3.3](https://github.
 - it's possible to have more flexible libs
 
   - create an assets lib to share the SASS (.scss) common files and also the images, which is a folder with the given content needed inside (no ts or other nx lib stuff related inside of it)
+
+    - [Sass: LibSass is Deprecated](https://sass-lang.com/blog/libsass-is-deprecated) - [sass package | npm](https://www.npmjs.com/package/sass)
 
   - have a component lib that expose the whole content of itself and with that gain more flexibility to access the shared components from others libs or applications
 
