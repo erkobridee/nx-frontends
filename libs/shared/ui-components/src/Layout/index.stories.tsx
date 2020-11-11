@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import '@nx-frontends/shared/assets/styles-site.scss';
+
 import Layout from './index';
 
 export default {

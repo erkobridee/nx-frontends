@@ -1,6 +1,6 @@
 # NxFrontends
 
-This project was generated using [Nx](https://nx.dev) ([v10.3.0](https://github.com/nrwl/nx/releases/tag/10.3.0))
+This project was generated using [Nx](https://nx.dev) ([v10.3.3](https://github.com/nrwl/nx/releases/tag/10.3.3))
 
 ℹ️&nbsp;&nbsp;use the node.js v12.16.1 LTS
 
@@ -13,6 +13,8 @@ This project was generated using [Nx](https://nx.dev) ([v10.3.0](https://github.
 - master how to define and use the [Azure DevOps Services | Microsoft Azure](https://dev.azure.com/) CI/CD pipelines as code ([YAML](https://yaml.org/))
 
 - integrate the gatsby support and identify how to use it
+
+- use the storybook support and integrate it to the azure pipelines
 
 ## Documentation
 
@@ -53,6 +55,8 @@ This project was generated using [Nx](https://nx.dev) ([v10.3.0](https://github.
 - it's possible to have more flexible libs
 
   - create an assets lib to share the SASS (.scss) common files and also the images, which is a folder with the given content needed inside (no ts or other nx lib stuff related inside of it)
+
+    - [Sass: LibSass is Deprecated](https://sass-lang.com/blog/libsass-is-deprecated) - [sass package | npm](https://www.npmjs.com/package/sass)
 
   - have a component lib that expose the whole content of itself and with that gain more flexibility to access the shared components from others libs or applications
 
