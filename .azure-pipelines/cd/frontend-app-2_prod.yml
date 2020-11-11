@@ -1,0 +1,18 @@
+# pipeline suggested name: CD frontend-app-2 PROD
+# pipeline to deploy the application to the server
+
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - build/prod/frontend-app-2
+
+pr: none
+
+variables:
+  - group: cd-vars_prod_frontend-app-2
+
+jobs:
+  - template: templates/deploy-one.yml
