@@ -27,7 +27,7 @@ const parallel = target !== 'build-storybook' ? ' --parallel' : '';
 
 try {
 	exec(
-		`npx nx run-many --target=${target}${buildOutput} --projects=${projects.join(
+		`./node_modules/.bin/nx run-many --target=${target}${buildOutput} --projects=${projects.join(
 			','
 		)}${parallel}`,
 		{

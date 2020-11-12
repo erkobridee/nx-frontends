@@ -16,12 +16,16 @@ switch (branchName) {
 }
 
 const getAffectedProjects = (target = 'build') => {
+	const affected = exec(
+		`./node_modules/.bin/nx print-affected --base=${baseParam} --head=${headParam} --target=${target}`
+	);
+
+	const value = affected
+		? JSON.parse(affected).tasks.map((t) => t.target.project)
+		: [];
+
 	return {
-		[target]: JSON.parse(
-			exec(
-				`npx nx print-affected --base=${baseParam} --head=${headParam} --target=${target}`
-			)
-		).tasks.map((t) => t.target.project),
+		[target]: value,
 	};
 };
 

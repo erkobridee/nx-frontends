@@ -23,9 +23,12 @@ const buildOutput = ['prod', 'production'].includes(environment)
 const parallel = target !== 'build-storybook' ? ' --parallel' : '';
 
 try {
-	exec(`npx nx run-many --target=${target}${buildOutput} --all${parallel}`, {
-		stdio: [0, 1, 2],
-	});
+	exec(
+		`./node_modules/.bin/nx run-many --target=${target}${buildOutput} --all${parallel}`,
+		{
+			stdio: [0, 1, 2],
+		}
+	);
 
 	if (target === 'test') {
 		require('./libs/merge-cobertura')();

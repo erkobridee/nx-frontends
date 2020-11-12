@@ -27,16 +27,16 @@ const buildOutput = ['prod', 'production'].includes(environment)
 let cmdStr = '';
 switch (target) {
 	case 'lint':
-		cmdStr = `npx nx run-many --target=${target} --parallel --projects=${[
+		cmdStr = `./node_modules/.bin/nx run-many --target=${target} --parallel --projects=${[
 			appName,
 			`${appName}-e2e`,
 		].join(',')}`;
 		break;
 	case 'build-storybook':
-		cmdStr = `npx nx run ${appName}:${target}${buildOutput}`;
+		cmdStr = `./node_modules/.bin/nx run ${appName}:${target}${buildOutput}`;
 		break;
 	default:
-		cmdStr = `npx nx ${target} ${appName}${buildOutput}`;
+		cmdStr = `./node_modules/.bin/nx ${target} ${appName}${buildOutput}`;
 		break;
 }
 
