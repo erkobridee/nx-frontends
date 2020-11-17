@@ -10,7 +10,6 @@ pr:
       - develop
   paths:
     exclude:
-      - .azure-pipelines/*
       - .vscode/*
       - docs/*
       - README.md
