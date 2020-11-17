@@ -17,8 +17,15 @@ stages:
     displayName: validate all and build all
     condition: ne(variables['ENV'], 'feat')
     jobs:
+      - job: node_deps
+        displayName: cache node dependencies
+        steps:
+          - template: ../templates/steps_install-node-modules.yml
+
       - job: lint_all
         displayName: nx lint all apps
+        dependsOn: node_deps
+        condition: succeeded()
         steps:
           - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-all.js lint
@@ -26,6 +33,8 @@ stages:
 
       - job: test_all
         displayName: nx test all apps
+        dependsOn: node_deps
+        condition: succeeded()
         steps:
           - template: ../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-all.js test

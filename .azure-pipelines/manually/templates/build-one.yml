@@ -11,8 +11,15 @@ stages:
     displayName: validate and build
     condition: ne('${{parameters.env}}', 'feat')
     jobs:
+      - job: node_deps
+        displayName: cache node dependencies
+        steps:
+          - template: ../../templates/steps_install-node-modules.yml
+
       - job: lint_one
         displayName: nx lint ${{parameters.appName}}
+        dependsOn: node_deps
+        condition: succeeded()
         steps:
           - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-one.js ${{parameters.appName}} lint
@@ -20,6 +27,8 @@ stages:
 
       - job: test_one
         displayName: nx test ${{parameters.appName}}
+        dependsOn: node_deps
+        condition: succeeded()
         steps:
           - template: ../../templates/steps_install-node-modules.yml
           - script: node ./tools/scripts/nx-run-one.js ${{parameters.appName}} test

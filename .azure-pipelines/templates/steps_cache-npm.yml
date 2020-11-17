@@ -4,14 +4,34 @@
 # Cache task is missing (yaml pipeline)
 # https://developercommunity.visualstudio.com/content/problem/950320/cache-task-is-missing-yaml-pipeline.html?inRegister=true
 #
+parameters:
+  - name: npmConfigCache
+    type: string
+    default: '$(Pipeline.Workspace)/.npm'
+
 steps:
+  - script: |
+      echo $(Build.BuildNumber)
+      npm config get cache
+      npm config set cache ${{ parameters.npmConfigCache }} --global
+      npm config get cache
+    displayName: set npm cache directory
+
   # - task: Cache@2
   - task: CacheBeta@1
     inputs:
       key: 'npm | "$(Agent.OS)" | package-lock.json'
       restoreKeys: |
         npm | "$(Agent.OS)"
-        npm
+      path: ${{ parameters.npmConfigCache }}
+    displayName: Cache npm
+
+  # - task: Cache@2
+  - task: CacheBeta@1
+    inputs:
+      key: 'npm | "$(Agent.OS)" | "$(Build.BuildNumber)" | package-lock.json'
+      restoreKeys: |
+        npm | "$(Agent.OS)" | "$(Build.BuildNumber)"
       path: node_modules
       cacheHitVar: CACHE_RESTORED
     displayName: Cache node_modules
