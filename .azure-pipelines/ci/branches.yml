@@ -16,9 +16,7 @@ trigger:
       - develop
   paths:
     exclude:
-      - .azure-pipelines/*
       - .vscode/*
-      - tools/*
       - docs/*
       - README.md
 
