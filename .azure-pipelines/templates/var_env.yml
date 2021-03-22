@@ -1,7 +1,7 @@
 variables:
-  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
     ENV: 'prod'
-  ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+  ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/main') }}:
     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/staging') }}:
       ENV: 'uat'
     ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/staging') }}:
