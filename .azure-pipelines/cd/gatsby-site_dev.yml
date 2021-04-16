@@ -1,0 +1,18 @@
+# pipeline suggested name: CD gatsby-site DEV
+# pipeline to deploy the application to the server
+
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - build/dev/gatsby-site
+
+pr: none
+
+variables:
+  - group: cd-vars_dev_gatsby-site
+
+jobs:
+  - template: templates/deploy-one.yml

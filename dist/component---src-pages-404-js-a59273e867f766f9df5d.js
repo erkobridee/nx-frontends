@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{w2l6:function(n,c,e){"use strict";e.r(c);e("ERkP");var t=e("jg1C");c.default=function(){return Object(t.jsx)("h1",{children:"NOT FOUND"})}}}]);
+//# sourceMappingURL=component---src-pages-404-js-a59273e867f766f9df5d.js.map
