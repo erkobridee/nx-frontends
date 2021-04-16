@@ -323,7 +323,9 @@
 		"shared-assets": {
 			"root": "libs/shared/assets",
 			"sourceRoot": "libs/shared/assets",
-			"projectType": "library"
+			"projectType": "library",
+			"schematics": {},
+			"architect": {}
 		},
 		"gatsby-site": {
 			"root": "apps/gatsby-site",
