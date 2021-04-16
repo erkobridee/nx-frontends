@@ -1,15 +1,6 @@
 {
-	"singleQuote": true,
-	"bracketSpacing": true,
-	"useTabs": true,
-	"tabWidth": 2,
-	"overrides": [
-		{
-			"files": ["*.md", "*.yml"],
-			"options": {
-				"useTabs": false,
-				"tabWidth": 2
-			}
-		}
-	]
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "useTabs": false,
+  "tabWidth": 2
 }

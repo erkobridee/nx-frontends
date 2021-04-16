@@ -1,6 +1,6 @@
 const path = require('path');
 const [
-	storybookDir = path.resolve('./dist/storybook'),
+  storybookDir = path.resolve('./dist/storybook'),
 ] = require('./libs/get-cli-args');
 
 const listDirectoriesFrom = require('./libs/list-directories-from');
@@ -8,17 +8,17 @@ const listDirectoriesFrom = require('./libs/list-directories-from');
 const storybooks = listDirectoriesFrom(storybookDir);
 
 console.log({
-	storybookDir,
-	storybooks,
+  storybookDir,
+  storybooks,
 });
 
 if (storybooks.length === 0) {
-	process.exit();
+  process.exit();
 }
 
 const { writeFile } = require('./libs/fs-toolkit');
 (async () => {
-	const html = `<!DOCTYPE html>
+  const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -29,12 +29,12 @@ const { writeFile } = require('./libs/fs-toolkit');
 	<h3>available</h3>
 	<ul>
 ${storybooks
-	.map((storybook) => `<li><a href="/${storybook}/">${storybook}</a></li>`)
-	.join('\n')}
+  .map((storybook) => `<li><a href="/${storybook}/">${storybook}</a></li>`)
+  .join('\n')}
 	</ul>
 </body>
 </html>
 `;
 
-	await writeFile(path.join(storybookDir, 'index.html'), html);
+  await writeFile(path.join(storybookDir, 'index.html'), html);
 })();

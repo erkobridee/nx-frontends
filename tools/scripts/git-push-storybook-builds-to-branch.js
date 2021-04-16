@@ -1,7 +1,7 @@
 const path = require('path');
 const [
-	buildDir = path.resolve('./dist'),
-	githubPat = '',
+  buildDir = path.resolve('./dist'),
+  githubPat = '',
 ] = require('./libs/get-cli-args');
 
 require('gh-pages').clean();
@@ -23,69 +23,69 @@ const STATUS_FAILURE = 'failure';
   https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml#skipping-ci-for-individual-commits
 */
 const buildPublishOptions = (branch) => {
-	const ciOptions = githubPat
-		? {
-				repo: buildGitPatRepoUrl(githubPat),
-				silent: true,
-				message: `[Azure DevOps] ${new Date().toISOString()} - Auto-generated commit`,
-				user: {
-					name: 'pmi-automate',
-					email: 'automate@pm-international.com',
-				},
-		  }
-		: {};
-	return {
-		branch,
-		history: false,
-		dotfiles: true,
-		message: `[dev machine] ${new Date().toISOString()} - Auto-generated commit`,
-		...ciOptions,
-	};
+  const ciOptions = githubPat
+    ? {
+        repo: buildGitPatRepoUrl(githubPat),
+        silent: true,
+        message: `[Azure DevOps] ${new Date().toISOString()} - Auto-generated commit`,
+        user: {
+          name: 'pmi-automate',
+          email: 'automate@pm-international.com',
+        },
+      }
+    : {};
+  return {
+    branch,
+    history: false,
+    dotfiles: true,
+    message: `[dev machine] ${new Date().toISOString()} - Auto-generated commit`,
+    ...ciOptions,
+  };
 };
 
 const publishStorybook = async () => {
-	const toBranch = 'build/storybook';
-	try {
-		await publishToBranch(buildDir, buildPublishOptions(toBranch));
-		console.log('published');
-		return STATUS_SUCCESS;
-	} catch (e) {
-		console.error(e);
-		return STATUS_FAILURE;
-	}
+  const toBranch = 'build/storybook';
+  try {
+    await publishToBranch(buildDir, buildPublishOptions(toBranch));
+    console.log('published');
+    return STATUS_SUCCESS;
+  } catch (e) {
+    console.error(e);
+    return STATUS_FAILURE;
+  }
 };
 
 const prepareLocalRun = async () => {
-	if (githubPat) {
-		return;
-	}
+  if (githubPat) {
+    return;
+  }
 
-	await copy('.azure-pipelines/cd', 'dist/.azure-pipelines/cd');
+  await copy('.azure-pipelines/cd', 'dist/.azure-pipelines/cd');
 };
 
 (async () => {
-	await prepareLocalRun();
+  await prepareLocalRun();
 
-	if (!pathExistsSync(buildDir)) {
-		console.error('the .azure-pipelines directory is not present');
-		process.exit(1);
-	}
+  if (!pathExistsSync(buildDir)) {
+    console.error('the .azure-pipelines directory is not present');
+    process.exit(1);
+  }
 
-	console.log(`buildDir: ${buildDir}`);
+  console.log(`buildDir: ${buildDir}`);
 
-	await move(`${buildDir}/storybook`, `${buildDir}/dist`);
+  await move(`${buildDir}/storybook`, `${buildDir}/dist`);
 
-	const status = await publishStorybook();
+  const status = await publishStorybook();
 
-	if (status === STATUS_FAILURE) {
-		console.error(`\nFAILURE\n`);
-		process.exit(1);
-	} else {
-		console.log('\nDONE\n');
-		try {
-			exec('git fetch', {
-				stdio: [0, 1, 2],
-			});
-		} catch (e) {}
-	}
+  if (status === STATUS_FAILURE) {
+    console.error(`\nFAILURE\n`);
+    process.exit(1);
+  } else {
+    console.log('\nDONE\n');
+    try {
+      exec('git fetch', {
+        stdio: [0, 1, 2],
+      });
+    } catch (e) {}
+  }
 })();

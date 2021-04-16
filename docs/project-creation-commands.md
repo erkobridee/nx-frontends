@@ -71,7 +71,7 @@ after define the code and the libs code structure
 
 also added a new project dependency to the components
 
-`npm i --save-dev classnames`
+`npm i --save-dev clsx`
 
 to load the SASS mixins and variables definitions from the `shared-assets` lib, we should use an import on the .scss file like the following one:
 

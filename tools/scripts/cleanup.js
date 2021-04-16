@@ -3,8 +3,8 @@ const [dir = undefined] = require('./libs/get-cli-args');
 const { removeSync } = require('./libs/fs-toolkit');
 
 if (dir) {
-	removeSync(dir);
-	process.exit();
+  removeSync(dir);
+  process.exit();
 }
 
 //----------------------------------------------------------------------------//

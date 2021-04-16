@@ -1,12 +1,12 @@
 * {
-	&,
-	&:before,
-	&:after {
-		box-sizing: inherit;
-	}
+  &,
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
 
-	font: inherit;
-	outline: none;
+  font: inherit;
+  outline: none;
 }
 
 html,
@@ -91,17 +91,17 @@ mark,
 audio,
 video,
 hr {
-	margin: 0;
-	padding: 0;
-	border: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 html {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	background-color: var(--body-bg, white);
+  background-color: var(--body-bg, white);
 }
 
 article,
@@ -117,56 +117,56 @@ nav,
 section,
 main,
 form legend {
-	display: block;
+  display: block;
 }
 
 ol,
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 blockquote,
 q {
-	quotes: none;
+  quotes: none;
 }
 
 button,
 input,
 textarea,
 select {
-	margin: 0;
+  margin: 0;
 }
 
 .btn,
 .form-control,
 .link,
 .reset {
-	@include reset;
+  @include reset;
 }
 
 select.form-control::-ms-expand {
-	display: none; // hide Select default icon on IE
+  display: none; // hide Select default icon on IE
 }
 
 textarea {
-	resize: vertical;
-	overflow: auto;
-	vertical-align: top;
+  resize: vertical;
+  overflow: auto;
+  vertical-align: top;
 }
 
 input::-ms-clear {
-	display: none; // hide X icon in IE and Edge
+  display: none; // hide X icon in IE and Edge
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 img,
 video,
 svg {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 //----------------------------------------------------------------------------//
@@ -175,53 +175,53 @@ svg {
 [type='submit'],
 button,
 html [type='button'] {
-	-webkit-appearance: button;
+  -webkit-appearance: button;
 }
 
 [type='button']::-moz-focus-inner,
 [type='reset']::-moz-focus-inner,
 [type='submit']::-moz-focus-inner,
 button::-moz-focus-inner {
-	border-style: none;
-	padding: 0;
+  border-style: none;
+  padding: 0;
 }
 
 [type='button']:-moz-focusring,
 [type='reset']:-moz-focusring,
 [type='submit']:-moz-focusring,
 button:-moz-focusring {
-	outline: 1px dotted ButtonText;
+  outline: 1px dotted ButtonText;
 }
 
 [type='checkbox'],
 [type='radio'] {
-	box-sizing: border-box;
-	padding: 0;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 [type='number']::-webkit-inner-spin-button,
 [type='number']::-webkit-outer-spin-button {
-	height: auto;
+  height: auto;
 }
 
 [type='search'] {
-	-webkit-appearance: textfield;
-	outline-offset: -2px;
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
 }
 
 [type='search']::-webkit-search-cancel-button,
 [type='search']::-webkit-search-decoration {
-	-webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 ::-webkit-input-placeholder {
-	color: inherit;
-	opacity: 0.54;
+  color: inherit;
+  opacity: 0.54;
 }
 
 ::-webkit-file-upload-button {
-	-webkit-appearance: button;
-	font: inherit;
+  -webkit-appearance: button;
+  font: inherit;
 }
 
 //----------------------------------------------------------------------------//

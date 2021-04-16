@@ -13,7 +13,7 @@ steps:
       npm config set cache ${{ parameters.npmConfigCache }} --global
       npm config get cache
     displayName: set npm cache directory
-  
+
   # - task: Cache@2
   - task: CacheBeta@1
     inputs:

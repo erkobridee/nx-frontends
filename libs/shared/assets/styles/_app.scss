@@ -1,24 +1,24 @@
 .app {
-	main {
-		padding: 36px;
-	}
+  main {
+    padding: 36px;
+  }
 
-	p {
-		text-align: center;
-		margin-bottom: 10px;
-	}
+  p {
+    text-align: center;
+    margin-bottom: 10px;
+  }
 
-	div[role='navigation'] {
-		margin-bottom: 5px;
+  div[role='navigation'] {
+    margin-bottom: 5px;
 
-		ul > li {
-			display: inline-block;
+    ul > li {
+      display: inline-block;
 
-			&:not(:last-child) {
-				padding-right: 10px;
-				margin-right: 10px;
-				border-right: 1px solid $color-black;
-			}
-		}
-	}
+      &:not(:last-child) {
+        padding-right: 10px;
+        margin-right: 10px;
+        border-right: 1px solid $color-black;
+      }
+    }
+  }
 }

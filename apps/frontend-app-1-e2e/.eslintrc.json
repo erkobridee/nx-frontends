@@ -1,14 +1,21 @@
 {
-	"rules": {},
-	"overrides": [
-		{
-			"files": ["src/plugins/index.js"],
-			"rules": {
-				"@typescript-eslint/no-var-requires": "off",
-				"no-undef": "off"
-			}
-		}
-	],
-	"extends": ["plugin:cypress/recommended", "../../.eslintrc"],
-	"ignorePatterns": ["!**/*"]
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["apps/frontend-app-1-e2e/tsconfig.*?.json"]
+      },
+      "rules": {}
+    },
+    {
+      "files": ["src/plugins/index.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "no-undef": "off"
+      }
+    }
+  ],
+  "extends": ["plugin:cypress/recommended", "../../.eslintrc"],
+  "ignorePatterns": ["!**/*"]
 }

@@ -13,7 +13,7 @@ const localBuildDir = path.join(currentDir, 'public');
 const rootAppBuildDir = path.join(rootDir, `dist/apps/${localDirname}`);
 
 exports.onPostBuild = () => {
-	shelljs.rm('-rf', rootAppBuildDir);
-	shelljs.mkdir('-p', rootAppBuildDir);
-	shelljs.cp('-R', `${localBuildDir}/*`, rootAppBuildDir);
+  shelljs.rm('-rf', rootAppBuildDir);
+  shelljs.mkdir('-p', rootAppBuildDir);
+  shelljs.cp('-R', `${localBuildDir}/*`, rootAppBuildDir);
 };

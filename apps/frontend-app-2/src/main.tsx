@@ -13,8 +13,8 @@ console.log(`process.env.HELLO: ${process.env.HELLO}`);
 console.log(`process.env.NX_HELLO: ${process.env.NX_HELLO}`);
 
 ReactDOM.render(
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>,
-	document.getElementById('root')
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
 );
