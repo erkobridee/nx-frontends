@@ -1,0 +1,47 @@
+#
+# deploy a static web site to the MS Azure Cloud Storage and CDN
+#
+# configurations defined as a variable group
+#
+jobs:
+  - job: check
+    steps:
+      - checkout: self
+        clean: true
+
+      - script: |
+          echo ''
+          echo 'pwd'
+          pwd
+          echo ''
+          echo 'project directory'
+          echo ''
+          ls -a
+          echo ''
+          echo 'dist directory'
+          echo ''
+          cd dist
+          ls -a
+          echo ''
+        displayName: list repository files
+
+      - script: |
+          echo ''
+          echo 'variables values'
+          echo ''
+          echo 'status: $(STATUS)'
+          echo ''
+          echo 'azureResourceGroupName: $(azureResourceGroupName)'
+          echo 'azureStorageName: $(azureStorageName)'
+          echo 'azureCdnEndpointName: $(azureCdnEndpointName)'
+          echo 'azureCdnProfileName: $(azureCdnProfileName)'
+          echo ''
+        displayName: show variables values
+
+  - job: deploy
+    condition: |
+      eq(variables.STATUS, 'active')
+    steps:
+      - checkout: self
+        clean: true
+      - template: azure-cloud-update.yml
