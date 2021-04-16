@@ -4,9 +4,6 @@
 	"overrides": [
 		{
 			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-			"parserOptions": {
-				"project": "./tsconfig.*?.json"
-			},
 			"rules": {
 				"@typescript-eslint/interface-name-prefix": "off",
 				"@nrwl/nx/enforce-module-boundaries": [
@@ -30,9 +27,6 @@
 		{
 			"files": ["*.ts", "*.tsx"],
 			"extends": ["plugin:@nrwl/nx/typescript"],
-			"parserOptions": {
-				"project": "./tsconfig.*?.json"
-			},
 			"rules": {}
 		},
 		{
