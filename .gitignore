@@ -17,6 +17,7 @@ reports/
 *.launch
 .settings/
 *.sublime-workspace
+.husky/
 
 # IDE - VSCode
 .vscode/*

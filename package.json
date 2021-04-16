@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "postinstall": "is-ci || npx husky install",
     "nx": "nx",
     "start": "nx serve",
     "build": "nx build",
@@ -37,6 +38,11 @@
     "git-publish:storybook-builds": "node ./tools/scripts/git-push-storybook-builds-to-branch.js",
     "merge-cobertura": "node ./tools/scripts/merge-cobertura.js",
     "workspace-generator": "nx workspace-generator"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format"
+    }
   },
   "private": true,
   "dependencies": {
@@ -105,6 +111,8 @@
     "gatsby-source-filesystem": "^2.9.1",
     "gatsby-transformer-sharp": "^2.12.0",
     "gh-pages": "^2.2.0",
+    "husky": "^6.0.0",
+    "is-ci": "^3.0.0",
     "jest": "26.2.2",
     "jest-junit": "^10.0.0",
     "open": "^7.0.2",
