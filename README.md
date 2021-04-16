@@ -1,8 +1,8 @@
 # NxFrontends
 
-This project was generated using [Nx](https://nx.dev) ([v10.3.3](https://github.com/nrwl/nx/releases/tag/10.3.3))
+This project was generated using [Nx](https://nx.dev) ([v11.5.2](https://github.com/nrwl/nx/releases/tag/11.5.2))
 
-ℹ️&nbsp;&nbsp;use the node.js v12.16.1 LTS
+ℹ️&nbsp;&nbsp;use the node.js v12 LTS
 
 🌎&nbsp;&nbsp;[Pipelines (builds) on MS Azure DevOps](https://dev.azure.com/ErkoBrideeAzure/nx-frontends/_build)
 

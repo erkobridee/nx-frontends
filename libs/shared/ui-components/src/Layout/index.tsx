@@ -7,22 +7,22 @@ import LayoutFooter from './Footer';
 import './_styles.scss';
 
 export interface ILayoutProps {
-	className?: string;
-	headerGreetings: React.ReactNode;
+  className?: string;
+  headerGreetings: React.ReactNode;
 }
 
 export const Layout: React.FunctionComponent<ILayoutProps> = ({
-	className,
-	headerGreetings,
-	children,
+  className,
+  headerGreetings,
+  children,
 }) => (
-	<div className={cn('layout', className)}>
-		<div className="layout__container">
-			<LayoutHeader className="layout__header" greetings={headerGreetings} />
-			<div className="layout__content">{children}</div>
-			<LayoutFooter className="layout__footer" />
-		</div>
-	</div>
+  <div className={cn('layout', className)}>
+    <div className="layout__container">
+      <LayoutHeader className="layout__header" greetings={headerGreetings} />
+      <div className="layout__content">{children}</div>
+      <LayoutFooter className="layout__footer" />
+    </div>
+  </div>
 );
 
 export default Layout;

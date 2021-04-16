@@ -14,22 +14,22 @@ import Img from 'gatsby-image';
  */
 
 export const NxLogoImage = () => {
-	const data = useStaticQuery(graphql`
-		query {
-			placeholderImage: file(
-				sourceInstanceName: { eq: "shared-images" }
-				relativePath: { eq: "logo.png" }
-			) {
-				childImageSharp {
-					fluid(maxWidth: 400) {
-						...GatsbyImageSharpFluid
-					}
-				}
-			}
-		}
-	`);
+  const data = useStaticQuery(graphql`
+    query {
+      placeholderImage: file(
+        sourceInstanceName: { eq: "shared-images" }
+        relativePath: { eq: "logo.png" }
+      ) {
+        childImageSharp {
+          fluid(maxWidth: 400) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
 
-	return <Img fluid={data.placeholderImage.childImageSharp.fluid} />;
+  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />;
 };
 
 export default NxLogoImage;

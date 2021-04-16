@@ -1,31 +1,31 @@
 {
-	"rules": {
-		"no-unused-expressions": [
-			"error",
-			{
-				"allowShortCircuit": true,
-				"allowTernary": true,
-				"allowTaggedTemplates": true
-			}
-		],
-		"@typescript-eslint/camelcase": "off"
-	},
-	"overrides": [
-		{
-			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-			"parserOptions": {
-				"project": ["apps/gatsby-site/tsconfig.*?.json"]
-			},
-			"rules": {}
-		},
-		{
-			"files": ["gatsby-*.js"],
-			"rules": {
-				"@typescript-eslint/no-var-requires": "off",
-				"no-undef": "off"
-			}
-		}
-	],
-	"extends": ["plugin:@nrwl/nx/react", "../../.eslintrc"],
-	"ignorePatterns": ["!**/*", "public"]
+  "rules": {
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true,
+        "allowTaggedTemplates": true
+      }
+    ],
+    "@typescript-eslint/camelcase": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["apps/gatsby-site/tsconfig.*?.json"]
+      },
+      "rules": {}
+    },
+    {
+      "files": ["gatsby-*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "no-undef": "off"
+      }
+    }
+  ],
+  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc"],
+  "ignorePatterns": ["!**/*", "public"]
 }

@@ -1,25 +1,25 @@
 {
-	"extends": "../../tsconfig.base.json",
-	"compilerOptions": {
-		"jsx": "react",
-		"allowJs": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"types": ["node", "jest"],
-		"baseUrl": ".",
-		"paths": {
-			"@this/*": ["src/*"],
-			"@nx-frontends/shared/assets/*": ["../../libs/shared/assets/*"],
-			"@nx-frontends/shared/ui-components/*": [
-				"../../libs/shared/ui-components/src/*"
-			]
-		}
-	},
-	"files": [],
-	"include": [],
-	"references": [
-		{
-			"path": "./tsconfig.spec.json"
-		}
-	]
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["node", "jest"],
+    "baseUrl": ".",
+    "paths": {
+      "@this/*": ["src/*"],
+      "@nx-frontends/shared/assets/*": ["../../libs/shared/assets/*"],
+      "@nx-frontends/shared/ui-components/*": [
+        "../../libs/shared/ui-components/src/*"
+      ]
+    }
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }
